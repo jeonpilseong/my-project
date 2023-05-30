@@ -1,7 +1,7 @@
 import { Button, Input, Upload } from 'antd'
 import styled from '@emotion/styled'
 
-import { breakPoints } from '../../../src/commons/styles/globalStyles'
+import { breakPoints } from '../../../src/common/styles/globalStyles'
 
 export const Container = styled.div`
   display: flex;
@@ -171,6 +171,10 @@ export const BtnWrapper = styled.div`
 export const SubmitBtn = styled(Button)`
   width: 17.9rem;
   height: 5.2rem;
-  background: #ffd600;
+  background: #bdbdbd;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+`
+
+export const Error = styled.div`
+  color: var(--error-red);
 `
