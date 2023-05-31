@@ -3,7 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation } from '@apollo/client'
 
 import BoardWriteUI from './BoardWrite.presenter'
-import { schema } from '../../../src/common/validation/validation'
+import { schema } from '../../../../../src/common/validation/validation'
 import { CREATE_BOARD } from './BoardWrite.queries'
 
 export default function BoardWrite() {

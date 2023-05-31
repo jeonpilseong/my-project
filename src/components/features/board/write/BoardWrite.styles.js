@@ -1,7 +1,7 @@
 import { Button, Input, Upload } from 'antd'
 import styled from '@emotion/styled'
 
-import { breakPoints } from '../../../src/common/styles/globalStyles'
+import { breakPoints } from '../../../../../src/common/styles/globalStyles'
 
 export const Container = styled.div`
   display: flex;

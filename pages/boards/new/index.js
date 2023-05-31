@@ -1,4 +1,4 @@
-import BoardWrite from '../../../src/board/write/BoardWrite.container'
+import BoardWrite from '../../../src/components/features/board/write/BoardWrite.container'
 
 export default function BoardWritePage() {
   return <BoardWrite />
