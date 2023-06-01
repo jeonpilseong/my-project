@@ -3,7 +3,7 @@ import { Avatar, Button } from 'antd'
 
 import { breakPoints } from '../../../../../src/common/styles/globalStyles'
 
-export const Container = styled.div`
+export const Wrapper = styled.div`
   width: 95%;
   margin: auto;
   max-width: 120rem;
