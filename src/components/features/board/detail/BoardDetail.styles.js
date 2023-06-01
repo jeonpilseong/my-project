@@ -4,13 +4,6 @@ import { Avatar, Button } from 'antd'
 import { breakPoints } from '../../../../../src/common/styles/globalStyles'
 
 export const Container = styled.div`
-  /* display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start; */
-`
-
-export const Wrapper = styled.div`
   width: 95%;
   margin: auto;
   max-width: 120rem;

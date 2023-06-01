@@ -4,8 +4,8 @@ import * as S from './BoardDetail.styles'
 
 export default function BoardDetailUI(props) {
   return (
-    <S.Container>
-      <S.Wrapper>
+    <>
+      <S.Container>
         <S.Header>
           <S.ProfileWrapper>
             <S.AvatarIcon size={50} icon={<UserOutlined />} />
@@ -35,12 +35,12 @@ export default function BoardDetailUI(props) {
             <S.DownCount>1920</S.DownCount>
           </S.DownBtnWrapper>
         </S.UpDownWrapper>
-      </S.Wrapper>
+      </S.Container>
 
       <S.BtnWrapper>
         <S.Btn>목록으로</S.Btn>
         <S.Btn>수정하기</S.Btn>
       </S.BtnWrapper>
-    </S.Container>
+    </>
   )
 }
