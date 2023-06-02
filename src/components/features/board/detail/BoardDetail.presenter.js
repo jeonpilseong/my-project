@@ -1,8 +1,10 @@
-import { UserOutlined, LikeOutlined, DislikeOutlined } from '@ant-design/icons'
+import { UserOutlined } from '@ant-design/icons'
 
 import * as S from './BoardDetail.styles'
+import { useMoveToPage } from '../../../../../src/common/hooks/useMoveToPage'
 
 export default function BoardDetailUI(props) {
+  const { onClickMoveToPage } = useMoveToPage()
   return (
     <>
       <S.Wrapper>
@@ -10,8 +12,8 @@ export default function BoardDetailUI(props) {
           <S.ProfileWrapper>
             <S.AvatarIcon size={50} icon={<UserOutlined />} />
             <S.WriterWrapper>
-              <S.Writer>작성자</S.Writer>
-              <S.Date>날짜</S.Date>
+              <S.Writer>{props.BoardData?.fetchBoard?.writer}</S.Writer>
+              <S.Date>{props.BoardData?.fetchBoard.createdAt.slice(0, 10)}</S.Date>
             </S.WriterWrapper>
           </S.ProfileWrapper>
           <S.AddressWrapper>
@@ -20,9 +22,9 @@ export default function BoardDetailUI(props) {
           </S.AddressWrapper>
         </S.Header>
 
-        <S.Title>타이틀</S.Title>
+        <S.Title>{props.BoardData?.fetchBoard?.title}</S.Title>
         <S.Image />
-        <S.Contents>내용</S.Contents>
+        <S.Contents>{props.BoardData?.fetchBoard?.contents}</S.Contents>
         <S.Youtube />
 
         <S.UpDownWrapper>
@@ -38,7 +40,7 @@ export default function BoardDetailUI(props) {
       </S.Wrapper>
 
       <S.BtnWrapper>
-        <S.Btn>목록으로</S.Btn>
+        <S.Btn onClick={onClickMoveToPage(`/`)}>목록으로</S.Btn>
         <S.Btn>수정하기</S.Btn>
       </S.BtnWrapper>
     </>

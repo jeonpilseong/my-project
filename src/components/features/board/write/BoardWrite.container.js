@@ -1,12 +1,16 @@
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation } from '@apollo/client'
+import { Modal } from 'antd'
+import { useRouter } from 'next/router'
 
 import BoardWriteUI from './BoardWrite.presenter'
 import { schema } from '../../../../../src/common/validation/validation'
 import { CREATE_BOARD } from './BoardWrite.queries'
 
 export default function BoardWrite() {
+  const router = useRouter()
+
   // **** react-hook-form, yup
   const { handleSubmit, control, formState } = useForm({
     resolver: yupResolver(schema),
@@ -18,17 +22,24 @@ export default function BoardWrite() {
 
   // **** 이벤트 핸들러 함수
   const onClickSubmit = handleSubmit(async data => {
-    const result = await createBoard({
-      variables: {
-        createBoardInput: {
-          writer: data.writer,
-          password: data.password,
-          title: data.title,
-          contents: data.contents,
+    try {
+      const result = await createBoard({
+        variables: {
+          createBoardInput: {
+            writer: data.writer,
+            password: data.password,
+            title: data.title,
+            contents: data.contents,
+          },
         },
-      },
-    })
-    console.log(result)
+      })
+      Modal.success({ content: '등록 되었습니다.' })
+
+      // **** 동적 라우팅
+      router.push(`/boards/detail/${result.data?.createBoard._id}`)
+    } catch (error) {
+      if (error instanceof Error) Modal.error({ content: error.message })
+    }
   })
 
   return (
