@@ -3,6 +3,7 @@ import * as S from './BoardList.styles'
 
 export default function BoardListUI(props) {
   const { onClickMoveToPage } = useMoveToPage()
+
   return (
     <S.Wrapper>
       <S.BoardHeader>
@@ -23,10 +24,10 @@ export default function BoardListUI(props) {
 
       <S.BoardFooter>
         <S.HiddenDiv />
-        <S.BoardWriteBtn onClick={onClickMoveToPage(`/boards/new`)}>
-          <S.BoardWriteBtnImg src="/images/list/Write.png" />
-          <S.BoardWriteBtnText>게시글 등록하기</S.BoardWriteBtnText>
-        </S.BoardWriteBtn>
+        <S.Btn onClick={onClickMoveToPage(`/boards/new`)}>
+          <S.BtnImg src="/images/list/Write.png" />
+          <S.BtnText>게시글 등록하기</S.BtnText>
+        </S.Btn>
       </S.BoardFooter>
     </S.Wrapper>
   )

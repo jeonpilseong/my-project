@@ -71,7 +71,7 @@ export const BoardFooter = styled.div`
 
 export const HiddenDiv = styled.div``
 
-export const BoardWriteBtn = styled.button`
+export const Btn = styled.button`
   display: flex;
   padding: 1.4rem 1.6rem;
   border: 1px solid var(--gray-3);
@@ -79,11 +79,11 @@ export const BoardWriteBtn = styled.button`
   cursor: pointer;
 `
 
-export const BoardWriteBtnImg = styled.img`
+export const BtnImg = styled.img`
   margin-right: 1.1rem;
 `
 
-export const BoardWriteBtnText = styled.div`
+export const BtnText = styled.div`
   font-weight: 500;
   font-size: 1.6rem;
   line-height: 2.4rem;

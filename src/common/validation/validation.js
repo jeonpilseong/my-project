@@ -13,3 +13,10 @@ export const schema = yup.object({
   title: yup.string().required('제목을 입력해주세요.'),
   contents: yup.string().required('내용을 입력해주세요.'),
 })
+
+export const schema_edit = yup.object({
+  password: yup
+    .string()
+    .required('비밀번호를 입력해주세요.')
+    .matches(regex, '영문+숫자+특수문자 조합 8~16자리의 비밀번호를 입력해 주세요.'),
+})

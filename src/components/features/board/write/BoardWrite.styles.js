@@ -171,8 +171,12 @@ export const BtnWrapper = styled.div`
 export const SubmitBtn = styled(Button)`
   width: 17.9rem;
   height: 5.2rem;
-  background: #bdbdbd;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+`
+
+export const EditToListBtn = styled(Button)`
+  width: 17.9rem;
+  height: 5.2rem;
+  margin-right: 2.4rem;
 `
 
 export const Error = styled.div`

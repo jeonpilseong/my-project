@@ -1,10 +1,20 @@
 import { Form } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { Controller } from 'react-hook-form'
+import { useRecoilState } from 'recoil'
 
 import * as S from './BoardWrite.styles'
+import { isEditState } from '../../../../../src/common/stores/index'
+import { useQueryFetchBoard } from '../../../../../src/common/hooks/queries/useQueryFetchBoard'
+import { useMoveToPage } from '../../../../../src/common/hooks/useMoveToPage'
 
 export default function BoardWriteUI(props) {
+  const { onClickMoveToPage } = useMoveToPage()
+
+  // **** 상태값
+  const [isEdit] = useRecoilState(isEditState)
+
+  // **** 버튼
   const uploadButton = (
     <div>
       <PlusOutlined />
@@ -12,11 +22,14 @@ export default function BoardWriteUI(props) {
     </div>
   )
 
+  // **** graphql query api 요청
+  const { data: BoardData } = useQueryFetchBoard()
+
   return (
     <S.Container>
       <S.Wrapper>
         <Form onFinish={props.onClickSubmit}>
-          <S.BoardTitle>게시글 등록</S.BoardTitle>
+          <S.BoardTitle>게시글 {isEdit ? '수정' : '등록'}</S.BoardTitle>
           <S.ProfileWrapper>
             <S.HalfBox>
               <S.Label>작성자</S.Label>
@@ -24,7 +37,15 @@ export default function BoardWriteUI(props) {
                 name="writer"
                 control={props.control}
                 rules={{ required: true }}
-                render={({ field }) => <S.WriterInput placeholder="작성자를 입력해 주세요." {...field} />}
+                render={({ field }) => (
+                  <S.WriterInput
+                    placeholder="작성자를 입력해 주세요."
+                    defaultValue={BoardData?.fetchBoard?.writer || ''}
+                    key={BoardData?.fetchBoard?.writer}
+                    readOnly={!!BoardData?.fetchBoard?.writer}
+                    {...field}
+                  />
+                )}
               />
               <S.Error>{props.formState.errors.writer?.message}</S.Error>
             </S.HalfBox>
@@ -48,7 +69,14 @@ export default function BoardWriteUI(props) {
               name="title"
               control={props.control}
               rules={{ required: true }}
-              render={({ field }) => <S.TitleInput placeholder="제목을 입력해 주세요." {...field} />}
+              render={({ field }) => (
+                <S.TitleInput
+                  placeholder="제목을 입력해 주세요."
+                  defaultValue={BoardData?.fetchBoard?.title}
+                  key={BoardData?.fetchBoard?.title}
+                  {...field}
+                />
+              )}
             />
             <S.Error>{props.formState.errors.title?.message}</S.Error>
           </S.TitleWrapper>
@@ -60,7 +88,15 @@ export default function BoardWriteUI(props) {
               control={props.control}
               rules={{ required: true }}
               render={({ field }) => (
-                <S.ContentsInput showCount rows={20} maxLength={1000} placeholder="내용을 입력해 주세요." {...field} />
+                <S.ContentsInput
+                  showCount
+                  rows={20}
+                  maxLength={1000}
+                  placeholder="내용을 입력해 주세요."
+                  defaultValue={BoardData?.fetchBoard?.contents}
+                  key={BoardData?.fetchBoard?.contents}
+                  {...field}
+                />
               )}
             />
             <S.Error>{props.formState.errors.contents?.message}</S.Error>
@@ -87,10 +123,11 @@ export default function BoardWriteUI(props) {
           </S.ImgWrapper>
 
           <S.BtnWrapper>
+            {isEdit ? <S.EditToListBtn onClick={onClickMoveToPage(`/boards/list`)}>목록으로</S.EditToListBtn> : ''}
             <S.SubmitBtn
-              style={{ backgroundColor: props.formState.isValid ? '#ffd600' : '#bdbdbd' }}
-              onClick={props.onClickSubmit}>
-              등록하기
+              style={{ backgroundColor: props.formState.isValid ? '#ffd600' : '' }}
+              onClick={isEdit ? props.onClickUpdate : props.onClickSubmit}>
+              {isEdit ? '수정' : '등록'}하기
             </S.SubmitBtn>
           </S.BtnWrapper>
         </Form>

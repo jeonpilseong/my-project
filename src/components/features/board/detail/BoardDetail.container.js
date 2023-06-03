@@ -4,18 +4,12 @@ import { Modal } from 'antd'
 
 import BoardDetailUI from './BoardDetail.presenter'
 import { DELETE_BOARD, FETCH_BOARD } from './BoardDetail.queries'
-import { FETCH_BOARDS } from '../list/BoardList.queries'
 
 export default function BoardDetail() {
   const router = useRouter()
 
   // **** graphql api 요청
   const [deleteBoard] = useMutation(DELETE_BOARD)
-  const { data: BoardData } = useQuery(FETCH_BOARD, {
-    variables: {
-      boardId: router.query.boardId,
-    },
-  })
 
   // **** 이벤트 핸들러 함수
   const onClickDelete = async () => {
@@ -28,5 +22,5 @@ export default function BoardDetail() {
     router.push('/boards/list')
   }
 
-  return <BoardDetailUI BoardData={BoardData} onClickDelete={onClickDelete} />
+  return <BoardDetailUI onClickDelete={onClickDelete} boardId={router.query.boardId} />
 }
