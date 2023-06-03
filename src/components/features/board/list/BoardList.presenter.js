@@ -1,6 +1,8 @@
+import { useMoveToPage } from '../../../../../src/common/hooks/useMoveToPage'
 import * as S from './BoardList.styles'
 
 export default function BoardListUI(props) {
+  const { onClickMoveToPage } = useMoveToPage()
   return (
     <S.Wrapper>
       <S.BoardHeader>
@@ -10,16 +12,18 @@ export default function BoardListUI(props) {
         <S.ColumnDate>날짜</S.ColumnDate>
       </S.BoardHeader>
 
-      <S.Row>
-        <S.ColumnNumber>1</S.ColumnNumber>
-        <S.ColumnTitle>게시글 제목입니다.</S.ColumnTitle>
-        <S.ColumnWriter>작성자</S.ColumnWriter>
-        <S.ColumnDate>2020.09.28</S.ColumnDate>
-      </S.Row>
+      {props.BoardsData?.fetchBoards.map(el => (
+        <S.Row key={el._id}>
+          <S.ColumnNumber>{el._id.slice(-4).toUpperCase()}</S.ColumnNumber>
+          <S.ColumnTitle onClick={onClickMoveToPage(`/boards/detail/${el._id}`)}>{el.title}</S.ColumnTitle>
+          <S.ColumnWriter>{el.writer}</S.ColumnWriter>
+          <S.ColumnDate>{el.createdAt.slice(0, 10)}</S.ColumnDate>
+        </S.Row>
+      ))}
 
       <S.BoardFooter>
         <S.HiddenDiv />
-        <S.BoardWriteBtn>
+        <S.BoardWriteBtn onClick={onClickMoveToPage(`/boards/new`)}>
           <S.BoardWriteBtnImg src="/images/list/Write.png" />
           <S.BoardWriteBtnText>게시글 등록하기</S.BoardWriteBtnText>
         </S.BoardWriteBtn>

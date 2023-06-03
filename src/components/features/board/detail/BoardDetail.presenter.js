@@ -40,8 +40,9 @@ export default function BoardDetailUI(props) {
       </S.Wrapper>
 
       <S.BtnWrapper>
-        <S.Btn onClick={onClickMoveToPage(`/`)}>목록으로</S.Btn>
+        <S.Btn onClick={onClickMoveToPage(`/boards/list`)}>목록으로</S.Btn>
         <S.Btn>수정하기</S.Btn>
+        <S.Btn onClick={props.onClickDelete}>삭제하기</S.Btn>
       </S.BtnWrapper>
     </>
   )
