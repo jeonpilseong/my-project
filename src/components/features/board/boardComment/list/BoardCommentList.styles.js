@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
-import { Avatar, Rate, Button } from 'antd'
+import { Avatar, Rate } from 'antd'
+
 export const Wrapper = styled.div`
   display: flex;
   width: 95%;

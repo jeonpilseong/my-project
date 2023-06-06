@@ -1,16 +1,48 @@
 import * as S from './BoardCommentWrite.styles'
 import { Rate } from 'antd'
 
-export default function BoardCommentWriteUI() {
+export default function BoardCommentWriteUI(props) {
   return (
-    <S.Wrapper>
-      <S.Title>
-        <S.TitleImg src="/images/boardComment/Comment.png" />
-        <S.TitleText>댓글</S.TitleText>
-      </S.Title>
-      <Rate />
-      <S.CommentInput showCount rows={5} maxLength={100} placeholder="댓글을 입력해 주세요." />
-      <S.Btn type="primary">Add Comment</S.Btn>
-    </S.Wrapper>
+    <>
+      {!props.isEdit && (
+        <S.Wrapper>
+          <S.Title>
+            <S.TitleImg src="/images/boardComment/Comment.png" />
+            <S.TitleText>댓글</S.TitleText>
+          </S.Title>
+
+          <Rate onChange={props.onChangeStar} />
+          <S.CommentInput
+            onChange={props.onChangeContents}
+            showCount
+            rows={5}
+            maxLength={100}
+            placeholder="댓글을 입력해 주세요."
+          />
+
+          <S.Btn onClick={props.onClickAddComment} type="primary">
+            Add Comment
+          </S.Btn>
+        </S.Wrapper>
+      )}
+
+      {props.isEdit && (
+        <S.EditWrapper>
+          <Rate onChange={props.onChangeStar} defaultValue={props.el?.rating} />
+          <S.CommentInput
+            onChange={props.onChangeContents}
+            showCount
+            rows={5}
+            maxLength={100}
+            placeholder="댓글을 입력해 주세요."
+            value={props.contents || (props.el?.contents ?? '')}
+          />
+
+          <S.Btn onClick={props.onClickEdit} type="primary">
+            Edit Comment
+          </S.Btn>
+        </S.EditWrapper>
+      )}
+    </>
   )
 }

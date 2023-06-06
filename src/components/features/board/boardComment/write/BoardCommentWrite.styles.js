@@ -6,9 +6,18 @@ export const Wrapper = styled.div`
   margin: auto;
   max-width: 120rem;
   margin-top: 10rem;
-  margin-bottom: 4.2rem;
+  margin-bottom: 6.5rem;
   padding-top: 4rem;
   border-top: 1px solid var(--gray-3);
+`
+
+export const EditWrapper = styled.div`
+  width: 95%;
+  margin: auto;
+  max-width: 120rem;
+  margin-bottom: 2.2rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--gray-3);
 `
 
 export const Title = styled.div`
