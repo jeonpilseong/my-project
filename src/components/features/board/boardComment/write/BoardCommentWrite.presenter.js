@@ -9,7 +9,7 @@ export default function BoardCommentWriteUI() {
         <S.TitleText>댓글</S.TitleText>
       </S.Title>
       <Rate />
-      <S.CommentInput showCount rows={5} maxLength={100} placeholder="내용을 입력해 주세요." />
+      <S.CommentInput showCount rows={5} maxLength={100} placeholder="댓글을 입력해 주세요." />
       <S.Btn type="primary">Add Comment</S.Btn>
     </S.Wrapper>
   )

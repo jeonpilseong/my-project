@@ -8,6 +8,7 @@ export default function BoardDetailPage() {
       <BoardDetail />
       <BoardCommentWrite />
       <BoardCommentList />
+      <div style={{ marginBottom: '10rem' }} />
     </>
   )
 }

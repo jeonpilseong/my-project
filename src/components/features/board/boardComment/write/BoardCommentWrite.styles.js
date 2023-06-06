@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
   margin: auto;
   max-width: 120rem;
   margin-top: 10rem;
+  margin-bottom: 4.2rem;
   padding-top: 4rem;
   border-top: 1px solid var(--gray-3);
 `
