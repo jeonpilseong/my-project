@@ -18,7 +18,7 @@ export default function BoardCommentWrite(props) {
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT)
   const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT)
 
-  // **** 이벤트 핸들러 함수 - 댓글 등록 기능
+  // **** 댓글 등록
   const onChangeContents = event => setContents(event.target.value)
 
   const onChangeStar = rating => setRating(rating)
@@ -54,7 +54,7 @@ export default function BoardCommentWrite(props) {
     }
   }
 
-  // **** 이벤트 핸들러 함수 - 댓글 수정 기능
+  // **** 댓글 수정
   const onClickEdit = async () => {
     if (!contents && !rating) {
       props.setIsEdit?.(false)

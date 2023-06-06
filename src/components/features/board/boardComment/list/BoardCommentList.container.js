@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 import BoardCommentListUI from './BoardCommentList.presenter'
 import { FETCH_BOARD_COMMENTS } from './BoardCommentList.queries'
@@ -14,15 +15,10 @@ export default function BoardCommentList() {
     },
   })
 
-  // **** 이벤트 핸들러 함수 - 댓글 수정 기능
-  const onClickEdit = () => {
-    setIsEdit(true)
-  }
-
   return (
     <>
       {commentData?.fetchBoardComments.map(el => (
-        <BoardCommentListUI key={el._id} el={el} onClickEdit={onClickEdit} />
+        <BoardCommentListUI key={el._id} el={el} boardId={router.query.boardId} />
       ))}
     </>
   )

@@ -11,3 +11,8 @@ export const FETCH_BOARD_COMMENTS = gql`
     }
   }
 `
+export const DELETE_BOARD_COMMENT = gql`
+  mutation deleteBoardComment($boardCommentId: ID!) {
+    deleteBoardComment(boardCommentId: $boardCommentId)
+  }
+`
