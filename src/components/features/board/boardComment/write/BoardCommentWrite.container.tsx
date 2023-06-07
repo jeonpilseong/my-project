@@ -1,13 +1,19 @@
 import { useMutation } from '@apollo/client'
 import { Modal } from 'antd'
-import { useState } from 'react'
+import { useState, ChangeEvent } from 'react'
 import { useRouter } from 'next/router'
 
 import BoardCommentWriteUI from './BoardCommentWrite.presenter'
 import { CREATE_BOARD_COMMENT, UPDATE_BOARD_COMMENT } from './BoardCommentWrite.queries'
 import { FETCH_BOARD_COMMENTS } from '../list/BoardCommentList.queries'
+import { IBoardCommentWriteProps, IUpdateBoardCommentInput } from './BoardCommentWrite.types'
+import {
+  IMutation,
+  IMutationCreateBoardCommentArgs,
+  IMutationUpdateBoardCommentArgs,
+} from '@/common/types/generated/types'
 
-export default function BoardCommentWrite(props) {
+export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
   const router = useRouter()
 
   // **** state
@@ -15,13 +21,17 @@ export default function BoardCommentWrite(props) {
   const [contents, setContents] = useState('')
 
   // **** graphql api 요청
-  const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT)
-  const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT)
+  const [createBoardComment] = useMutation<Pick<IMutation, 'createBoardComment'>, IMutationCreateBoardCommentArgs>(
+    CREATE_BOARD_COMMENT,
+  )
+  const [updateBoardComment] = useMutation<Pick<IMutation, 'updateBoardComment'>, IMutationUpdateBoardCommentArgs>(
+    UPDATE_BOARD_COMMENT,
+  )
 
   // **** 댓글 등록
-  const onChangeContents = event => setContents(event.target.value)
+  const onChangeContents = (event: ChangeEvent<HTMLInputElement>) => setContents(event.target.value)
 
-  const onChangeStar = rating => setRating(rating)
+  const onChangeStar = (rating: number) => setRating(rating)
 
   const onClickAddComment = async () => {
     if (!contents) {
@@ -30,6 +40,7 @@ export default function BoardCommentWrite(props) {
     }
 
     try {
+      if (typeof router.query.boardId !== 'string') return
       await createBoardComment({
         variables: {
           createBoardCommentInput: {
@@ -62,7 +73,7 @@ export default function BoardCommentWrite(props) {
     }
 
     try {
-      const updateBoardCommentInput = {}
+      const updateBoardCommentInput: IUpdateBoardCommentInput = {}
       if (contents) updateBoardCommentInput.contents = contents
       if (rating !== props.el?.rating) updateBoardCommentInput.rating = rating
       await updateBoardComment({

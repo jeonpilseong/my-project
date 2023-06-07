@@ -1,25 +1,32 @@
 import { UserOutlined } from '@ant-design/icons'
-import { useState } from 'react'
+import { MouseEvent, useState } from 'react'
 import { Modal } from 'antd'
 
 import * as S from './BoardCommentList.styles'
 import BoardCommentWrite from '../write/BoardCommentWrite.container'
 import { useMutation } from '@apollo/client'
 import { DELETE_BOARD_COMMENT, FETCH_BOARD_COMMENTS } from './BoardCommentList.queries'
+import { IMutation, IMutationDeleteBoardCommentArgs } from '@/common/types/generated/types'
+import { IBoardCommentListUIProps } from './BoardCommentList.types'
+import { useRouter } from 'next/router'
 
-export default function BoardCommentListUI(props) {
+export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
+  const router = useRouter()
+
   // **** 상태값
-  const [isEdit, setIsEdit] = useState(false)
-  const [open, setOpen] = useState(false)
+  const [isEdit, setIsEdit] = useState<boolean>(false)
+  const [open, setOpen] = useState<boolean>(false)
 
   // **** graphql api 요청
-  const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT)
+  const [deleteBoardComment] = useMutation<Pick<IMutation, 'deleteBoardComment'>, IMutationDeleteBoardCommentArgs>(
+    DELETE_BOARD_COMMENT,
+  )
 
   // **** 수정 버튼 클릭 여부
-  const onClickEdit = () => setIsEdit(true)
+  const onClickEdit = (event: MouseEvent<HTMLImageElement>) => setIsEdit(true)
 
   // **** 삭제 버튼 클릭 여부
-  const showModal = () => setOpen(true)
+  const showModal = (event: MouseEvent<HTMLImageElement>) => setOpen(true)
 
   // **** 삭제 모달창 Cancle
   const onCancel = () => setOpen(false)
@@ -34,7 +41,7 @@ export default function BoardCommentListUI(props) {
         refetchQueries: [
           {
             query: FETCH_BOARD_COMMENTS,
-            variables: { boardId: props.boardId },
+            variables: { boardId: router.query.boardId },
           },
         ],
       })

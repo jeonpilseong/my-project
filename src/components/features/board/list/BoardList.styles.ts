@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { breakPoints } from '../../../../../src/common/styles/globalStyles'
+import { breakPoints } from '@/common/styles/globalStyles'
 
 export const Wrapper = styled.div`
   width: 95%;

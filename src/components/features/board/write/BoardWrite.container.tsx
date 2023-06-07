@@ -6,9 +6,11 @@ import { useRouter } from 'next/router'
 import { useRecoilState } from 'recoil'
 
 import BoardWriteUI from './BoardWrite.presenter'
-import { schema, schema_edit } from '../../../../../src/common/validation/validation'
+import { schema, schema_edit } from '@/common/validation/validation'
 import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
-import { isEditState } from '../../../../../src/common/stores/index'
+import { isEditState } from '@/common/stores/index'
+import { IVariables } from './BoardWrite.types'
+import { IMutation, IMutationCreateBoardArgs, IMutationUpdateBoardArgs } from '@/common/types/generated/types'
 
 export default function BoardWrite() {
   const router = useRouter()
@@ -23,10 +25,10 @@ export default function BoardWrite() {
   })
 
   // **** graphql api 요청
-  const [createBoard] = useMutation(CREATE_BOARD)
-  const [updateBoard] = useMutation(UPDATE_BOARD)
+  const [createBoard] = useMutation<Pick<IMutation, 'createBoard'>, IMutationCreateBoardArgs>(CREATE_BOARD)
+  const [updateBoard] = useMutation<Pick<IMutation, 'updateBoard'>, IMutationUpdateBoardArgs>(UPDATE_BOARD)
 
-  // **** 이벤트 핸들러 함수 - 게시글 등록
+  // **** 게시글 등록
   const onClickSubmit = handleSubmit(async data => {
     try {
       const result = await createBoard({
@@ -46,10 +48,11 @@ export default function BoardWrite() {
     }
   })
 
-  // **** 이벤트 핸들러 함수 - 게시글 수정
+  // **** 게시글 수정
   const onClickUpdate = handleSubmit(async data => {
     // **** 업데이트 된 변수들
-    const variables = {
+    if (typeof router.query.boardId !== 'string') return
+    const variables: IVariables = {
       updateBoardInput: {},
       password: data.password,
       boardId: router.query.boardId,

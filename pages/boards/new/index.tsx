@@ -1,8 +1,8 @@
 import { useRecoilState } from 'recoil'
 import { useEffect } from 'react'
 
-import { isEditState } from '../../../src/common/stores/index'
-import BoardWrite from '../../../src/components/features/board/write/BoardWrite.container'
+import { isEditState } from '@/common/stores/index'
+import BoardWrite from '@/components/features/board/write/BoardWrite.container'
 
 export default function BoardWritePage() {
   // **** 상태값
@@ -12,5 +12,5 @@ export default function BoardWritePage() {
     setIsEdit(false)
   }, [])
 
-  return <BoardWrite isEdit={isEdit} />
+  return <BoardWrite />
 }

@@ -1,7 +1,8 @@
-import { useMoveToPage } from '../../../../../src/common/hooks/useMoveToPage'
+import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import * as S from './BoardList.styles'
+import { IBoardListUIProps } from './BoardList.types'
 
-export default function BoardListUI(props) {
+export default function BoardListUI(props: IBoardListUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
 
   return (

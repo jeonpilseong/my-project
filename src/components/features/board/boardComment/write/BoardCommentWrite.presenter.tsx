@@ -1,7 +1,9 @@
-import * as S from './BoardCommentWrite.styles'
 import { Rate } from 'antd'
 
-export default function BoardCommentWriteUI(props) {
+import * as S from './BoardCommentWrite.styles'
+import { IBoardCommentWriteUIProps } from './BoardCommentWrite.types'
+
+export default function BoardCommentWriteUI(props: IBoardCommentWriteUIProps) {
   return (
     <>
       {!props.isEdit && (

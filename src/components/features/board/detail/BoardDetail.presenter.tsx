@@ -1,14 +1,17 @@
 import { UserOutlined } from '@ant-design/icons'
+import { useRouter } from 'next/router'
 
 import * as S from './BoardDetail.styles'
-import { useMoveToPage } from '../../../../../src/common/hooks/useMoveToPage'
-import { useQueryFetchBoard } from '../../../../../src/common/hooks/queries/useQueryFetchBoard'
+import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+import { useQueryFetchBoard } from '@/common/hooks/queries/useQueryFetchBoard'
+import { IBoardDetailUIProps } from './BoardDetail.types'
 
-export default function BoardDetailUI(props) {
+export default function BoardDetailUI(props: IBoardDetailUIProps) {
+  const router = useRouter()
   const { onClickMoveToPage } = useMoveToPage()
 
   // **** graphql query api 요청
-  const { data: BoardData } = useQueryFetchBoard()
+  const { data: BoardData }: any = useQueryFetchBoard()
 
   return (
     <>
@@ -46,7 +49,7 @@ export default function BoardDetailUI(props) {
 
       <S.BtnWrapper>
         <S.Btn onClick={onClickMoveToPage(`/boards/list`)}>목록으로</S.Btn>
-        <S.Btn onClick={onClickMoveToPage(`/boards/edit/${props.boardId}`)}>수정하기</S.Btn>
+        <S.Btn onClick={onClickMoveToPage(`/boards/edit/${router.query.boardId}`)}>수정하기</S.Btn>
         <S.Btn onClick={props.onClickDelete}>삭제하기</S.Btn>
       </S.BtnWrapper>
     </>

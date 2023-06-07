@@ -1,10 +1,11 @@
 import { Global } from '@emotion/react'
 import { RecoilRoot } from 'recoil'
+import { AppProps } from 'next/app'
 
-import { globalStyles } from '../src/common/styles/globalStyles'
-import ApolloSetting from '../src/components/common/apollo/index'
+import { globalStyles } from '@/common/styles/globalStyles'
+import ApolloSetting from '@/components/common/apollo/index'
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
       <ApolloSetting>

@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 export const useMoveToPage = () => {
   const router = useRouter()
 
-  const onClickMoveToPage = path => () => {
+  const onClickMoveToPage = (path: string) => () => {
     void router.push(path)
   }
 

@@ -4,11 +4,12 @@ import { Controller } from 'react-hook-form'
 import { useRecoilState } from 'recoil'
 
 import * as S from './BoardWrite.styles'
-import { isEditState } from '../../../../../src/common/stores/index'
-import { useQueryFetchBoard } from '../../../../../src/common/hooks/queries/useQueryFetchBoard'
-import { useMoveToPage } from '../../../../../src/common/hooks/useMoveToPage'
+import { isEditState } from '@/common/stores/index'
+import { useQueryFetchBoard } from '@/common/hooks/queries/useQueryFetchBoard'
+import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+import { IBoardWriteUIProps } from './BoardWrite.types'
 
-export default function BoardWriteUI(props) {
+export default function BoardWriteUI(props: IBoardWriteUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
 
   // **** 상태값
@@ -23,7 +24,7 @@ export default function BoardWriteUI(props) {
   )
 
   // **** graphql query api 요청
-  const { data: BoardData } = useQueryFetchBoard()
+  const { data: BoardData }: any = useQueryFetchBoard()
 
   return (
     <S.Container>
