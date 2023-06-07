@@ -76,6 +76,7 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
       const updateBoardCommentInput: IUpdateBoardCommentInput = {}
       if (contents) updateBoardCommentInput.contents = contents
       if (rating !== props.el?.rating) updateBoardCommentInput.rating = rating
+      if (typeof props.el?._id !== 'string') return
       await updateBoardComment({
         variables: {
           updateBoardCommentInput,
