@@ -5,7 +5,6 @@ import { useRecoilState } from 'recoil'
 
 import * as S from './BoardWrite.styles'
 import { isEditState } from '@/common/stores/index'
-import { useQueryFetchBoard } from '@/common/hooks/queries/useQueryFetchBoard'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { IBoardWriteUIProps } from './BoardWrite.types'
 
@@ -23,9 +22,6 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
     </div>
   )
 
-  // **** graphql query api 요청
-  const { data: BoardData }: any = useQueryFetchBoard()
-
   return (
     <S.Container>
       <S.Wrapper>
@@ -41,9 +37,9 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
                 render={({ field }) => (
                   <S.WriterInput
                     placeholder="작성자를 입력해 주세요."
-                    defaultValue={BoardData?.fetchBoard?.writer || ''}
-                    key={BoardData?.fetchBoard?.writer}
-                    readOnly={!!BoardData?.fetchBoard?.writer}
+                    defaultValue={props.BoardData?.fetchBoard?.writer ?? ''}
+                    key={props.BoardData?.fetchBoard?.writer}
+                    readOnly={!!props.BoardData?.fetchBoard?.writer}
                     {...field}
                   />
                 )}
@@ -73,8 +69,8 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
               render={({ field }) => (
                 <S.TitleInput
                   placeholder="제목을 입력해 주세요."
-                  defaultValue={BoardData?.fetchBoard?.title}
-                  key={BoardData?.fetchBoard?.title}
+                  defaultValue={props.BoardData?.fetchBoard?.title}
+                  key={props.BoardData?.fetchBoard?.title}
                   {...field}
                 />
               )}
@@ -94,8 +90,8 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
                   rows={20}
                   maxLength={1000}
                   placeholder="내용을 입력해 주세요."
-                  defaultValue={BoardData?.fetchBoard?.contents}
-                  key={BoardData?.fetchBoard?.contents}
+                  defaultValue={props.BoardData?.fetchBoard?.contents}
+                  key={props.BoardData?.fetchBoard?.contents}
                   {...field}
                 />
               )}

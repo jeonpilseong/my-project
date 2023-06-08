@@ -1,16 +1,22 @@
 import { useRouter } from 'next/router'
-import { useMutation } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 import { Modal } from 'antd'
 
 import BoardDetailUI from './BoardDetail.presenter'
 import { DELETE_BOARD } from './BoardDetail.queries'
-import { IMutation, IMutationDeleteBoardArgs } from '@/common/types/generated/types'
+import { IMutation, IMutationDeleteBoardArgs, IQuery, IQueryFetchBoardArgs } from '@/common/types/generated/types'
+import { FETCH_BOARD } from '../write/BoardWrite.queries'
 
 export default function BoardDetail() {
   const router = useRouter()
 
   // **** graphql api 요청
   const [deleteBoard] = useMutation<Pick<IMutation, 'deleteBoard'>, IMutationDeleteBoardArgs>(DELETE_BOARD)
+  const { data: BoardData } = useQuery<Pick<IQuery, 'fetchBoard'>, IQueryFetchBoardArgs>(FETCH_BOARD, {
+    variables: {
+      boardId: String(router.query.boardId),
+    },
+  })
 
   // **** 게시글 삭제
   const onClickDelete = async () => {
@@ -28,5 +34,5 @@ export default function BoardDetail() {
     }
   }
 
-  return <BoardDetailUI onClickDelete={onClickDelete} />
+  return <BoardDetailUI onClickDelete={onClickDelete} BoardData={BoardData} />
 }

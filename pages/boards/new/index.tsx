@@ -6,7 +6,7 @@ import BoardWrite from '@/components/features/board/write/BoardWrite.container'
 
 export default function BoardWritePage() {
   // **** 상태값
-  const [isEdit, setIsEdit] = useRecoilState(isEditState)
+  const [, setIsEdit] = useRecoilState(isEditState)
 
   useEffect(() => {
     setIsEdit(false)

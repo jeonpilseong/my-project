@@ -37,7 +37,7 @@ export default function BoardCommentWriteUI(props: IBoardCommentWriteUIProps) {
             rows={5}
             maxLength={100}
             placeholder="댓글을 입력해 주세요."
-            value={props.contents || (props.el?.contents ?? '')}
+            value={(props.contents || props.el?.contents) ?? ''}
           />
 
           <S.Btn onClick={props.onClickEdit} type="primary">

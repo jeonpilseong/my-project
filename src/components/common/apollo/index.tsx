@@ -1,6 +1,7 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+import { IApolloSettingProps } from './apollo.types'
 
-export default function ApolloSetting(props) {
+export default function ApolloSetting(props: IApolloSettingProps) {
   // **** graphql 세팅
   const client = new ApolloClient({
     uri: 'https://backendonline.codebootcamp.co.kr/graphql',

@@ -3,15 +3,11 @@ import { useRouter } from 'next/router'
 
 import * as S from './BoardDetail.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
-import { useQueryFetchBoard } from '@/common/hooks/queries/useQueryFetchBoard'
 import { IBoardDetailUIProps } from './BoardDetail.types'
 
 export default function BoardDetailUI(props: IBoardDetailUIProps) {
   const router = useRouter()
   const { onClickMoveToPage } = useMoveToPage()
-
-  // **** graphql query api 요청
-  const { data: BoardData }: any = useQueryFetchBoard()
 
   return (
     <>
@@ -20,8 +16,8 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
           <S.ProfileWrapper>
             <S.AvatarIcon size={50} icon={<UserOutlined />} />
             <S.WriterWrapper>
-              <S.Writer>{BoardData?.fetchBoard?.writer}</S.Writer>
-              <S.Date>{BoardData?.fetchBoard.createdAt.slice(0, 10)}</S.Date>
+              <S.Writer>{props.BoardData?.fetchBoard?.writer}</S.Writer>
+              <S.Date>{props.BoardData?.fetchBoard.createdAt.slice(0, 10)}</S.Date>
             </S.WriterWrapper>
           </S.ProfileWrapper>
           <S.AddressWrapper>
@@ -30,9 +26,9 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
           </S.AddressWrapper>
         </S.Header>
 
-        <S.Title>{BoardData?.fetchBoard?.title}</S.Title>
+        <S.Title>{props.BoardData?.fetchBoard?.title}</S.Title>
         <S.Image />
-        <S.Contents>{BoardData?.fetchBoard?.contents}</S.Contents>
+        <S.Contents>{props.BoardData?.fetchBoard?.contents}</S.Contents>
         <S.Youtube />
 
         <S.UpDownWrapper>

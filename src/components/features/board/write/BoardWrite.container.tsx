@@ -1,16 +1,22 @@
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useMutation } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 import { Modal } from 'antd'
 import { useRouter } from 'next/router'
 import { useRecoilState } from 'recoil'
 
 import BoardWriteUI from './BoardWrite.presenter'
 import { schema, schema_edit } from '@/common/validation/validation'
-import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
+import { CREATE_BOARD, FETCH_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
 import { isEditState } from '@/common/stores/index'
 import { IVariables } from './BoardWrite.types'
-import { IMutation, IMutationCreateBoardArgs, IMutationUpdateBoardArgs } from '@/common/types/generated/types'
+import {
+  IMutation,
+  IMutationCreateBoardArgs,
+  IMutationUpdateBoardArgs,
+  IQuery,
+  IQueryFetchBoardArgs,
+} from '@/common/types/generated/types'
 
 export default function BoardWrite() {
   const router = useRouter()
@@ -27,7 +33,11 @@ export default function BoardWrite() {
   // **** graphql api 요청
   const [createBoard] = useMutation<Pick<IMutation, 'createBoard'>, IMutationCreateBoardArgs>(CREATE_BOARD)
   const [updateBoard] = useMutation<Pick<IMutation, 'updateBoard'>, IMutationUpdateBoardArgs>(UPDATE_BOARD)
-
+  const { data: BoardData } = useQuery<Pick<IQuery, 'fetchBoard'>, IQueryFetchBoardArgs>(FETCH_BOARD, {
+    variables: {
+      boardId: String(router.query.boardId),
+    },
+  })
   // **** 게시글 등록
   const onClickSubmit = handleSubmit(async data => {
     try {
@@ -74,6 +84,7 @@ export default function BoardWrite() {
 
   return (
     <BoardWriteUI
+      BoardData={BoardData}
       handleSubmit={handleSubmit}
       control={control}
       onClickSubmit={onClickSubmit}
