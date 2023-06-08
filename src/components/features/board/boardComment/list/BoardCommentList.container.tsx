@@ -7,18 +7,13 @@ import { IQuery, IQueryFetchBoardCommentsArgs } from '@/common/types/generated/t
 
 export default function BoardCommentList() {
   const router = useRouter()
-  if (typeof router.query.boardId !== 'string') {
-    alert('올바르지 않은 게시글 아이디입니다.')
-    void router.push('/')
-    return <></>
-  }
 
   // **** graphql api 요청
   const { data: commentData } = useQuery<Pick<IQuery, 'fetchBoardComments'>, IQueryFetchBoardCommentsArgs>(
     FETCH_BOARD_COMMENTS,
     {
       variables: {
-        boardId: router.query.boardId,
+        boardId: String(router.query.boardId),
       },
     },
   )

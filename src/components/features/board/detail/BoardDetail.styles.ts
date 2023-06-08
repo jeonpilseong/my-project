@@ -130,6 +130,7 @@ export const UpCount = styled.span`
   font-size: 18px;
   line-height: 27px;
   color: #ffd600;
+  text-align: center;
 `
 
 export const DownBtn = styled.img`

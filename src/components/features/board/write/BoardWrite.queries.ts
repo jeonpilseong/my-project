@@ -8,6 +8,8 @@ export const FETCH_BOARD = gql`
       title
       contents
       createdAt
+      likeCount
+      dislikeCount
     }
   }
 `

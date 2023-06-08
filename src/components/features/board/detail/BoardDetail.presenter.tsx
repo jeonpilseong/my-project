@@ -33,12 +33,12 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
 
         <S.UpDownWrapper>
           <S.UpBtnWrapper>
-            <S.UpBtn src="/images/detail/Up.png" />
-            <S.UpCount>1920</S.UpCount>
+            <S.UpBtn onClick={props.onClickUpBtn} src="/images/detail/Up.png" />
+            <S.UpCount>{props.BoardData?.fetchBoard?.likeCount}</S.UpCount>
           </S.UpBtnWrapper>
           <S.DownBtnWrapper>
-            <S.DownBtn src="/images/detail/Down.png" />
-            <S.DownCount>1920</S.DownCount>
+            <S.DownBtn onClick={props.onClickDownBtn} src="/images/detail/Down.png" />
+            <S.DownCount>{props.BoardData?.fetchBoard?.dislikeCount}</S.DownCount>
           </S.DownBtnWrapper>
         </S.UpDownWrapper>
       </S.Wrapper>
