@@ -11,6 +11,11 @@ export const FETCH_BOARD = gql`
       likeCount
       dislikeCount
       youtubeUrl
+      boardAddress {
+        zipcode
+        address
+        addressDetail
+      }
     }
   }
 `
@@ -26,7 +31,6 @@ export const UPDATE_BOARD = gql`
   mutation updateBoard($updateBoardInput: UpdateBoardInput!, $password: String, $boardId: ID!) {
     updateBoard(updateBoardInput: $updateBoardInput, password: $password, boardId: $boardId) {
       _id
-      youtubeUrl
     }
   }
 `

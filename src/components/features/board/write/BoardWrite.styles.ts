@@ -126,7 +126,7 @@ export const ZipcodeInput = styled(Input)`
   border: 1px solid var(--gray-4);
 `
 
-export const ZicodeBtn = styled.button`
+export const ZicodeBtn = styled(Button)`
   width: 12.4rem;
   height: 5.2rem;
   margin-left: 1.6rem;

@@ -4,6 +4,8 @@ import { useMutation, useQuery } from '@apollo/client'
 import { Modal } from 'antd'
 import { useRouter } from 'next/router'
 import { useRecoilState } from 'recoil'
+import { useState } from 'react'
+import { Address, useDaumPostcodePopup } from 'react-daum-postcode'
 
 import BoardWriteUI from './BoardWrite.presenter'
 import { schema, schema_edit } from '@/common/validation/validation'
@@ -23,6 +25,8 @@ export default function BoardWrite() {
 
   // **** 상태값
   const [isEdit] = useRecoilState(isEditState)
+  const [address, setAddress] = useState<string>('')
+  const [zipcode, setZipcode] = useState<string>('')
 
   // **** react-hook-form, yup
   const { handleSubmit, control, formState } = useForm({
@@ -50,6 +54,11 @@ export default function BoardWrite() {
             title: data.title,
             contents: data.contents,
             youtubeUrl: data.youtubeUrl,
+            boardAddress: {
+              zipcode,
+              address,
+              addressDetail: data.addressDetail,
+            },
           },
         },
       })
@@ -85,14 +94,30 @@ export default function BoardWrite() {
     }
   })
 
+  // **** 주소 검색 버튼 클릭 여부
+  const open = useDaumPostcodePopup()
+  const onclickAddress = () => {
+    open({ onComplete })
+  }
+
+  // **** 주소 검색 완료
+  const onComplete = (data: Address) => {
+    setAddress(data.address)
+    setZipcode(data.zonecode)
+  }
+
   return (
     <BoardWriteUI
       BoardData={BoardData}
+      address={address}
+      zipcode={zipcode}
       handleSubmit={handleSubmit}
       control={control}
       onClickSubmit={onClickSubmit}
       formState={formState}
       onClickUpdate={onClickUpdate}
+      onclickAddress={onclickAddress}
+      onComplete={onComplete}
     />
   )
 }

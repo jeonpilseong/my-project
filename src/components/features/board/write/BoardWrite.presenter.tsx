@@ -100,11 +100,28 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
           </S.ContentsWrapper>
 
           <S.ZipcodeWrapper>
-            <S.ZipcodeInput value="07250" readOnly />
-            <S.ZicodeBtn>우편번호 검색</S.ZicodeBtn>
+            <S.ZipcodeInput
+              readOnly
+              value={isEdit ? props.BoardData?.fetchBoard?.boardAddress?.zipcode ?? '' : props.zipcode}
+            />
+            <S.ZicodeBtn onClick={props.onclickAddress}>우편번호 검색</S.ZicodeBtn>
           </S.ZipcodeWrapper>
-          <S.AddressInput />
-          <S.AddressInput />
+          <S.AddressInput
+            readOnly
+            value={isEdit ? props.BoardData?.fetchBoard?.boardAddress?.address ?? '' : props.address}
+          />
+          <Controller
+            name="addressDetail"
+            control={props.control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <S.AddressInput
+                defaultValue={props.BoardData?.fetchBoard?.boardAddress?.addressDetail ?? ''}
+                key={props.BoardData?.fetchBoard?.boardAddress?.addressDetail}
+                {...field}
+              />
+            )}
+          />
 
           <S.YoutubeWrapper>
             <S.Label>유튜브</S.Label>
