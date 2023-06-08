@@ -14,6 +14,7 @@ export interface IVariables {
   updateBoardInput: {
     title?: string
     contents?: string
+    youtubeUrl?: string
   }
   password: string
   boardId: string

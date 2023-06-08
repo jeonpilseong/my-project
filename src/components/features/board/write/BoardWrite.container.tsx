@@ -38,6 +38,7 @@ export default function BoardWrite() {
       boardId: String(router.query.boardId),
     },
   })
+
   // **** 게시글 등록
   const onClickSubmit = handleSubmit(async data => {
     try {
@@ -48,6 +49,7 @@ export default function BoardWrite() {
             password: data.password,
             title: data.title,
             contents: data.contents,
+            youtubeUrl: data.youtubeUrl,
           },
         },
       })
@@ -69,11 +71,12 @@ export default function BoardWrite() {
     }
     if (data.title) variables.updateBoardInput.title = data.title
     if (data.contents) variables.updateBoardInput.contents = data.contents
-
+    if (data.youtubeUrl) variables.updateBoardInput.youtubeUrl = data.youtubeUrl
     try {
       const result = await updateBoard({
         variables,
       })
+      console.log(result)
 
       Modal.success({ content: '수정 되었습니다.' })
       router.push(`/boards/detail/${result.data?.updateBoard._id}`)

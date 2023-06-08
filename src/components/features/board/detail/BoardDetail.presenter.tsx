@@ -29,7 +29,14 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
         <S.Title>{props.BoardData?.fetchBoard?.title}</S.Title>
         <S.Image />
         <S.Contents>{props.BoardData?.fetchBoard?.contents}</S.Contents>
-        <S.Youtube />
+        <S.Youtube
+          width={'60%'}
+          height={'360px'}
+          muted={false}
+          volume={0.05}
+          controls={true}
+          url={props.BoardData?.fetchBoard?.youtubeUrl ?? ''}
+        />
 
         <S.UpDownWrapper>
           <S.UpBtnWrapper>

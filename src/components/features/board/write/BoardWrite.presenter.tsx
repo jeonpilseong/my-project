@@ -108,7 +108,19 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
 
           <S.YoutubeWrapper>
             <S.Label>유튜브</S.Label>
-            <S.YoutubeUrlInput placeholder="링크를 복사해주세요." />
+            <Controller
+              name="youtubeUrl"
+              control={props.control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <S.YoutubeUrlInput
+                  placeholder="링크를 복사해주세요."
+                  defaultValue={props.BoardData?.fetchBoard?.youtubeUrl ?? ''}
+                  key={props.BoardData?.fetchBoard?.youtubeUrl}
+                  {...field}
+                />
+              )}
+            />
           </S.YoutubeWrapper>
 
           <S.ImgWrapper>

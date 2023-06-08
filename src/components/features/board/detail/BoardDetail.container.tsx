@@ -43,7 +43,7 @@ export default function BoardDetail() {
     }
   }
 
-  // **** UP, DOWN
+  // **** UpBtn Count
   const onClickUpBtn = async () => {
     try {
       if (typeof router.query.boardId !== 'string') return
@@ -65,6 +65,7 @@ export default function BoardDetail() {
     }
   }
 
+  // **** DownBtn Count
   const onClickDownBtn = async () => {
     try {
       if (typeof router.query.boardId !== 'string') return

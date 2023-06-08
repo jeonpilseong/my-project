@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { Avatar, Button } from 'antd'
+import ReactPlayer from 'react-player'
 
 import { breakPoints } from '@/common/styles/globalStyles'
 
@@ -93,11 +94,8 @@ export const Contents = styled.div`
   margin-bottom: 12rem;
 `
 
-export const Youtube = styled.div`
+export const Youtube = styled(ReactPlayer)`
   margin: auto;
-  width: 60%;
-  height: 240px;
-  background: #eee;
 `
 
 export const UpDownWrapper = styled.div`
