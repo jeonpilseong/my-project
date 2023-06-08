@@ -1,5 +1,6 @@
 import { UserOutlined } from '@ant-design/icons'
 import { useRouter } from 'next/router'
+import { Tooltip } from 'antd'
 
 import * as S from './BoardDetail.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
@@ -22,7 +23,11 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
           </S.ProfileWrapper>
           <S.AddressWrapper>
             <S.ClipIcon src="/images/detail/Clip.png" />
-            <S.AddressIcon src="/images/detail/Location.png" />
+            <Tooltip
+              title={`${props.BoardData?.fetchBoard?.boardAddress?.address} 
+              ${props.BoardData?.fetchBoard?.boardAddress?.addressDetail}`}>
+              <S.AddressIcon src="/images/detail/Location.png" />
+            </Tooltip>
           </S.AddressWrapper>
         </S.Header>
 

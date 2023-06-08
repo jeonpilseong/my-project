@@ -99,17 +99,32 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
             <S.Error>{props.formState.errors.contents?.message}</S.Error>
           </S.ContentsWrapper>
 
-          <S.ZipcodeWrapper>
-            <S.ZipcodeInput
-              readOnly
-              value={isEdit ? props.BoardData?.fetchBoard?.boardAddress?.zipcode ?? '' : props.zipcode}
-            />
-            <S.ZicodeBtn onClick={props.onclickAddress}>우편번호 검색</S.ZicodeBtn>
-          </S.ZipcodeWrapper>
-          <S.AddressInput
-            readOnly
-            value={isEdit ? props.BoardData?.fetchBoard?.boardAddress?.address ?? '' : props.address}
-          />
+          {isEdit && (
+            <>
+              <S.ZipcodeWrapper>
+                <S.ZipcodeInput
+                  readOnly
+                  value={props.isClick ? props.zipcode : props.BoardData?.fetchBoard?.boardAddress?.zipcode ?? ''}
+                />
+                <S.ZicodeBtn onClick={props.onclickAddress}>우편번호 검색</S.ZicodeBtn>
+              </S.ZipcodeWrapper>
+              <S.AddressInput
+                readOnly
+                value={props.isClick ? props.address : props.BoardData?.fetchBoard?.boardAddress?.address ?? ''}
+              />
+            </>
+          )}
+
+          {!isEdit && (
+            <>
+              <S.ZipcodeWrapper>
+                <S.ZipcodeInput readOnly value={props.zipcode} />
+                <S.ZicodeBtn onClick={props.onclickAddress}>우편번호 검색</S.ZicodeBtn>
+              </S.ZipcodeWrapper>
+              <S.AddressInput readOnly value={props.address} />
+            </>
+          )}
+
           <Controller
             name="addressDetail"
             control={props.control}
