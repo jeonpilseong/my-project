@@ -104,13 +104,15 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
               <S.ZipcodeWrapper>
                 <S.ZipcodeInput
                   readOnly
-                  value={props.isClick ? props.zipcode : props.BoardData?.fetchBoard?.boardAddress?.zipcode ?? ''}
+                  value={
+                    props.isClickAddress ? props.zipcode : props.BoardData?.fetchBoard?.boardAddress?.zipcode ?? ''
+                  }
                 />
                 <S.ZicodeBtn onClick={props.onclickAddress}>우편번호 검색</S.ZicodeBtn>
               </S.ZipcodeWrapper>
               <S.AddressInput
                 readOnly
-                value={props.isClick ? props.address : props.BoardData?.fetchBoard?.boardAddress?.address ?? ''}
+                value={props.isClickAddress ? props.address : props.BoardData?.fetchBoard?.boardAddress?.address ?? ''}
               />
             </>
           )}

@@ -6,7 +6,7 @@ import { IQuery } from '@/common/types/generated/types'
 export interface IBoardWriteUIProps {
   address: string
   zipcode: string
-  isClick: boolean
+  isClickAddress: boolean
   BoardData?: Pick<IQuery, 'fetchBoard'>
   handleSubmit: any
   control: any

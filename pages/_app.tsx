@@ -4,6 +4,7 @@ import { AppProps } from 'next/app'
 
 import { globalStyles } from '@/common/styles/globalStyles'
 import ApolloSetting from '@/components/common/apollo/index'
+import Layout from '@/components/common/layout'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -11,7 +12,9 @@ export default function App({ Component, pageProps }: AppProps) {
       <ApolloSetting>
         <>
           <Global styles={globalStyles} />
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </>
       </ApolloSetting>
     </RecoilRoot>

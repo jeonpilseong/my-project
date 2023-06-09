@@ -27,7 +27,7 @@ export default function BoardWrite() {
   const [isEdit] = useRecoilState(isEditState)
   const [address, setAddress] = useState<string>('')
   const [zipcode, setZipcode] = useState<string>('')
-  const [isClick, setIsClick] = useState<boolean>(false)
+  const [isClickAddress, setIsClickAddress] = useState<boolean>(false)
 
   // **** react-hook-form, yup
   const { handleSubmit, control, formState } = useForm({
@@ -108,7 +108,7 @@ export default function BoardWrite() {
 
   // **** 주소 검색 완료
   const onComplete = (data: Address) => {
-    setIsClick(true)
+    setIsClickAddress(true)
     setAddress(data.address)
     setZipcode(data.zonecode)
   }
@@ -118,7 +118,7 @@ export default function BoardWrite() {
       BoardData={BoardData}
       address={address}
       zipcode={zipcode}
-      isClick={isClick}
+      isClickAddress={isClickAddress}
       handleSubmit={handleSubmit}
       control={control}
       onClickSubmit={onClickSubmit}
