@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
   width: 95%;
   max-width: 120rem;
   margin-top: 10rem;
+  margin-bottom: 10rem;
   box-shadow: 0px 0px 10px gray;
 
   @media ${breakPoints.PC} {

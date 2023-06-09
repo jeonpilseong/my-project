@@ -14,6 +14,9 @@ export const globalStyles = css`
     --gray-3: #bdbdbd;
     --gray-4: #d9d9d9;
     --error-red: #f54040;
+    --blue-1: #0072e1;
+    --blue-2: #67a6ff;
+    --blue-3: #e6f4ff;
   }
 
   * {

@@ -9,7 +9,8 @@ export const Container = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-top: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2em;
 `
 
 export const Logo = styled.img`
@@ -24,4 +25,8 @@ export const BtnWrapper = styled.div`
   gap: 10px;
 `
 
-export const Btn = styled(Button)``
+export const Btn = styled(Button)`
+  width: 9.2rem;
+  height: 4rem;
+  font-size: 1.6rem;
+`
