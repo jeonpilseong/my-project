@@ -10,7 +10,7 @@ import { IMutation, IMutationDeleteBoardCommentArgs } from '@/common/types/gener
 import { IBoardCommentListUIProps } from './BoardCommentList.types'
 import { useRouter } from 'next/router'
 
-export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
+export default function BoardCommentItem(props: IBoardCommentListUIProps) {
   const router = useRouter()
 
   // **** 상태값
