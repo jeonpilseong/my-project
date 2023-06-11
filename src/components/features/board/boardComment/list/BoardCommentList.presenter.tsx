@@ -53,7 +53,7 @@ export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
   return (
     <>
       {!isEdit && (
-        <S.Wrapper key={props.key}>
+        <S.Wrapper>
           <S.AvatarWrapper>
             <S.AvatarIcon icon={<UserOutlined />} />
           </S.AvatarWrapper>

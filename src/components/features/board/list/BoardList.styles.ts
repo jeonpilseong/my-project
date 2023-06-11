@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Button } from 'antd'
 
 import { breakPoints } from '@/common/styles/globalStyles'
 
@@ -71,10 +72,11 @@ export const BoardFooter = styled.div`
 
 export const HiddenDiv = styled.div``
 
-export const Btn = styled.button`
+export const Btn = styled(Button)`
   display: flex;
+  align-items: center;
+  height: 50px;
   padding: 1.4rem 1.6rem;
-  border: 1px solid var(--gray-3);
   border-radius: 10px;
   cursor: pointer;
 `

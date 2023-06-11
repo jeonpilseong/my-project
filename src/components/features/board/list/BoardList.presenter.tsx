@@ -1,6 +1,7 @@
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import * as S from './BoardList.styles'
 import { IBoardListUIProps } from './BoardList.types'
+import Pagination from '@/components/common/pagination/Pagination'
 
 export default function BoardListUI(props: IBoardListUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
@@ -25,6 +26,7 @@ export default function BoardListUI(props: IBoardListUIProps) {
 
       <S.BoardFooter>
         <S.HiddenDiv />
+        <Pagination refetch={props.refetch} BoardsCount={props.BoardsCount} />
         <S.Btn onClick={onClickMoveToPage(`/boards/new`)}>
           <S.BtnImg src="/images/list/Write.png" />
           <S.BtnText>게시글 등록하기</S.BtnText>
