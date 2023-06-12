@@ -1,5 +1,13 @@
+import { useRouter } from 'next/router'
+import { MenuProps } from 'antd'
+
 import NavigationUI from './navigation.presenter'
 
 export default function Navigation() {
-  return <NavigationUI />
+  const router = useRouter()
+
+  const onClickMenu: MenuProps['onClick'] = event => {
+    router.push(event.key)
+  }
+  return <NavigationUI onClickMenu={onClickMenu} />
 }
