@@ -155,12 +155,6 @@ export const ImgWrapper = styled.div`
   padding-top: 4rem;
 `
 
-export const ImgUploadWrapper = styled.div`
-  width: 1rem;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-`
 export const ImgUploadBtn = styled(Upload)``
 
 export const BtnWrapper = styled.div`

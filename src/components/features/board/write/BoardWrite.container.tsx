@@ -1,24 +1,35 @@
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation, useQuery } from '@apollo/client'
-import { Modal } from 'antd'
+import { Modal, UploadProps } from 'antd'
 import { useRouter } from 'next/router'
 import { useRecoilState } from 'recoil'
 import { useState } from 'react'
 import { Address, useDaumPostcodePopup } from 'react-daum-postcode'
+import { RcFile, UploadFile } from 'antd/es/upload'
 
 import BoardWriteUI from './BoardWrite.presenter'
 import { schema, schema_edit } from '@/common/validation/validation'
-import { CREATE_BOARD, FETCH_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
+import { CREATE_BOARD, FETCH_BOARD, UPDATE_BOARD, UPLOAD_FILE } from './BoardWrite.queries'
 import { isEditState } from '@/common/stores/index'
 import { IVariables } from './BoardWrite.types'
 import {
   IMutation,
   IMutationCreateBoardArgs,
   IMutationUpdateBoardArgs,
+  IMutationUploadFileArgs,
   IQuery,
   IQueryFetchBoardArgs,
 } from '@/common/types/generated/types'
+
+// **** 이미지 임시 url 생성 - 미리보기 용도
+const getBase64 = (file: RcFile): Promise<string> =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = () => resolve(reader.result as string)
+    reader.onerror = error => reject(error)
+  })
 
 export default function BoardWrite() {
   const router = useRouter()
@@ -29,6 +40,14 @@ export default function BoardWrite() {
   const [zipcode, setZipcode] = useState<string>('')
   const [isClickAddress, setIsClickAddress] = useState<boolean>(false)
 
+  // **** 이미지 상태값
+  const [previewOpen, setPreviewOpen] = useState(false)
+  const [previewImage, setPreviewImage] = useState('')
+  const [previewTitle, setPreviewTitle] = useState('')
+  const [fileList, setFileList] = useState<UploadFile[]>([])
+  const [orignFiles, setOriginFiles] = useState<any>([])
+  let imageUrls: string[] = []
+
   // **** react-hook-form, yup
   const { handleSubmit, control, formState } = useForm({
     resolver: yupResolver(isEdit ? schema_edit : schema),
@@ -38,6 +57,7 @@ export default function BoardWrite() {
   // **** graphql api 요청
   const [createBoard] = useMutation<Pick<IMutation, 'createBoard'>, IMutationCreateBoardArgs>(CREATE_BOARD)
   const [updateBoard] = useMutation<Pick<IMutation, 'updateBoard'>, IMutationUpdateBoardArgs>(UPDATE_BOARD)
+  const [uploadFile] = useMutation<Pick<IMutation, 'uploadFile'>, IMutationUploadFileArgs>(UPLOAD_FILE)
   const { data: BoardData } = useQuery<Pick<IQuery, 'fetchBoard'>, IQueryFetchBoardArgs>(FETCH_BOARD, {
     variables: {
       boardId: String(router.query.boardId),
@@ -46,6 +66,16 @@ export default function BoardWrite() {
 
   // **** 게시글 등록
   const onClickSubmit = handleSubmit(async data => {
+    // ** 클라우드에 이미지 업로드
+    if (fileList) {
+      const tempOriginFiles = [...fileList.map(el => el.originFileObj)]
+      setOriginFiles(tempOriginFiles)
+      const results = await Promise.all(
+        orignFiles.map(async (el: any) => await uploadFile({ variables: { file: el } })),
+      )
+      imageUrls = results.map(el => el.data?.uploadFile.url)
+    }
+
     try {
       const result = await createBoard({
         variables: {
@@ -55,6 +85,7 @@ export default function BoardWrite() {
             title: data.title,
             contents: data.contents,
             youtubeUrl: data.youtubeUrl,
+            images: imageUrls,
             boardAddress: {
               zipcode,
               address,
@@ -63,6 +94,7 @@ export default function BoardWrite() {
           },
         },
       })
+
       Modal.success({ content: '등록 되었습니다.' })
       router.push(`/boards/detail/${result.data?.createBoard._id}`)
     } catch (error) {
@@ -113,6 +145,22 @@ export default function BoardWrite() {
     setZipcode(data.zonecode)
   }
 
+  // **** 이미지 업로드
+  const handleCancel = () => setPreviewOpen(false)
+  const handlePreview = async (file: UploadFile) => {
+    if (!file.url && !file.preview) {
+      file.preview = await getBase64(file.originFileObj as RcFile)
+    }
+
+    setPreviewImage(file.url || (file.preview as string))
+    setPreviewOpen(true)
+    setPreviewTitle(file.name)
+  }
+
+  const handleChange: UploadProps['onChange'] = async ({ fileList: newFileList }) => {
+    setFileList(newFileList)
+  }
+
   return (
     <BoardWriteUI
       BoardData={BoardData}
@@ -126,6 +174,13 @@ export default function BoardWrite() {
       onClickUpdate={onClickUpdate}
       onclickAddress={onclickAddress}
       onComplete={onComplete}
+      fileList={fileList}
+      handlePreview={handlePreview}
+      handleChange={handleChange}
+      handleCancel={handleCancel}
+      previewOpen={previewOpen}
+      previewTitle={previewTitle}
+      previewImage={previewImage}
     />
   )
 }

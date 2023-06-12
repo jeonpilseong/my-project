@@ -1,4 +1,4 @@
-import { Form } from 'antd'
+import { Form, Modal } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { Controller } from 'react-hook-form'
 import { useRecoilState } from 'recoil'
@@ -159,10 +159,16 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
 
           <S.ImgWrapper>
             <S.Label>사진 첨부</S.Label>
-            <S.ImgUploadWrapper>
-              <S.ImgUploadBtn listType="picture-circle">{uploadButton}</S.ImgUploadBtn>
-              <S.ImgUploadBtn listType="picture-circle">{uploadButton}</S.ImgUploadBtn>
-            </S.ImgUploadWrapper>
+            <S.ImgUploadBtn
+              fileList={props.fileList}
+              onPreview={props.handlePreview}
+              onChange={props.handleChange}
+              listType="picture-circle">
+              {props.fileList.length >= 8 ? null : uploadButton}
+            </S.ImgUploadBtn>
+            <Modal open={props.previewOpen} title={props.previewTitle} footer={null} onCancel={props.handleCancel}>
+              <img style={{ width: '100%' }} src={props.previewImage} />
+            </Modal>
           </S.ImgWrapper>
 
           <S.BtnWrapper>

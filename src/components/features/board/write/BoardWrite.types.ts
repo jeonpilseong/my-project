@@ -2,6 +2,7 @@ import { MouseEvent } from 'react'
 import { Address } from 'react-daum-postcode'
 
 import { IQuery } from '@/common/types/generated/types'
+import { UploadFile, UploadProps } from 'antd'
 
 export interface IBoardWriteUIProps {
   address: string
@@ -15,6 +16,13 @@ export interface IBoardWriteUIProps {
   onClickUpdate: (event: MouseEvent<HTMLButtonElement>) => void
   onclickAddress: () => void
   onComplete: (data: Address) => void
+  fileList: UploadFile[]
+  handlePreview: (file: UploadFile) => void
+  handleChange: UploadProps['onChange']
+  handleCancel: () => void
+  previewOpen: boolean
+  previewTitle: string
+  previewImage: string
 }
 
 interface IBoardAddress {
