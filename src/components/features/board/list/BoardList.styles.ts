@@ -29,7 +29,7 @@ export const BoardHeader = styled.div`
   height: 5.2rem;
   display: flex;
   align-items: center;
-  border-top: 1px solid black;
+  border-top: 1px solid var(--gray-1);
   border-bottom: 1px solid var(--gray-3);
   font-weight: 500;
   font-size: 1.8rem;

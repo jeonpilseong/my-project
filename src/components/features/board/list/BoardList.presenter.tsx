@@ -2,12 +2,14 @@ import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import * as S from './BoardList.styles'
 import { IBoardListUIProps } from './BoardList.types'
 import Pagination from '@/components/common/pagination/Pagination'
+import Search from '@/components/common/search/Search.container'
 
 export default function BoardListUI(props: IBoardListUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
 
   return (
     <S.Wrapper>
+      <Search refetch={props.refetch} />
       <S.BoardHeader>
         <S.ColumnNumber>번호</S.ColumnNumber>
         <S.ColumnTitle>제목</S.ColumnTitle>
