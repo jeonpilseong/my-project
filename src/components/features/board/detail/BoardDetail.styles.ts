@@ -80,10 +80,15 @@ export const Title = styled.div`
   line-height: 5.3rem;
 `
 
-export const Image = styled.div`
+export const ImageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const Image = styled.img`
   margin-top: 4rem;
-  height: 480px;
-  background: #eee;
+  height: 40rem;
+  object-fit: cover;
 `
 
 export const Contents = styled.div`

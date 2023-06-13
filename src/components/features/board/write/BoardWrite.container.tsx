@@ -45,7 +45,8 @@ export default function BoardWrite() {
   const [previewImage, setPreviewImage] = useState('')
   const [previewTitle, setPreviewTitle] = useState('')
   const [fileList, setFileList] = useState<UploadFile[]>([])
-  const [orignFiles, setOriginFiles] = useState<any>([])
+  // const [orignFiles, setOriginFiles] = useState<any>([])
+  let orignFiles: any = []
   let imageUrls: string[] = []
 
   // **** react-hook-form, yup
@@ -67,15 +68,14 @@ export default function BoardWrite() {
   // **** 게시글 등록
   const onClickSubmit = handleSubmit(async data => {
     // ** 클라우드에 이미지 업로드
-    if (fileList) {
-      const tempOriginFiles = [...fileList.map(el => el.originFileObj)]
-      setOriginFiles(tempOriginFiles)
-      const results = await Promise.all(
-        orignFiles.map(async (el: any) => await uploadFile({ variables: { file: el } })),
-      )
-      imageUrls = results.map(el => el.data?.uploadFile.url)
-    }
 
+    const tempOriginFiles = [...fileList.map(el => el.originFileObj)]
+    orignFiles = [...tempOriginFiles]
+
+    const results = await Promise.all(orignFiles.map(async (el: any) => await uploadFile({ variables: { file: el } })))
+    imageUrls = [...results.map(el => el.data?.uploadFile?.url)]
+
+    // ** 게시글 등록
     try {
       const result = await createBoard({
         variables: {
@@ -94,7 +94,6 @@ export default function BoardWrite() {
           },
         },
       })
-
       Modal.success({ content: '등록 되었습니다.' })
       router.push(`/boards/detail/${result.data?.createBoard._id}`)
     } catch (error) {
@@ -104,7 +103,7 @@ export default function BoardWrite() {
 
   // **** 게시글 수정
   const onClickUpdate = handleSubmit(async data => {
-    // **** 업데이트 된 변수들
+    // ** 업데이트 된 변수들
     const variables: IVariables = {
       updateBoardInput: {},
       password: data.password,
@@ -120,6 +119,7 @@ export default function BoardWrite() {
       if (data.addressDetail) variables.updateBoardInput.boardAddress.addressDetail = data.addressDetail
     }
 
+    // ** 게시글 수정
     try {
       const result = await updateBoard({
         variables,
@@ -145,7 +145,7 @@ export default function BoardWrite() {
     setZipcode(data.zonecode)
   }
 
-  // **** 이미지 업로드
+  // **** 이미지 미리보기 및 삭제
   const handleCancel = () => setPreviewOpen(false)
   const handlePreview = async (file: UploadFile) => {
     if (!file.url && !file.preview) {
@@ -157,6 +157,7 @@ export default function BoardWrite() {
     setPreviewTitle(file.name)
   }
 
+  // **** 이미지 업로드 목록 추가 및 삭제
   const handleChange: UploadProps['onChange'] = async ({ fileList: newFileList }) => {
     setFileList(newFileList)
   }
