@@ -37,6 +37,7 @@ export interface IVariables {
     contents?: string
     youtubeUrl?: string
     boardAddress?: IBoardAddress
+    images?: string[]
   }
   password: string
   boardId: string

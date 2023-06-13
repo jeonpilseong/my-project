@@ -35,7 +35,7 @@ export default function BoardWrite() {
   const router = useRouter()
 
   // **** 상태값
-  const [isEdit] = useRecoilState(isEditState)
+  const [isEdit, setIsEdit] = useRecoilState(isEditState)
   const [address, setAddress] = useState<string>('')
   const [zipcode, setZipcode] = useState<string>('')
   const [isClickAddress, setIsClickAddress] = useState<boolean>(false)
@@ -45,7 +45,6 @@ export default function BoardWrite() {
   const [previewImage, setPreviewImage] = useState('')
   const [previewTitle, setPreviewTitle] = useState('')
   const [fileList, setFileList] = useState<UploadFile[]>([])
-  // const [orignFiles, setOriginFiles] = useState<any>([])
   let orignFiles: any = []
   let imageUrls: string[] = []
 
@@ -68,7 +67,6 @@ export default function BoardWrite() {
   // **** 게시글 등록
   const onClickSubmit = handleSubmit(async data => {
     // ** 클라우드에 이미지 업로드
-
     const tempOriginFiles = [...fileList.map(el => el.originFileObj)]
     orignFiles = [...tempOriginFiles]
 
@@ -103,6 +101,13 @@ export default function BoardWrite() {
 
   // **** 게시글 수정
   const onClickUpdate = handleSubmit(async data => {
+    // ** 클라우드에 이미지 업로드
+    const tempOriginFiles = [...fileList.map(el => el.originFileObj)]
+    orignFiles = [...tempOriginFiles]
+
+    const results = await Promise.all(orignFiles.map(async (el: any) => await uploadFile({ variables: { file: el } })))
+    imageUrls = [...results.map(el => el.data?.uploadFile?.url)]
+
     // ** 업데이트 된 변수들
     const variables: IVariables = {
       updateBoardInput: {},
@@ -112,6 +117,7 @@ export default function BoardWrite() {
     if (data.title) variables.updateBoardInput.title = data.title
     if (data.contents) variables.updateBoardInput.contents = data.contents
     if (data.youtubeUrl) variables.updateBoardInput.youtubeUrl = data.youtubeUrl
+    if (orignFiles) variables.updateBoardInput.images = imageUrls
     if (address || zipcode || data.addressDetail) {
       variables.updateBoardInput.boardAddress = {}
       if (address) variables.updateBoardInput.boardAddress.address = address
@@ -124,6 +130,7 @@ export default function BoardWrite() {
       const result = await updateBoard({
         variables,
       })
+      setIsEdit(false)
 
       Modal.success({ content: '수정 되었습니다.' })
       router.push(`/boards/detail/${result.data?.updateBoard._id}`)
