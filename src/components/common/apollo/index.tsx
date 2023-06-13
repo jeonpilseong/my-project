@@ -3,6 +3,9 @@ import { createUploadLink } from 'apollo-upload-client'
 
 import { IApolloSettingProps } from './apollo.types'
 
+// **** 페이지 이동 시 리렌더링으로 인한 global state 초기화 방지
+const GLOBAL_STATE = new InMemoryCache()
+
 export default function ApolloSetting(props: IApolloSettingProps) {
   // **** 이미지 업로드 세팅
   const uploadLink = createUploadLink({
@@ -12,7 +15,7 @@ export default function ApolloSetting(props: IApolloSettingProps) {
   // **** graphql 세팅
   const client = new ApolloClient({
     link: ApolloLink.from([uploadLink]),
-    cache: new InMemoryCache(), // 컴퓨터 메모리에다가 백엔드에서 받아온 데이터 임시로 저장해놓기
+    cache: GLOBAL_STATE,
   })
 
   return (
