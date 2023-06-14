@@ -26,7 +26,7 @@ export const BtnWrapper = styled.div`
 `
 
 export const Btn = styled(Button)`
-  width: 9.2rem;
+  width: 10rem;
   height: 4rem;
   font-size: 1.6rem;
 `

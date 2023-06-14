@@ -8,9 +8,14 @@ import LoginUI from './Login.presenter'
 import { LOGIN_USER } from './Login.queries'
 import { IMutation, IMutationLoginUserArgs } from '@/common/types/generated/types'
 import { loginSchema } from '@/common/validation/validation'
+import { useRecoilState } from 'recoil'
+import { accessTokenState } from '@/common/stores'
 
 export default function Login() {
   const router = useRouter()
+
+  // **** 상태값
+  const [, setAccessToken] = useRecoilState(accessTokenState)
 
   // **** react-hook-form, yup
   const { handleSubmit, control, formState } = useForm({
@@ -24,12 +29,21 @@ export default function Login() {
   // **** 로그인
   const onClickLogin = handleSubmit(async data => {
     try {
-      await loginUser({
+      const result = await loginUser({
         variables: {
           password: data.password,
           email: data.email,
         },
       })
+      const accessToken = result.data?.loginUser.accessToken
+
+      if (!accessToken) {
+        Modal.error({ content: '로그인을 실패 했습니다!' })
+        return
+      }
+      setAccessToken(accessToken)
+      localStorage.setItem('accessToken', accessToken) // 임시 사용 -> 새로고침시 토큰 유지
+
       router.push('/boards/list')
       Modal.success({ content: '로그인이 완료 되었습니다.' })
     } catch (error) {
