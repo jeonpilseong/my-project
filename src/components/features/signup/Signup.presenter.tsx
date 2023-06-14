@@ -1,11 +1,16 @@
 import { Controller } from 'react-hook-form'
-import * as S from './Signup.styles'
 
-export default function SignUpUI(props: any) {
+import * as S from './Signup.styles'
+import { ISignUpUIProps } from './Signup.types'
+import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+
+export default function SignUpUI(props: ISignUpUIProps) {
+  const { onClickMoveToPage } = useMoveToPage()
+
   return (
     <S.Container>
       <S.Wrapper>
-        <S.BoardTitle>회원가입</S.BoardTitle>
+        <S.Title>회원가입</S.Title>
 
         <S.Label>이메일 </S.Label>
         <Controller
@@ -46,10 +51,15 @@ export default function SignUpUI(props: any) {
         <S.Error>{props.formState.errors.name?.message}</S.Error>
 
         <S.BtnWrapper>
-          <S.SubmitBtn onClick={props.onClickSubmit} isvalid={String(props.formState.isValid)}>
+          <S.SubmitBtn onClick={props.onClickSignup} isvalid={String(props.formState.isValid)}>
             회원가입
           </S.SubmitBtn>
         </S.BtnWrapper>
+
+        <S.SignupWrapper>
+          이미 계정이 있으신가요?
+          <S.MoveToSingup onClick={onClickMoveToPage(`/login/login`)}>로그인</S.MoveToSingup>
+        </S.SignupWrapper>
       </S.Wrapper>
     </S.Container>
   )

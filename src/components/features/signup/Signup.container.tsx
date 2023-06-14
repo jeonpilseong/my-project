@@ -7,8 +7,11 @@ import SignUpUI from './Signup.presenter'
 import { signupSchema } from '@/common/validation/validation'
 import { CREATE_USER } from './Signup.queries'
 import { IMutation, IMutationCreateUserArgs } from '@/common/types/generated/types'
+import { useRouter } from 'next/router'
 
 export default function Signup() {
+  const router = useRouter()
+
   // **** react-hook-form, yup
   const { handleSubmit, control, formState } = useForm({
     resolver: yupResolver(signupSchema),
@@ -18,8 +21,8 @@ export default function Signup() {
   // **** graphql api 요청
   const [createUser] = useMutation<Pick<IMutation, 'createUser'>, IMutationCreateUserArgs>(CREATE_USER)
 
-  // **** 게시글 등록
-  const onClickSubmit = handleSubmit(async data => {
+  // **** 회원가입
+  const onClickSignup = handleSubmit(async data => {
     try {
       await createUser({
         variables: {
@@ -30,11 +33,12 @@ export default function Signup() {
           },
         },
       })
+      router.push('/login/login')
       Modal.success({ content: '회원 가입이 완료 되었습니다.' })
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message })
     }
   })
-  // **** 게시글 등록
-  return <SignUpUI control={control} formState={formState} onClickSubmit={onClickSubmit} />
+
+  return <SignUpUI control={control} formState={formState} onClickSignup={onClickSignup} />
 }
