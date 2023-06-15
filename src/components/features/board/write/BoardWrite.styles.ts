@@ -164,14 +164,14 @@ export const BtnWrapper = styled.div`
 `
 
 interface ISubmitBtnProps {
-  isValid: string
+  isvalid: string
 }
 export const SubmitBtn = styled(Button)`
   font-size: 1.6rem;
   width: 17.9rem;
   height: 5.2rem;
-  background: ${(props: ISubmitBtnProps) => (props.isValid === 'true' ? 'var(--blue-1)' : '')};
-  color: ${(props: ISubmitBtnProps) => (props.isValid === 'true' ? 'white' : 'black')};
+  background: ${(props: ISubmitBtnProps) => (props.isvalid === 'true' ? 'var(--blue-1)' : '')};
+  color: ${(props: ISubmitBtnProps) => (props.isvalid === 'true' ? 'white' : 'black')};
 `
 
 export const EditToListBtn = styled(Button)`

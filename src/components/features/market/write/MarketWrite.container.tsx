@@ -76,7 +76,7 @@ export default function MarketWrite() {
           },
         },
       })
-      console.log(result)
+      router.push(`/market/detail/${result.data?.createUseditem._id}`)
       Modal.success({ content: '상품이 등록 되었습니다.' })
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message })
@@ -112,6 +112,7 @@ export default function MarketWrite() {
   const handleChange: UploadProps['onChange'] = async ({ fileList: newFileList }) => {
     setFileList(newFileList)
   }
+
   return (
     <MarketWriteUI
       control={control}

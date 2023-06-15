@@ -174,7 +174,7 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
           <S.BtnWrapper>
             {isEdit ? <S.EditToListBtn onClick={onClickMoveToPage(`/boards/list`)}>목록으로</S.EditToListBtn> : ''}
             <S.SubmitBtn
-              isValid={String(props.formState.isValid)}
+              isvalid={String(props.formState.isValid)}
               onClick={isEdit ? props.onClickUpdate : props.onClickSubmit}>
               {isEdit ? '수정' : '등록'}하기
             </S.SubmitBtn>

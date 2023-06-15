@@ -5,7 +5,7 @@ declare const window: typeof globalThis & {
   kakao: any
 }
 
-export default function KakaoMap() {
+export default function KakaoMap(address: string) {
   useEffect(() => {
     const script = document.createElement('script') // <scrpit></scrpit>
     script.type = 'text/javascript'
@@ -29,7 +29,7 @@ export default function KakaoMap() {
         const geocoder = new window.kakao.maps.services.Geocoder()
 
         // 주소로 좌표를 검색합니다
-        geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function (result: any, status: any) {
+        geocoder.addressSearch(address, function (result: any, status: any) {
           // 정상적으로 검색이 완료됐으면
           if (status === window.kakao.maps.services.Status.OK) {
             const coords = new window.kakao.maps.LatLng(result[0].y, result[0].x)

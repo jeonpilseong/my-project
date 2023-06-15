@@ -15,7 +15,7 @@ export default function MarketWriteUI(props: any) {
   )
 
   // **** 카카오 맵
-  KakaoMap()
+  KakaoMap(props.address ?? '')
 
   return (
     <S.Container>
