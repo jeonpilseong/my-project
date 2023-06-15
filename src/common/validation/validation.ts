@@ -53,5 +53,5 @@ export const MarketWriteSchema = yup.object({
   name: yup.string().required('상품명을 입력해주세요.'),
   remarks: yup.string().required('한줄 요약을 입력해주세요.'),
   contents: yup.string().notOneOf(['<p><br></p>'], '상품 설명을 입력해 주세요.'),
-  price: yup.string().required('가격을 입력해주세요.').matches(priceRegex, '숫자를 입력해 주세요.'),
+  price: yup.string().required('가격을 입력해주세요.').matches(priceRegex, '숫자만 입력해 주세요.'),
 })

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Button, Input } from 'antd'
+import { Button, Input, Upload } from 'antd'
 import dynamic from 'next/dynamic'
 import 'react-quill/dist/quill.snow.css'
 
@@ -63,6 +63,35 @@ export const TextEditor = styled(ReactQuill)`
   height: 32rem;
   padding-bottom: 4rem;
 `
+
+export const ZipcodeWrapper = styled.div``
+
+export const ZipcodeInput = styled(Input)`
+  width: 7.7rem;
+  height: 5.2rem;
+  text-align: center;
+  color: var(--gray-4);
+  border: 1px solid var(--gray-4);
+`
+
+export const ZicodeBtn = styled(Button)`
+  width: 12.4rem;
+  height: 5.2rem;
+  margin-left: 1.6rem;
+  background: black;
+  color: white;
+  cursor: pointer;
+`
+
+export const AddressInput = styled(Input)`
+  height: 5.2rem;
+  border: 1px solid var(--gray-4);
+  margin-top: 1.6rem;
+`
+
+export const ImgWrapper = styled.div``
+
+export const ImgUploadBtn = styled(Upload)``
 
 export const BtnWrapper = styled.div`
   display: flex;
