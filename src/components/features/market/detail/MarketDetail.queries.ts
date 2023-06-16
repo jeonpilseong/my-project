@@ -15,6 +15,10 @@ export const FETCH_USEDITEM = gql`
         address
         addressDetail
       }
+      seller {
+        name
+        picture
+      }
     }
   }
 `

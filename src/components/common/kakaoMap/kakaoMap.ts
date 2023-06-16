@@ -7,7 +7,7 @@ declare const window: typeof globalThis & {
 
 export default function KakaoMap(address: string) {
   useEffect(() => {
-    const script = document.createElement('script') // <scrpit></scrpit>
+    const script = document.createElement('script') // <scrpit></scrpit> 태그 생성
     script.type = 'text/javascript'
     script.src =
       '//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=928fe3fcf5f5742cbb3e1c6bbee2f4d0&libraries=services' // 쿼리스트링 사용

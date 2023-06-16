@@ -162,4 +162,5 @@ export const Btn = styled(Button)`
   width: 17.9rem;
   height: 5.2rem;
   margin-right: 2.4rem;
+  font-size: 1.6rem;
 `

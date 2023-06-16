@@ -3,10 +3,14 @@ import InfiniteScroll from 'react-infinite-scroller'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import * as S from './MarketList.styles'
 import { IMarketListUIProps } from './MarketList.types'
+import { useMoneyFormat } from '@/common/hooks/useMoneyFormat'
 
 export default function MarketListUI(props: IMarketListUIProps) {
+  // **** 커스텀 훅
   const { onClickMoveToPage } = useMoveToPage()
+  const { MoneyFormat } = useMoneyFormat()
 
+  // **** 무한스크롤 실행
   const onLoadMore = () => {
     if (!props.UsedItemsData) return
 
@@ -43,23 +47,27 @@ export default function MarketListUI(props: IMarketListUIProps) {
       </S.MarketHeader>
 
       <InfiniteScroll pageStart={0} loadMore={onLoadMore} hasMore={true}>
-        {props.UsedItemsData?.fetchUseditems.map((el: any) => (
-          <S.ItemWrapper key={el._id} onClick={onClickMoveToPage(`/market/detail/${el._id}`)}>
-            {!el.images[0] ? (
-              <S.ImagaWrapper src="/images/market/productDefault.jpg" />
-            ) : (
-              <S.ImagaWrapper src={`https://storage.googleapis.com/${el.images[0]}`} />
-            )}
-            <S.ContentsWrapper>
-              <S.ItemName>{el.name}</S.ItemName>
-              <S.ItemRemarks>{el.remarks}</S.ItemRemarks>
-              <S.UserName>{el.seller.name}</S.UserName>
-            </S.ContentsWrapper>
-            <S.PriceWrapper>
-              <S.Price>{`${el.price}원`}</S.Price>
-            </S.PriceWrapper>
-          </S.ItemWrapper>
-        ))}
+        {props?.UsedItemsData ? (
+          props?.UsedItemsData?.fetchUseditems.map((el: any) => (
+            <S.ItemWrapper key={el._id} onClick={onClickMoveToPage(`/market/detail/${el._id}`)}>
+              {!el.images[0] ? (
+                <S.ImagaWrapper src="/images/market/productDefault.jpg" />
+              ) : (
+                <S.ImagaWrapper src={`https://storage.googleapis.com/${el.images[0]}`} />
+              )}
+              <S.ContentsWrapper>
+                <S.ItemName>{el.name}</S.ItemName>
+                <S.ItemRemarks>{el.remarks}</S.ItemRemarks>
+                <S.UserName>{el.seller.name}</S.UserName>
+              </S.ContentsWrapper>
+              <S.PriceWrapper>
+                <S.Price>{`${MoneyFormat(el.price)}원`}</S.Price>
+              </S.PriceWrapper>
+            </S.ItemWrapper>
+          ))
+        ) : (
+          <></>
+        )}
       </InfiniteScroll>
     </S.Wrapper>
   )

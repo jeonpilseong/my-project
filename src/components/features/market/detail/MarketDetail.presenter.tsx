@@ -1,11 +1,17 @@
 import { Tooltip } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import Dompurify from 'dompurify' // XSS 공격 방어
+import Script from 'next/script'
 
 import * as S from './MarketDetail.styles'
 import KakaoMap from '@/components/common/kakaoMap/kakaoMap'
+import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+import { useMoneyFormat } from '@/common/hooks/useMoneyFormat'
 
 export default function MarketDetailUI(props: any) {
+  // **** custom hooks
+  const { MoneyFormat } = useMoneyFormat()
+  const { onClickMoveToPage } = useMoveToPage()
   // **** 카카오 맵
   KakaoMap(props.UseditemData?.fetchUseditem?.useditemAddress?.address)
 
@@ -37,12 +43,16 @@ export default function MarketDetailUI(props: any) {
           <S.ProductName>{props.UseditemData?.fetchUseditem?.name}</S.ProductName>
         </S.HalfDiv>
       </S.ProductWrapper>
-      <S.ProductPrice>{`${props.UseditemData?.fetchUseditem?.price}원`}</S.ProductPrice>
+      <S.ProductPrice>{`${MoneyFormat(props.UseditemData?.fetchUseditem?.price)}원`}</S.ProductPrice>
 
       <S.ImageWrapper>
-        {props.UseditemData?.fetchUseditem.images?.map((el: string, index: number) => (
-          <S.Image key={index} src={`https://storage.googleapis.com/${el}`} />
-        ))}
+        {props.UseditemData?.fetchUseditem.images?.map((el: string, index: number) =>
+          !el ? (
+            <S.Image key={index} src="/images/market/productDefault.jpg" />
+          ) : (
+            <S.Image key={index} src={`https://storage.googleapis.com/${el}`} />
+          ),
+        )}
       </S.ImageWrapper>
 
       {typeof window !== 'undefined' && (
@@ -55,6 +65,14 @@ export default function MarketDetailUI(props: any) {
       )}
 
       <div id="map" style={{ height: 400 }}></div>
+
+      <S.BtnWrapper>
+        <S.Btn onClick={onClickMoveToPage(`/`)}>목록으로</S.Btn>
+        <Script src="https://cdn.iamport.kr/v1/iamport.js"></Script>
+        <S.Btn onClick={props.onClickPayment} type="primary">
+          구매하기
+        </S.Btn>
+      </S.BtnWrapper>
     </S.Wrapper>
   )
 }

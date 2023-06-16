@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { breakPoints } from '@/common/styles/globalStyles'
-import { Avatar } from 'antd'
+import { Avatar, Button } from 'antd'
 
 export const Wrapper = styled.div`
   width: 95%;
@@ -134,4 +134,17 @@ export const Contents = styled.div`
   font-size: 1.6rem;
   line-height: 2.4rem;
   margin-bottom: 12rem;
+`
+
+export const BtnWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 10rem;
+`
+
+export const Btn = styled(Button)`
+  width: 17.9rem;
+  height: 5.2rem;
+  margin-right: 2.4rem;
+  font-size: 1.6rem;
 `
