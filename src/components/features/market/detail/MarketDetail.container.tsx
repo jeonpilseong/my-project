@@ -22,8 +22,8 @@ export default function MarketDetail() {
 
   // **** 상품 결제
   const onClickPayment = () => {
-    const IMP = window.IMP // 생략 가능
-    IMP.init('imp28728643') // 예: imp00000000a
+    const IMP = window.IMP
+    IMP.init('imp28728643')
 
     IMP.request_pay(
       {

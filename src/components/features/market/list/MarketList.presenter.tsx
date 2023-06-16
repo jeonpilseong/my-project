@@ -1,4 +1,5 @@
 import InfiniteScroll from 'react-infinite-scroller'
+import { UserOutlined } from '@ant-design/icons'
 
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import * as S from './MarketList.styles'
@@ -51,15 +52,23 @@ export default function MarketListUI(props: IMarketListUIProps) {
           props?.UsedItemsData?.fetchUseditems.map((el: any) => (
             <S.ItemWrapper key={el._id} onClick={onClickMoveToPage(`/market/detail/${el._id}`)}>
               {!el.images[0] ? (
-                <S.ImagaWrapper src="/images/market/productDefault.jpg" />
+                <S.ImageWrapper src="/images/market/productDefault.jpg" />
               ) : (
-                <S.ImagaWrapper src={`https://storage.googleapis.com/${el.images[0]}`} />
+                <S.ImageWrapper src={`https://storage.googleapis.com/${el.images[0]}`} />
               )}
               <S.ContentsWrapper>
                 <S.ItemName>{el.name}</S.ItemName>
                 <S.ItemRemarks>{el.remarks}</S.ItemRemarks>
-                <S.UserName>{el.seller.name}</S.UserName>
+                <S.ProfileWrapper>
+                  {el.seller.picture ? (
+                    <S.AvatarIcon src={`https://storage.googleapis.com/${el.seller.picture}`} />
+                  ) : (
+                    <S.AvatarIcon icon={<UserOutlined />} />
+                  )}
+                  <S.UserName>{el.seller.name}</S.UserName>
+                </S.ProfileWrapper>
               </S.ContentsWrapper>
+
               <S.PriceWrapper>
                 <S.Price>{`${MoneyFormat(el.price)}원`}</S.Price>
               </S.PriceWrapper>

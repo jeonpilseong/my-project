@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
 import { breakPoints } from '@/common/styles/globalStyles'
-import { Button } from 'antd'
+import { Avatar, Button } from 'antd'
 
 export const Wrapper = styled.div`
   width: 95%;
@@ -65,10 +65,10 @@ export const ItemWrapper = styled.div`
   cursor: pointer;
 `
 
-export const ImagaWrapper = styled.img`
+export const ImageWrapper = styled.img`
   width: 16rem;
   height: 16rem;
-  background: #eee;
+  object-fit: cover;
 `
 
 export const ContentsWrapper = styled.div`
@@ -90,12 +90,21 @@ export const ItemRemarks = styled.div`
   line-height: 24px;
   margin-bottom: 5.6rem;
 `
+export const ProfileWrapper = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+`
+
+export const AvatarIcon = styled(Avatar)``
 
 export const UserName = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
 `
+
+export const UserImg = styled.img``
 
 export const PriceWrapper = styled.div`
   width: 15%;

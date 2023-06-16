@@ -15,11 +15,11 @@ export const Wrapper = styled.div`
   }
 
   @media ${breakPoints.TABLET} {
-    padding: 5rem 2.5rem;
+    padding: 10rem 2.5rem 10rem 2.5rem;
   }
 
   @media ${breakPoints.MOBILE} {
-    padding: 5rem 2.5rem;
+    padding: 10rem 2.5rem 10rem 2.5rem;
   }
 `
 

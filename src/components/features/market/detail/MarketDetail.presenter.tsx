@@ -12,6 +12,7 @@ export default function MarketDetailUI(props: any) {
   // **** custom hooks
   const { MoneyFormat } = useMoneyFormat()
   const { onClickMoveToPage } = useMoveToPage()
+
   // **** 카카오 맵
   KakaoMap(props.UseditemData?.fetchUseditem?.useditemAddress?.address)
 
@@ -19,9 +20,16 @@ export default function MarketDetailUI(props: any) {
     <S.Wrapper>
       <S.Header>
         <S.ProfileWrapper>
-          <S.AvatarIcon size={50} icon={<UserOutlined />} />
+          {props.UseditemData?.fetchUseditem?.seller.picture ? (
+            <S.AvatarIcon
+              size={50}
+              src={`https://storage.googleapis.com/${props.UseditemData?.fetchUseditem?.seller.picture}`}
+            />
+          ) : (
+            <S.AvatarIcon size={50} icon={<UserOutlined />} />
+          )}
           <S.WriterWrapper>
-            <S.Writer>{props.UserData?.fetchUserLoggedIn?.name}</S.Writer>
+            <S.Writer>{props.UseditemData?.fetchUseditem?.seller.name}</S.Writer>
             <S.Date>{props.UseditemData?.fetchUseditem.createdAt.slice(0, 10)}</S.Date>
           </S.WriterWrapper>
         </S.ProfileWrapper>
@@ -60,7 +68,8 @@ export default function MarketDetailUI(props: any) {
           <S.Contents
             dangerouslySetInnerHTML={{
               __html: Dompurify.sanitize(props.UseditemData?.fetchUseditem?.contents),
-            }}></S.Contents>
+            }}
+          />
         </>
       )}
 
