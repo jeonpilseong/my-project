@@ -1,11 +1,11 @@
 import { ApolloClient, InMemoryCache, ApolloProvider, ApolloLink, fromPromise } from '@apollo/client'
 import { createUploadLink } from 'apollo-upload-client'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValueLoadable } from 'recoil'
 import { useEffect } from 'react'
 import { onError } from '@apollo/client/link/error'
 
 import { IApolloSettingProps } from './apollo.types'
-import { accessTokenState } from '@/common/stores'
+import { accessTokenState, restoreAccessTokenLadable } from '@/common/stores'
 import { getAccessToken } from '@/common/libraries/getAccessToken'
 
 // **** 페이지 이동 시 리렌더링으로 인한 global state 초기화 방지
@@ -14,11 +14,15 @@ const GLOBAL_STATE = new InMemoryCache()
 export default function ApolloSetting(props: IApolloSettingProps) {
   const [accesToken, setAccessToken] = useRecoilState(accessTokenState)
 
-  // **** 프리렌더링 무시하고 브라우저에서 localStorage 조회
+  // **** 글로벌 함수 - restoreAccesstoken api 요청 결과를 공유
+  const aaa = useRecoilValueLoadable(restoreAccessTokenLadable)
+
+  // **** 프리렌더링 무시
   useEffect(() => {
-    // ** 새로고침 시 accessToken 유지
-    const result = localStorage.getItem('accessToken')
-    setAccessToken(result ?? '')
+    // ** 새로고침 시 accessToken 새로 발급
+    void aaa.toPromise().then(newAccessToken => {
+      setAccessToken(newAccessToken ?? '')
+    })
   }, [])
 
   // **** 토큰 만료 에러 처리
@@ -55,7 +59,7 @@ export default function ApolloSetting(props: IApolloSettingProps) {
       Authorization: `Bearer ${accesToken}`,
     },
 
-    // ** 중요한 쿠키 주고 받기 허용
+    // ** 재발급 받은 accessToken 쿠키에 저장 허용
     credentials: 'include',
   })
 
