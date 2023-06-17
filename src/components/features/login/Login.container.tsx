@@ -42,7 +42,6 @@ export default function Login() {
         return
       }
       setAccessToken(accessToken)
-      localStorage.setItem('accessToken', accessToken) // 임시 사용 -> 새로고침시 토큰 유지
 
       router.push('/boards/list')
       Modal.success({ content: '로그인이 완료 되었습니다.' })
