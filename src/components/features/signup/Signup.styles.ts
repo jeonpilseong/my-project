@@ -57,7 +57,7 @@ export const BasicInput = styled(Input)`
 export const BtnWrapper = styled.div`
   display: flex;
   justify-content: center;
-  padding-top: 8rem;
+  padding-top: 6rem;
 `
 interface ISubmitBtnProps {
   isvalid: string
@@ -90,4 +90,31 @@ export const MoveToSingup = styled.span`
   color: var(--blue-1);
   border-bottom: 2px solid var(--blue-1);
   cursor: pointer;
+`
+
+export const UploadImageBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 5rem;
+  background: #fafafa;
+  border: 1px dashed var(--gray-3);
+  overflow: hidden;
+  cursor: pointer;
+  &:hover {
+    border: 1px dashed var(--blue-1);
+  }
+`
+
+export const UploadTextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+export const UploadText = styled.div`
+  margin-top: 1rem;
+  font-size: 1.3rem;
 `
