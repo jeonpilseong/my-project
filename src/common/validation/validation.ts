@@ -48,10 +48,26 @@ export const loginSchema = yup.object({
     .matches(passwordRegex, '영문+숫자+특수문자 조합 8~16자리의 비밀번호를 입력해 주세요.'),
 })
 
-// **** yup 상품등록 유효성검사
+// **** yup 상품 등록 유효성검사
 export const MarketWriteSchema = yup.object({
   name: yup.string().required('상품명을 입력해주세요.'),
   remarks: yup.string().required('한줄 요약을 입력해주세요.'),
   contents: yup.string().notOneOf(['<p><br></p>'], '상품 설명을 입력해 주세요.'),
   price: yup.string().required('가격을 입력해주세요.').matches(priceRegex, '숫자만 입력해 주세요.'),
+})
+
+// **** yup 비밀번호 수정 유효성검사
+export const EditPasswordSchema = yup.object({
+  currentPassword: yup
+    .string()
+    .required('비밀번호를 입력해주세요.')
+    .matches(passwordRegex, '영문+숫자+특수문자 조합 8~16자리의 비밀번호를 입력해 주세요.'),
+  newPassword: yup
+    .string()
+    .required('비밀번호를 입력해주세요.')
+    .matches(passwordRegex, '영문+숫자+특수문자 조합 8~16자리의 비밀번호를 입력해 주세요.'),
+  CheckPassword: yup
+    .string()
+    .required('비밀번호를 입력해주세요.')
+    .oneOf([yup.ref('newPassword')], '비밀번호가 일치하지 않습니다.'),
 })
