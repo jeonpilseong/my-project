@@ -5,6 +5,8 @@ export interface MySideUIProps {
   onClickImage: () => void
   fileRef: any
   imageUrl?: string
-  myBtnId: string
+  isClickMyBasket: boolean
+  isClickMyOrder: boolean
+  isClickMyProfile: boolean
   onClickmyBtn: (event: MouseEvent<HTMLDivElement>) => void
 }

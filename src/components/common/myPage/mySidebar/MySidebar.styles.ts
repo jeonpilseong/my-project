@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 10%;
+  width: 11%;
   margin-right: 12rem;
 `
 
@@ -54,24 +54,32 @@ export const BtnWrapper = styled.div`
   font-weight: 400;
   font-size: 18px;
 `
-interface myBtnIdprops {
-  myBtnId: string
+interface IMyBasketProps {
+  isClickMyBasket: boolean
 }
 
-export const myProductBtn = styled.div`
-  color: ${(props: myBtnIdprops) => (props.myBtnId === '1' ? 'black' : 'var(--gray-2)')};
+interface IMyOrderProps {
+  isClickMyOrder: boolean
+}
+
+interface IMyProfileProps {
+  isClickMyProfile: boolean
+}
+
+export const MyBasket = styled.div`
+  color: ${(props: IMyBasketProps) => (props.isClickMyBasket ? 'black' : 'var(--gray-2)')};
   cursor: pointer;
   margin-bottom: 2.3rem;
 `
 
-export const myHistorytBtn = styled.div`
-  color: ${(props: myBtnIdprops) => (props.myBtnId === '2' ? 'black' : 'var(--gray-2)')};
+export const MyOrder = styled.div`
+  color: ${(props: IMyOrderProps) => (props.isClickMyOrder ? 'black' : 'var(--gray-2)')};
   cursor: pointer;
   margin-bottom: 2.3rem;
 `
 
-export const myProfileBtn = styled.div`
-  color: ${(props: myBtnIdprops) => (props.myBtnId === '3' ? 'black' : 'var(--gray-2)')};
+export const MyProfile = styled.div`
+  color: ${(props: IMyProfileProps) => (props.isClickMyProfile ? 'black' : 'var(--gray-2)')};
   cursor: pointer;
   margin-bottom: 2.3rem;
 `

@@ -23,13 +23,25 @@ export const restoreAccessTokenLadable = selector({
   },
 })
 
-// **** myPage 내 장터 클릭 여부
+// **** 마이페이지 - 내 장터 클릭 여부
+export const isClickMyBasketState = atom({
+  key: `isClickMyBasketState/${v1()}`,
+  default: true,
+})
+
+// **** 마이페이지 - 내 장터 - 나의 상품 클릭 여부
 export const isClickMyProductState = atom({
   key: `isClickMyProductState/${v1()}`,
   default: true,
 })
 
-// **** myPage 내 프로필 클릭 여부
+// **** 마이페이지 - 내 구매내역 클릭 여부
+export const isClickMyOrderState = atom({
+  key: `isClickMyOrder/${v1()}`,
+  default: false,
+})
+
+// **** 마이페이지 - 내 프로필 클릭 여부
 export const isClickMyProfileState = atom({
   key: `isClickMyProfileState/${v1()}`,
   default: false,

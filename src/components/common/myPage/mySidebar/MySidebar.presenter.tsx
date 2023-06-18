@@ -25,15 +25,15 @@ export default function MySideUI(props: MySideUIProps) {
       <S.Writer>노원두</S.Writer>
 
       <S.BtnWrapper>
-        <S.myProductBtn id="1" onClick={props.onClickmyBtn} myBtnId={props.myBtnId}>
+        <S.MyBasket id="myBasket" onClick={props.onClickmyBtn} isClickMyBasket={props.isClickMyBasket}>
           내 장터
-        </S.myProductBtn>
-        <S.myHistorytBtn id="2" onClick={props.onClickmyBtn} myBtnId={props.myBtnId}>
+        </S.MyBasket>
+        <S.MyOrder id="myOrder" onClick={props.onClickmyBtn} isClickMyOrder={props.isClickMyOrder}>
           내 구매내역
-        </S.myHistorytBtn>
-        <S.myProfileBtn id="3" onClick={props.onClickmyBtn} myBtnId={props.myBtnId}>
+        </S.MyOrder>
+        <S.MyProfile id="myProfile" onClick={props.onClickmyBtn} isClickMyProfile={props.isClickMyProfile}>
           내 프로필
-        </S.myProfileBtn>
+        </S.MyProfile>
       </S.BtnWrapper>
     </S.Wrapper>
   )

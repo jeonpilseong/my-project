@@ -1,15 +1,18 @@
-import { ChangeEvent, MouseEvent, useRef, useState } from 'react'
+import { ChangeEvent, MouseEvent, useEffect, useRef, useState } from 'react'
 import { useRecoilState } from 'recoil'
+import { useRouter } from 'next/router'
 
 import MySideUI from './MySidebar.presenter'
-import { isClickMyProductState, isClickMyProfileState } from '@/common/stores'
+import { isClickMyBasketState, isClickMyOrderState, isClickMyProfileState } from '@/common/stores'
 
 export default function MySide() {
+  const router = useRouter()
+
   // **** 상태값
   const [imageUrl, setImageUrl] = useState('')
-  const [myBtnId, setmyBtnId] = useState('1')
-  const [, setIsClickMyProduct] = useRecoilState(isClickMyProductState)
-  const [, setIsClickMyProfile] = useRecoilState(isClickMyProfileState)
+  const [isClickMyBasket, setIsClickMyBasket] = useRecoilState(isClickMyBasketState)
+  const [isClickMyOrder, setIsClickMyOrder] = useRecoilState(isClickMyOrderState)
+  const [isClickMyProfile, setIsClickMyProfile] = useRecoilState(isClickMyProfileState)
 
   // **** 태그 저장
   const fileRef = useRef<HTMLInputElement>(null)
@@ -34,21 +37,28 @@ export default function MySide() {
 
   // **** 버튼 페이지 이동
   const onClickmyBtn = (event: MouseEvent<HTMLDivElement>) => {
-    if (event.currentTarget.id === '1') {
-      setmyBtnId('1')
-      setIsClickMyProduct(true)
+    if (event.currentTarget.id === 'myBasket') {
+      setIsClickMyBasket(true)
+      setIsClickMyOrder(false)
       setIsClickMyProfile(false)
     }
-    if (event.currentTarget.id === '2') {
-      setmyBtnId('2')
-      setIsClickMyProduct(false)
+    if (event.currentTarget.id === 'myOrder') {
+      setIsClickMyBasket(false)
+      setIsClickMyOrder(true)
       setIsClickMyProfile(false)
     }
-    if (event.currentTarget.id === '3') {
-      setmyBtnId('3')
+    if (event.currentTarget.id === 'myProfile') {
+      setIsClickMyBasket(false)
+      setIsClickMyOrder(false)
       setIsClickMyProfile(true)
     }
   }
+
+  useEffect(() => {
+    if (isClickMyBasket) router.push('/market/myPage/myBasket')
+    if (isClickMyOrder) router.push('/market/myPage/myOrder')
+    if (isClickMyProfile) router.push('/market/myPage/myProfile')
+  }, [isClickMyBasket, isClickMyOrder, isClickMyProfile])
 
   return (
     <MySideUI
@@ -56,7 +66,9 @@ export default function MySide() {
       onClickImage={onClickImage}
       fileRef={fileRef}
       imageUrl={imageUrl}
-      myBtnId={myBtnId}
+      isClickMyBasket={isClickMyBasket}
+      isClickMyOrder={isClickMyOrder}
+      isClickMyProfile={isClickMyProfile}
       onClickmyBtn={onClickmyBtn}
     />
   )

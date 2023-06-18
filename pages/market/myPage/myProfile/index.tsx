@@ -1,12 +1,12 @@
 import { MyPageContainer } from '@/components/common/myPage/myContainer/myContainer'
 import MySide from '@/components/common/myPage/mySidebar/MySidebar.container'
-import MyPage from '@/components/features/market/myPage/MyPage.container'
+import MyProfile from '@/components/features/market/myPage/myProfile/MyProfile.container'
 
-export default function MyHistoryPage() {
+export default function MyBasketPage() {
   return (
     <MyPageContainer>
       <MySide />
-      <MyPage />
+      <MyProfile />
     </MyPageContainer>
   )
 }

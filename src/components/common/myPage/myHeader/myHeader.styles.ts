@@ -15,5 +15,6 @@ export const HeaderBtn = styled.div`
   font-weight: 500;
   font-size: 18px;
   margin-right: 2rem;
+  color: var(--gray-2);
   cursor: pointer;
 `
