@@ -10,7 +10,7 @@ export const isEditState = atom({
 
 // **** 로그인 accessToken 상태값
 export const accessTokenState = atom({
-  key: 'accessTokenState',
+  key: `accessTokenState/${v1()}`,
   default: '',
 })
 
@@ -21,4 +21,16 @@ export const restoreAccessTokenLadable = selector({
     const newAccessToken = await getAccessToken()
     return newAccessToken
   },
+})
+
+// **** myPage 내 장터 클릭 여부
+export const isClickMyProductState = atom({
+  key: `isClickMyProductState/${v1()}`,
+  default: true,
+})
+
+// **** myPage 내 프로필 클릭 여부
+export const isClickMyProfileState = atom({
+  key: `isClickMyProfileState/${v1()}`,
+  default: false,
 })

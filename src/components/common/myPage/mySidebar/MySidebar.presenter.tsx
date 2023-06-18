@@ -1,7 +1,7 @@
 import { PlusOutlined } from '@ant-design/icons'
 
-import * as S from './mySidebar.styles'
-import { MySideUIProps } from './mySidebar.types'
+import * as S from './MySidebar.styles'
+import { MySideUIProps } from './MySidebar.types'
 
 export default function MySideUI(props: MySideUIProps) {
   return (

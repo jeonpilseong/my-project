@@ -1,13 +1,15 @@
 import { ChangeEvent, MouseEvent, useRef, useState } from 'react'
-import MySideUI from './mySidebar.presenter'
-import { useRouter } from 'next/router'
+import { useRecoilState } from 'recoil'
+
+import MySideUI from './MySidebar.presenter'
+import { isClickMyProductState, isClickMyProfileState } from '@/common/stores'
 
 export default function MySide() {
-  const router = useRouter()
-
   // **** 상태값
   const [imageUrl, setImageUrl] = useState('')
   const [myBtnId, setmyBtnId] = useState('1')
+  const [, setIsClickMyProduct] = useRecoilState(isClickMyProductState)
+  const [, setIsClickMyProfile] = useRecoilState(isClickMyProfileState)
 
   // **** 태그 저장
   const fileRef = useRef<HTMLInputElement>(null)
@@ -34,15 +36,17 @@ export default function MySide() {
   const onClickmyBtn = (event: MouseEvent<HTMLDivElement>) => {
     if (event.currentTarget.id === '1') {
       setmyBtnId('1')
-      router.push('/market/my/myProduct')
+      setIsClickMyProduct(true)
+      setIsClickMyProfile(false)
     }
     if (event.currentTarget.id === '2') {
       setmyBtnId('2')
-      router.push('/market/my/myHistory')
+      setIsClickMyProduct(false)
+      setIsClickMyProfile(false)
     }
     if (event.currentTarget.id === '3') {
       setmyBtnId('3')
-      router.push('/market/my/myProfile')
+      setIsClickMyProfile(true)
     }
   }
 
