@@ -11,7 +11,7 @@ export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
       <S.BtnWrapper>
         {props.UserData ? (
           <>
-            <S.Btn>마이페이지</S.Btn>
+            <S.Btn onClick={onClickMoveToPage(`/market/myProfile`)}>마이페이지</S.Btn>
             <S.Btn onClick={props.onClickLogout} type="primary">
               로그아웃
             </S.Btn>

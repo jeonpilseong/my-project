@@ -36,10 +36,10 @@ export default function MarketListUI(props: IMarketListUIProps) {
       <S.MarketHeader>
         <S.TextWrapper>
           <S.SellingText onClick={props.isClickSelling} issoldout={String(props.isSoldout)}>
-            판매중상품
+            판매 중 상품
           </S.SellingText>
           <S.SoldoutText onClick={props.isClickSoldout} issoldout={String(props.isSoldout)}>
-            판매된상품
+            판매된 상품
           </S.SoldoutText>
         </S.TextWrapper>
         <S.Btn type="primary" onClick={onClickMoveToPage(`/market/new`)}>

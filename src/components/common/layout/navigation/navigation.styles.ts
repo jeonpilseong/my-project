@@ -14,10 +14,10 @@ export const NavMenu = styled(Menu)`
   width: 80%;
   font-size: 1.6rem;
   background: var(--blue-1);
-  color: white;
+  color: var(--blue-2);
   display: flex;
   justify-content: center;
   .ant-menu-item-selected {
-    color: var(--blue-2) !important;
+    color: white !important;
   }
 `

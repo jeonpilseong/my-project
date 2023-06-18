@@ -6,7 +6,6 @@ import { INavigationUIProps } from './navigation.types'
 const NAVIGATION_MENUS = [
   { name: '자유게시판', page: '/boards/list' },
   { name: '중고마켓', page: '/' },
-  { name: '마이페이지', page: '/boards/new' },
 ]
 
 export default function NavigationUI(props: INavigationUIProps) {
