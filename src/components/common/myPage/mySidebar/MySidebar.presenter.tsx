@@ -10,19 +10,28 @@ export default function MySideUI(props: MySideUIProps) {
 
       <S.UploadImageBtn onClick={props.onClickImage}>
         <S.UploadTextWrapper>
-          {props.imageUrl ? (
-            <img src={`${props.imageUrl}`} style={{ width: '100%' }} />
+          {props.UserData?.fetchUserLoggedIn.picture && !props.imageUrl ? (
+            <img
+              src={`https://storage.googleapis.com/${props.UserData?.fetchUserLoggedIn.picture}`}
+              style={{ width: '100%' }}
+            />
           ) : (
             <>
-              <PlusOutlined style={{ fontSize: '1.6rem' }} />
-              <S.UploadText>Upload</S.UploadText>
+              {props.imageUrl ? (
+                <img src={`${props.imageUrl}`} style={{ width: '100%' }} />
+              ) : (
+                <>
+                  <PlusOutlined style={{ fontSize: '1.6rem' }} />
+                  <S.UploadText>Upload</S.UploadText>
+                </>
+              )}
             </>
           )}
         </S.UploadTextWrapper>
       </S.UploadImageBtn>
       <input style={{ display: 'none' }} type="file" onChange={props.onChangeFile} ref={props.fileRef} />
 
-      <S.Writer>노원두</S.Writer>
+      <S.Writer>{props.UserData?.fetchUserLoggedIn.name}</S.Writer>
 
       <S.BtnWrapper>
         <S.MyBasket id="myBasket" onClick={props.onClickmyBtn} isClickMyBasket={props.isClickMyBasket}>
