@@ -44,9 +44,11 @@ export default function MarketListUI(props: IMarketListUIProps) {
               판매된 상품
             </S.SoldoutText>
           </S.TextWrapper>
-          <S.Btn type="primary" onClick={onClickMoveToPage(`/market/new`)}>
-            <S.BtnText>상품 등록하기</S.BtnText>
-          </S.Btn>
+          <S.BtnWrapper>
+            <S.Btn type="primary" onClick={onClickMoveToPage(`/market/new`)}>
+              <S.BtnText>상품 등록하기</S.BtnText>
+            </S.Btn>
+          </S.BtnWrapper>
         </S.MarketHeader>
 
         <InfiniteScroll pageStart={0} loadMore={onLoadMore} hasMore={true}>

@@ -50,6 +50,9 @@ export default function MarketList() {
     // ** 내가 클릭한 상품 장바구니에 추가하기
     baskets.push(basket)
 
+    // ** 장바구니에 상품 2개만 담기
+    if (baskets.length >= 4) baskets.shift()
+
     // ** 추가된 장바구니로 변경하기
     localStorage.setItem('baskets', JSON.stringify(baskets))
     router.push(`/market/detail/${basket._id}`)

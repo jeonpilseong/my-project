@@ -18,7 +18,7 @@ export const Wrapper = styled.div`
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
 
   @media ${breakPoints.PC} {
-    padding: 8rem 10.2rem 10rem 10.2rem;
+    padding: 8rem 8.2rem 10rem 8.2rem;
   }
 
   @media ${breakPoints.TABLET} {
@@ -81,7 +81,7 @@ export const ContentsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 65%;
+  width: 57%;
 `
 
 export const ItemName = styled.div`
@@ -113,15 +113,20 @@ export const UserName = styled.div`
 export const UserImg = styled.img``
 
 export const PriceWrapper = styled.div`
-  width: 15%;
+  width: 20%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 `
 
 export const Price = styled.div`
   font-weight: 700;
   font-size: 24px;
+`
+export const BtnWrapper = styled.div`
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
 `
 
 export const Btn = styled(Button)`
