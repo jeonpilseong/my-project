@@ -14,7 +14,7 @@ export const getAccessToken = async () => {
   try {
     // ** refreshToken으로 accessToken을 재발급 받기
     const graphQLClient = new GraphQLClient('https://backendonline.codebootcamp.co.kr/graphql', {
-      credentials: 'include', // ** 재발급 받은 accessToken 쿠키에 저장 허용
+      credentials: 'include', // ** 재발급 받은 accessToken을 쿠키에 저장하는 것을 허용
     })
 
     // ** ApolloClient 실행 없이 query, mutaion 재요청하기

@@ -3,6 +3,7 @@ import * as S from './Header.styles'
 import { ILayoutHeaderUIProps } from './Header.types'
 
 export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
+  // **** 커스텀 훅
   const { onClickMoveToPage } = useMoveToPage()
 
   return (

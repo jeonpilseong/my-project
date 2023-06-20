@@ -1,9 +1,13 @@
 import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
+import { Modal } from 'antd'
+import { useRecoilState } from 'recoil'
 
 import MarketDetailUI from './MarketDetail.presenter'
 import { FETCH_USEDITEM } from './MarketDetail.queries'
 import { IQuery, IQueryFetchUseditemArgs } from '@/common/types/generated/types'
+import { useAuth } from '@/common/hooks/useAuth'
+import { visitedPageState } from '@/common/stores'
 
 // **** window 안에 IMP가 있음을 선언
 declare const window: typeof globalThis & {
@@ -13,6 +17,9 @@ declare const window: typeof globalThis & {
 export default function MarketDetail() {
   const router = useRouter()
 
+  // **** 상태값
+  const [, setVisitedPage] = useRecoilState(visitedPageState)
+
   // **** graphql api 요청
   const { data: UseditemData } = useQuery<Pick<IQuery, 'fetchUseditem'>, IQueryFetchUseditemArgs>(FETCH_USEDITEM, {
     variables: {
@@ -20,8 +27,20 @@ export default function MarketDetail() {
     },
   })
 
+  // **** 로그인 체크
+  const { accessToken } = useAuth()
+
   // **** 상품 결제
   const onClickPayment = () => {
+    // ** 로그인 체크
+    if (!accessToken) {
+      // ** 방문 페이지 기록
+      setVisitedPage(`/market/detail/${router.query.useditemId}`)
+
+      Modal.error({ content: '로그인 후 이용 가능합니다.' })
+      return router.push('/login/login')
+    }
+
     const IMP = window.IMP
     IMP.init('imp28728643')
 

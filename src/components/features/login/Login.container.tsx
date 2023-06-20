@@ -9,13 +9,17 @@ import { LOGIN_USER } from './Login.queries'
 import { IMutation, IMutationLoginUserArgs } from '@/common/types/generated/types'
 import { loginSchema } from '@/common/validation/validation'
 import { useRecoilState } from 'recoil'
-import { accessTokenState } from '@/common/stores'
+import { accessTokenState, logoutState, visitedPageState } from '@/common/stores'
+import { useEffect } from 'react'
+import { FETCH_USER_LOGGED_IN } from '@/components/common/layout/header/Header.queries'
 
 export default function Login() {
   const router = useRouter()
 
   // **** 상태값
-  const [, setAccessToken] = useRecoilState(accessTokenState)
+  const [accessToken, setAccessToken] = useRecoilState(accessTokenState)
+  const [visitedPage] = useRecoilState(visitedPageState)
+  const [, setIsLogout] = useRecoilState(logoutState)
 
   // **** react-hook-form, yup
   const { handleSubmit, control, formState } = useForm({
@@ -34,21 +38,30 @@ export default function Login() {
           password: data.password,
           email: data.email,
         },
+        refetchQueries: [
+          {
+            query: FETCH_USER_LOGGED_IN,
+          },
+        ],
       })
-      const accessToken = result.data?.loginUser.accessToken
-
-      if (!accessToken) {
-        Modal.error({ content: '로그인을 실패 했습니다!' })
-        return
-      }
-      setAccessToken(accessToken)
-
-      router.push('/boards/list')
-      Modal.success({ content: '로그인이 완료 되었습니다.' })
+      setIsLogout(false)
+      setAccessToken(result.data?.loginUser.accessToken ?? '')
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message })
     }
   })
+
+  useEffect(() => {
+    if (accessToken) {
+      if (visitedPage) {
+        router.push(visitedPage)
+        Modal.success({ content: '로그인이 완료 되었습니다.' })
+      } else {
+        router.push('/boards/list')
+        Modal.success({ content: '로그인이 완료 되었습니다.' })
+      }
+    }
+  }, [accessToken])
 
   return <LoginUI control={control} formState={formState} onClickLogin={onClickLogin} />
 }

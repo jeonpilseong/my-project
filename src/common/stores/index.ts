@@ -2,6 +2,12 @@ import { atom, selector } from 'recoil'
 import { v1 } from 'uuid'
 import { getAccessToken } from '../libraries/getAccessToken'
 
+// **** 방문 페이지 기록
+export const visitedPageState = atom({
+  key: `visitedPageState/${v1()}`,
+  default: '',
+})
+
 // **** 수정, 등록 페이지 상태값
 export const isEditState = atom({
   key: `isEditState/${v1()}`,
@@ -12,6 +18,12 @@ export const isEditState = atom({
 export const accessTokenState = atom({
   key: `accessTokenState/${v1()}`,
   default: '',
+})
+
+// **** 로그아웃 상태값
+export const logoutState = atom({
+  key: `logoutState/${v1()}`,
+  default: false,
 })
 
 // **** restoreAccessToken api 공유

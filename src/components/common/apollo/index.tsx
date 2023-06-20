@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { onError } from '@apollo/client/link/error'
 
 import { IApolloSettingProps } from './apollo.types'
-import { accessTokenState, restoreAccessTokenLadable } from '@/common/stores'
+import { accessTokenState, logoutState, restoreAccessTokenLadable } from '@/common/stores'
 import { getAccessToken } from '@/common/libraries/getAccessToken'
 
 // **** 페이지 이동 시 리렌더링으로 인한 global state 초기화 방지
@@ -13,16 +13,20 @@ const GLOBAL_STATE = new InMemoryCache()
 
 export default function ApolloSetting(props: IApolloSettingProps) {
   const [accesToken, setAccessToken] = useRecoilState(accessTokenState)
+  const [isLogout] = useRecoilState(logoutState)
 
   // **** 글로벌 함수 - restoreAccesstoken api 요청 결과를 공유
   const aaa = useRecoilValueLoadable(restoreAccessTokenLadable)
 
   // **** 프리렌더링 무시
   useEffect(() => {
-    // ** 새로고침 시 accessToken 새로 발급
-    void aaa.toPromise().then(newAccessToken => {
-      setAccessToken(newAccessToken ?? '')
-    })
+    // ** 로그아웃하면 accessToken 새로 발급 받지 않는다.
+    if (!isLogout) {
+      // ** 새로고침 시 accessToken 새로 발급
+      void aaa.toPromise().then(newAccessToken => {
+        setAccessToken(newAccessToken ?? '')
+      })
+    }
   }, [])
 
   // **** 토큰 만료 에러 처리

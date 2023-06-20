@@ -1,22 +1,27 @@
-import { Modal } from 'antd'
-import { useRouter } from 'next/router'
+import { useRecoilState, useRecoilValueLoadable } from 'recoil'
 import { useEffect } from 'react'
-import { useRecoilValueLoadable } from 'recoil'
 
-import { restoreAccessTokenLadable } from '../stores'
+import { accessTokenState, logoutState, restoreAccessTokenLadable } from '../stores'
 
-export const useAuth = () => {
-  const router = useRouter()
+interface IUseAuthReturn {
+  accessToken: string
+}
+
+export const useAuth = (): IUseAuthReturn => {
+  // **** 상태값
+  const [accessToken, setAccessToken] = useRecoilState(accessTokenState)
+  const [isLogout] = useRecoilState(logoutState)
 
   // **** 글로벌 함수 - restoreAccesstoken api 요청 결과를 공유
-  const aaa = useRecoilValueLoadable(restoreAccessTokenLadable)
+  const getNewAccessToken = useRecoilValueLoadable(restoreAccessTokenLadable)
 
   useEffect(() => {
-    void aaa.toPromise().then(newAccessToken => {
-      if (newAccessToken === undefined) {
-        Modal.error({ content: '로그인 후 이용 가능합니다.' })
-        router.push('login/login')
-      }
-    })
+    if (!isLogout) {
+      void getNewAccessToken.toPromise().then(newAccessToken => {
+        setAccessToken(newAccessToken ?? '')
+      })
+    }
   }, [])
+
+  return { accessToken }
 }

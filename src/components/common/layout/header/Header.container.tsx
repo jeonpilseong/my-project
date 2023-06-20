@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 
 import { FETCH_USER_LOGGED_IN, LOGOUT_USER } from './Header.queries'
 import { IMutation, IQuery } from '@/common/types/generated/types'
-import { accessTokenState } from '@/common/stores'
+import { accessTokenState, logoutState, visitedPageState } from '@/common/stores'
 
 export default function LayoutHeader() {
   const router = useRouter()
@@ -15,6 +15,8 @@ export default function LayoutHeader() {
 
   // **** 상태값
   const [, setAccessToken] = useRecoilState(accessTokenState)
+  const [, setVisitedPage] = useRecoilState(visitedPageState)
+  const [, setIsLogout] = useRecoilState(logoutState)
 
   // **** graphql api 요청
   const { data: UserData } = useQuery<Pick<IQuery, 'fetchUserLoggedIn'>>(FETCH_USER_LOGGED_IN)
@@ -30,7 +32,9 @@ export default function LayoutHeader() {
 
         // **** accessToken, 캐시 초기화
         setAccessToken('')
+        setVisitedPage('')
         client.clearStore()
+        setIsLogout(true)
         void router.push('/login/login')
       }
     } catch (error) {

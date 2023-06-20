@@ -31,7 +31,11 @@ export default function BasketUI() {
           {baskets.map((el, index) => (
             <S.ProductWrapper key={index} onClick={onClickMoveToPage(`/market/detail/${el._id}`)}>
               <S.ProductImg
-                src={el.images ? `https://storage.googleapis.com/${el.images[0]}` : `/images/market/productDefault.jpg`}
+                src={
+                  el.images?.[0]
+                    ? `https://storage.googleapis.com/${el.images[0]}`
+                    : `/images/market/productDefault.jpg`
+                }
               />
               <S.Name>{el.name}</S.Name>
               <S.Remarks>{el.remarks}</S.Remarks>
