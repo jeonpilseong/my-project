@@ -11,7 +11,6 @@ import { loginSchema } from '@/common/validation/validation'
 import { useRecoilState } from 'recoil'
 import { accessTokenState, logoutState, visitedPageState } from '@/common/stores'
 import { useEffect } from 'react'
-// import { FETCH_USER_LOGGED_IN } from '@/components/common/layout/header/Header.queries'
 
 export default function Login() {
   const router = useRouter()

@@ -5,9 +5,7 @@ export const useScroll = () => {
 
   useEffect(() => {
     window.history.scrollRestoration = 'manual'
-    setTimeout(() => {
-      window.scrollTo({ top: scrollRef.current?.offsetTop })
-    }, 0)
+    window.scrollTo({ top: scrollRef.current?.offsetTop })
   }, [])
 
   return { scrollRef }

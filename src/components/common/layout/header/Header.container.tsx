@@ -35,7 +35,7 @@ export default function LayoutHeader() {
         setVisitedPage('')
         client.clearStore()
         setIsLogout(true)
-        void router.push('/login/login')
+        void router.push('/login/login', undefined, { scroll: false })
       }
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message })
