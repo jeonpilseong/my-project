@@ -11,7 +11,7 @@ import { loginSchema } from '@/common/validation/validation'
 import { useRecoilState } from 'recoil'
 import { accessTokenState, logoutState, visitedPageState } from '@/common/stores'
 import { useEffect } from 'react'
-import { FETCH_USER_LOGGED_IN } from '@/components/common/layout/header/Header.queries'
+// import { FETCH_USER_LOGGED_IN } from '@/components/common/layout/header/Header.queries'
 
 export default function Login() {
   const router = useRouter()
@@ -38,11 +38,6 @@ export default function Login() {
           password: data.password,
           email: data.email,
         },
-        refetchQueries: [
-          {
-            query: FETCH_USER_LOGGED_IN,
-          },
-        ],
       })
       setIsLogout(false)
       setAccessToken(result.data?.loginUser.accessToken ?? '')
@@ -51,6 +46,7 @@ export default function Login() {
     }
   })
 
+  // **** 로그인 후 accessToken 발급 받으면 페이지 이동
   useEffect(() => {
     if (accessToken) {
       if (visitedPage) {

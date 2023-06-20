@@ -16,14 +16,14 @@ export default function ApolloSetting(props: IApolloSettingProps) {
   const [isLogout] = useRecoilState(logoutState)
 
   // **** 글로벌 함수 - restoreAccesstoken api 요청 결과를 공유
-  const aaa = useRecoilValueLoadable(restoreAccessTokenLadable)
+  const getNewAccessToken = useRecoilValueLoadable(restoreAccessTokenLadable)
 
   // **** 프리렌더링 무시
   useEffect(() => {
     // ** 로그아웃하면 accessToken 새로 발급 받지 않는다.
     if (!isLogout) {
       // ** 새로고침 시 accessToken 새로 발급
-      void aaa.toPromise().then(newAccessToken => {
+      void getNewAccessToken.toPromise().then(newAccessToken => {
         setAccessToken(newAccessToken ?? '')
       })
     }

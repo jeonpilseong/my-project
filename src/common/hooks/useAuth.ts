@@ -16,6 +16,7 @@ export const useAuth = (): IUseAuthReturn => {
   const getNewAccessToken = useRecoilValueLoadable(restoreAccessTokenLadable)
 
   useEffect(() => {
+    // ** 로그아웃하면 accessToken 새로 발급 받지 않는다.
     if (!isLogout) {
       void getNewAccessToken.toPromise().then(newAccessToken => {
         setAccessToken(newAccessToken ?? '')
