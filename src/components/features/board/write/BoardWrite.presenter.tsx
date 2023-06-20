@@ -7,9 +7,11 @@ import * as S from './BoardWrite.styles'
 import { isEditState } from '@/common/stores/index'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { IBoardWriteUIProps } from './BoardWrite.types'
+import { useScroll } from '@/common/hooks/useScroll'
 
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
+  const { scrollRef } = useScroll()
 
   // **** 상태값
   const [isEdit] = useRecoilState(isEditState)
@@ -24,7 +26,7 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
 
   return (
     <S.Container>
-      <S.Wrapper>
+      <S.Wrapper ref={scrollRef}>
         <Form onFinish={props.onClickSubmit}>
           <S.BoardTitle>게시글 {isEdit ? '수정' : '등록'}</S.BoardTitle>
           <S.ProfileWrapper>

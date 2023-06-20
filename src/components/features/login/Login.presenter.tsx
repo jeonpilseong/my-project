@@ -3,13 +3,15 @@ import { Controller } from 'react-hook-form'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import * as S from './Login.styles'
 import { ILoginUIProps } from './Login.types'
+import { useScroll } from '@/common/hooks/useScroll'
 
 export default function LoginUI(props: ILoginUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
+  const { scrollRef } = useScroll()
 
   return (
     <S.Container>
-      <S.Wrapper>
+      <S.Wrapper ref={scrollRef}>
         <S.Title>로그인</S.Title>
 
         <S.Label>이메일 </S.Label>

@@ -1,10 +1,13 @@
 import { Controller } from 'react-hook-form'
 
 import * as S from './MyProfile.styles'
+import { useScroll } from '@/common/hooks/useScroll'
 
 export default function MyProfileUI(props: any) {
+  const { scrollRef } = useScroll()
+
   return (
-    <S.Wrapper>
+    <S.Wrapper ref={scrollRef}>
       <S.Title>비밀번호 변경</S.Title>
 
       <S.BtnWrapper>

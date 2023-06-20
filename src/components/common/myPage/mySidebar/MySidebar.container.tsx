@@ -56,9 +56,7 @@ export default function MySide() {
     }
 
     // ** file 업로드 시 uploadFile 함수 실행
-    if (file) {
-      uploadFunction(file)
-    }
+    if (file) uploadFunction(file)
   }, [file])
 
   // **** 이미지 업데이트
@@ -91,27 +89,24 @@ export default function MySide() {
   // **** 버튼 페이지 이동
   const onClickmyBtn = (event: MouseEvent<HTMLDivElement>) => {
     if (event.currentTarget.id === 'myBasket') {
+      router.push('/market/myPage/myBasket', undefined, { scroll: false })
       setIsClickMyBasket(true)
       setIsClickMyOrder(false)
       setIsClickMyProfile(false)
     }
     if (event.currentTarget.id === 'myOrder') {
+      router.push('/market/myPage/myOrder', undefined, { scroll: false })
       setIsClickMyBasket(false)
       setIsClickMyOrder(true)
       setIsClickMyProfile(false)
     }
     if (event.currentTarget.id === 'myProfile') {
+      router.push('/market/myPage/myProfile', undefined, { scroll: false })
       setIsClickMyBasket(false)
       setIsClickMyOrder(false)
       setIsClickMyProfile(true)
     }
   }
-
-  useEffect(() => {
-    if (isClickMyBasket) router.push('/market/myPage/myBasket')
-    if (isClickMyOrder) router.push('/market/myPage/myOrder')
-    if (isClickMyProfile) router.push('/market/myPage/myProfile')
-  }, [isClickMyBasket, isClickMyOrder, isClickMyProfile])
 
   return (
     <MySideUI

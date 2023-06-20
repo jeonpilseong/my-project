@@ -7,17 +7,19 @@ import * as S from './MarketDetail.styles'
 import KakaoMap from '@/components/common/kakaoMap/kakaoMap'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { useMoneyFormat } from '@/common/hooks/useMoneyFormat'
+import { useScroll } from '@/common/hooks/useScroll'
 
 export default function MarketDetailUI(props: any) {
   // **** custom hooks
   const { MoneyFormat } = useMoneyFormat()
   const { onClickMoveToPage } = useMoveToPage()
+  const { scrollRef } = useScroll()
 
   // **** 카카오 맵
   KakaoMap(props.UseditemData?.fetchUseditem?.useditemAddress?.address)
 
   return (
-    <S.Wrapper>
+    <S.Wrapper ref={scrollRef}>
       <S.Header>
         <S.ProfileWrapper>
           {props.UseditemData?.fetchUseditem?.seller.picture ? (

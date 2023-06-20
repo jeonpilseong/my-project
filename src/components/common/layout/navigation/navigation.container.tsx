@@ -7,7 +7,7 @@ export default function Navigation() {
   const router = useRouter()
 
   const onClickMenu: MenuProps['onClick'] = event => {
-    router.push(event.key)
+    router.push(event.key, undefined, { scroll: false })
   }
   return <NavigationUI onClickMenu={onClickMenu} />
 }

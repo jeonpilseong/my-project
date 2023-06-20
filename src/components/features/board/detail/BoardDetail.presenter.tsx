@@ -5,14 +5,16 @@ import { Tooltip } from 'antd'
 import * as S from './BoardDetail.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { IBoardDetailUIProps } from './BoardDetail.types'
+import { useScroll } from '@/common/hooks/useScroll'
 
 export default function BoardDetailUI(props: IBoardDetailUIProps) {
   const router = useRouter()
   const { onClickMoveToPage } = useMoveToPage()
+  const { scrollRef } = useScroll()
 
   return (
     <>
-      <S.Wrapper>
+      <S.Wrapper ref={scrollRef}>
         <S.Header>
           <S.ProfileWrapper>
             <S.AvatarIcon size={50} icon={<UserOutlined />} />

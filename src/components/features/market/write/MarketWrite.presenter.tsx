@@ -4,8 +4,11 @@ import * as S from './MarketWrite.styles'
 import { Modal } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import KakaoMap from '@/components/common/kakaoMap/kakaoMap'
+import { useScroll } from '@/common/hooks/useScroll'
 
 export default function MarketWriteUI(props: any) {
+  const { scrollRef } = useScroll()
+
   // **** 버튼
   const uploadButton = (
     <div>
@@ -19,7 +22,7 @@ export default function MarketWriteUI(props: any) {
 
   return (
     <S.Container>
-      <S.Wrapper>
+      <S.Wrapper ref={scrollRef}>
         <S.Title>상품 등록하기</S.Title>
         <S.Label>상품명</S.Label>
         <Controller

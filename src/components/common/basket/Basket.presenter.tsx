@@ -4,6 +4,7 @@ import * as S from './Basket.styles'
 import { IUseditem } from '@/common/types/generated/types'
 import { useMoneyFormat } from '@/common/hooks/useMoneyFormat'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+import { useScroll } from '@/common/hooks/useScroll'
 
 export default function BasketUI() {
   // **** 상태값
@@ -12,6 +13,7 @@ export default function BasketUI() {
   // **** 커스텀 훅
   const { onClickMoveToPage } = useMoveToPage()
   const { MoneyFormat } = useMoneyFormat()
+  const { scrollRef } = useScroll()
 
   // **** 컴포넌트 마운트 시 장바구니 불러오기
   useEffect(() => {
@@ -21,11 +23,11 @@ export default function BasketUI() {
   return (
     <>
       {!baskets[0] ? (
-        <S.Wrapper>
+        <S.Wrapper ref={scrollRef}>
           <S.Title>최근에 본 상품</S.Title>
         </S.Wrapper>
       ) : (
-        <S.Wrapper>
+        <S.Wrapper ref={scrollRef}>
           <S.Title>최근에 본 상품</S.Title>
 
           {baskets.map((el, index) => (
