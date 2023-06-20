@@ -3,12 +3,18 @@ import styled from '@emotion/styled'
 import { breakPoints } from '@/common/styles/globalStyles'
 import { Avatar, Button } from 'antd'
 
-export const Wrapper = styled.div`
-  width: 95%;
+export const Container = styled.div`
   margin: auto;
-  max-width: 120rem;
-  margin-top: 10rem;
+  width: 95%;
+  display: flex;
+  padding-top: 10rem;
+`
+
+export const Wrapper = styled.div`
+  width: 80%;
+  margin: auto;
   margin-bottom: 10rem;
+  max-width: 120rem;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
 
   @media ${breakPoints.PC} {

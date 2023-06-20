@@ -7,5 +7,6 @@ export interface IMarketListUIProps {
   isSoldout: boolean
   isClickSelling: (event: MouseEvent<HTMLDivElement>) => void
   isClickSoldout: (event: MouseEvent<HTMLDivElement>) => void
+  onClickBasket: (basket: any) => () => void
   fetchMore: any
 }
