@@ -41,12 +41,6 @@ export const isClickMyBasketState = atom({
   default: true,
 })
 
-// **** 마이페이지 - 내 장터 - 나의 상품 클릭 여부
-export const isClickMyProductState = atom({
-  key: `isClickMyProductState/${v1()}`,
-  default: true,
-})
-
 // **** 마이페이지 - 내 구매내역 클릭 여부
 export const isClickMyOrderState = atom({
   key: `isClickMyOrder/${v1()}`,

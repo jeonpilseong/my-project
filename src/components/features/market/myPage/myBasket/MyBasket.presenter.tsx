@@ -1,10 +1,7 @@
 import { useMoneyFormat } from '@/common/hooks/useMoneyFormat'
 import * as S from './MyBasket.styles'
-import MyHeader from '@/components/common/myPage/myHeader/myHeader.container'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { useScroll } from '@/common/hooks/useScroll'
-
-const MY_BASKET_BUTTONS = ['나의상품', '마이찜']
 
 export default function MyBasketUI(props: any) {
   const { scrollRef } = useScroll()
@@ -15,7 +12,12 @@ export default function MyBasketUI(props: any) {
 
   return (
     <S.Wrapper ref={scrollRef}>
-      <MyHeader myBtns={MY_BASKET_BUTTONS} />
+      <S.MyHeaderWrapper>
+        <S.MyHeaderTextWrapper>
+          <S.MyheaderText>나의상품</S.MyheaderText>
+          <S.MyheaderText>마이찜</S.MyheaderText>
+        </S.MyHeaderTextWrapper>
+      </S.MyHeaderWrapper>
 
       <S.BasketHeader>
         <S.ColumnNumber>번호</S.ColumnNumber>
