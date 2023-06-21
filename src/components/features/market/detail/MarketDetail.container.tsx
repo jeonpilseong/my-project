@@ -1,11 +1,16 @@
-import { useQuery } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { Modal } from 'antd'
 import { useRecoilState } from 'recoil'
 
 import MarketDetailUI from './MarketDetail.presenter'
-import { FETCH_USEDITEM } from './MarketDetail.queries'
-import { IQuery, IQueryFetchUseditemArgs } from '@/common/types/generated/types'
+import { FETCH_USEDITEM, TOGGLE_USEDITEM_PICK } from './MarketDetail.queries'
+import {
+  IMutation,
+  IMutationToggleUseditemPickArgs,
+  IQuery,
+  IQueryFetchUseditemArgs,
+} from '@/common/types/generated/types'
 import { useAuth } from '@/common/hooks/useAuth'
 import { visitedPageState } from '@/common/stores'
 
@@ -21,6 +26,9 @@ export default function MarketDetail() {
   const [, setVisitedPage] = useRecoilState(visitedPageState)
 
   // **** graphql api 요청
+  const [toggleUseditemPick] = useMutation<Pick<IMutation, 'toggleUseditemPick'>, IMutationToggleUseditemPickArgs>(
+    TOGGLE_USEDITEM_PICK,
+  )
   const { data: UseditemData } = useQuery<Pick<IQuery, 'fetchUseditem'>, IQueryFetchUseditemArgs>(FETCH_USEDITEM, {
     variables: {
       useditemId: String(router.query.useditemId),
@@ -29,6 +37,21 @@ export default function MarketDetail() {
 
   // **** 로그인 체크
   const { accessToken } = useAuth()
+
+  // **** 장바구니 넣기
+  const onClickPick = async () => {
+    await toggleUseditemPick({
+      variables: {
+        useditemId: String(router.query.useditemId),
+      },
+      refetchQueries: [
+        {
+          query: FETCH_USEDITEM,
+          variables: { useditemId: String(router.query.useditemId) },
+        },
+      ],
+    })
+  }
 
   // **** 상품 결제
   const onClickPayment = () => {
@@ -71,5 +94,5 @@ export default function MarketDetail() {
     )
   }
 
-  return <MarketDetailUI UseditemData={UseditemData} onClickPayment={onClickPayment} />
+  return <MarketDetailUI UseditemData={UseditemData} onClickPayment={onClickPayment} onClickPick={onClickPick} />
 }

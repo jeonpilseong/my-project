@@ -10,6 +10,7 @@ export const FETCH_USEDITEM = gql`
       createdAt
       price
       images
+      pickedCount
       useditemAddress {
         zipcode
         address
@@ -20,5 +21,11 @@ export const FETCH_USEDITEM = gql`
         picture
       }
     }
+  }
+`
+
+export const TOGGLE_USEDITEM_PICK = gql`
+  mutation toggleUseditemPick($useditemId: ID!) {
+    toggleUseditemPick(useditemId: $useditemId)
   }
 `

@@ -48,10 +48,14 @@ export default function MarketDetailUI(props: any) {
       </S.Header>
 
       <S.ProductWrapper>
-        <S.HalfDiv>
+        <S.ProductNameWrapper>
           <S.ProductRemarks>{props.UseditemData?.fetchUseditem?.remarks}</S.ProductRemarks>
           <S.ProductName>{props.UseditemData?.fetchUseditem?.name}</S.ProductName>
-        </S.HalfDiv>
+        </S.ProductNameWrapper>
+        <S.PickWrapper>
+          <S.PickImg onClick={props.onClickPick} src="/images/market/heart.png" />
+          <S.PickCount>{props.UseditemData?.fetchUseditem?.pickedCount}</S.PickCount>
+        </S.PickWrapper>
       </S.ProductWrapper>
       <S.ProductPrice>{`${MoneyFormat(props.UseditemData?.fetchUseditem?.price)}원`}</S.ProductPrice>
 

@@ -77,7 +77,7 @@ export const ProductWrapper = styled.div`
   padding-top: 2rem;
 `
 
-export const HalfDiv = styled.div``
+export const ProductNameWrapper = styled.div``
 
 export const ProductRemarks = styled.h3`
   font-size: 1.8rem;
@@ -97,25 +97,25 @@ export const ProductPrice = styled.h1`
   font-size: 36px;
 `
 
-// export const UpBtnWrapper = styled.div`
-//   display: flex;
-//   flex-direction: column;
-// `
+export const PickWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 
-// export const UpBtn = styled.img`
-//   width: 3rem;
-//   height: 3rem;
-//   margin: auto;
-//   cursor: pointer;
-// `
+export const PickImg = styled.img`
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+`
 
-// export const UpCount = styled.span`
-//   font-weight: 400;
-//   font-size: 18px;
-//   line-height: 27px;
+export const PickCount = styled.span`
+  font-weight: 400;
+  font-size: 18px;
+  margin-top: 0.4rem;
 
-//   text-align: center;
-// `
+  text-align: center;
+`
 
 export const ImageWrapper = styled.div`
   display: flex;
@@ -124,7 +124,6 @@ export const ImageWrapper = styled.div`
 
 export const Image = styled.img`
   margin-top: 4rem;
-  height: 40rem;
   object-fit: cover;
 `
 
