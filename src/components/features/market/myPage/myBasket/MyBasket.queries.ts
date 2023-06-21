@@ -15,9 +15,24 @@ export const FETCH_USEDITEMS = gql`
 `
 
 export const FETCH_USER_LOGGED_IN = gql`
-  query {
+  query fetchUserLoggedIn {
     fetchUserLoggedIn {
       _id
+    }
+  }
+`
+
+export const FETCH_USEDITEMS_IPICKED = gql`
+  query fetchUseditemsIPicked($page: Int, $search: String) {
+    fetchUseditemsIPicked(page: $page, search: $search) {
+      _id
+      name
+      price
+      seller {
+        _id
+        name
+      }
+      createdAt
     }
   }
 `

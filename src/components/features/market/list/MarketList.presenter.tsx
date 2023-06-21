@@ -5,7 +5,7 @@ import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import * as S from './MarketList.styles'
 import { IMarketListUIProps } from './MarketList.types'
 import { useMoneyFormat } from '@/common/hooks/useMoneyFormat'
-import Basket from '@/components/common/basket/Basket.container'
+import Basket from './basket/Basket.container'
 
 export default function MarketListUI(props: IMarketListUIProps) {
   // **** 커스텀 훅

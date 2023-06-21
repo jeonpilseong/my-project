@@ -1,16 +1,25 @@
 import { useQuery } from '@apollo/client'
 import { MouseEvent, useState } from 'react'
 import MyBasketUI from './MyBasket.presenter'
-import { IQuery, IQueryFetchUseditemsArgs } from '@/common/types/generated/types'
-import { FETCH_USEDITEMS, FETCH_USER_LOGGED_IN } from './MyBasket.queries'
+import { IQuery, IQueryFetchUseditemsArgs, IQueryFetchUseditemsIPickedArgs } from '@/common/types/generated/types'
+import { FETCH_USEDITEMS, FETCH_USEDITEMS_IPICKED, FETCH_USER_LOGGED_IN } from './MyBasket.queries'
 
 export default function MyBasket() {
   // **** 상태값
   const [isClickMyProduct, setIsClickMyProduct] = useState(true)
 
-  // **** grapql api 요청
+  // **** graphql api 요청
   const { data: UsedItemsData } = useQuery<Pick<IQuery, 'fetchUseditems'>, IQueryFetchUseditemsArgs>(FETCH_USEDITEMS)
   const { data: UserData } = useQuery<Pick<IQuery, 'fetchUserLoggedIn'>>(FETCH_USER_LOGGED_IN)
+  const { data: MyPickData } = useQuery<Pick<IQuery, 'fetchUseditemsIPicked'>, IQueryFetchUseditemsIPickedArgs>(
+    FETCH_USEDITEMS_IPICKED,
+    {
+      variables: {
+        search: '',
+        page: 1,
+      },
+    },
+  )
 
   // **** 나의상품 클릭
   const onClickMyBtn = (event: MouseEvent<HTMLHeadingElement>) => {
@@ -22,6 +31,7 @@ export default function MyBasket() {
     <MyBasketUI
       UsedItemsData={UsedItemsData}
       UserData={UserData}
+      MyPickData={MyPickData}
       isClickMyProduct={isClickMyProduct}
       onClickMyBtn={onClickMyBtn}
     />

@@ -56,6 +56,20 @@ export default function MyBasketUI(props: any) {
             <S.CoulmeSeller>판매자</S.CoulmeSeller>
             <S.ColumnDate>날짜</S.ColumnDate>
           </S.BasketHeader>
+
+          {props.MyPickData?.fetchUseditemsIPicked.map((el: any, index: number) => (
+            <S.Row key={el._id}>
+              <S.ColumnNumber>{index + 1}</S.ColumnNumber>
+              <S.ColumnProduct
+                isClickMyProduct={props.isClickMyProduct}
+                onClick={onClickMoveToPage(`/market/detail/${el._id}`)}>
+                {el.name}
+              </S.ColumnProduct>
+              <S.ColumnPrice>{`${MoneyFormat(el.price)}원`}</S.ColumnPrice>
+              <S.CoulmeSeller>{el.seller.name}</S.CoulmeSeller>
+              <S.ColumnDate>{el.createdAt.slice(0, 10)}</S.ColumnDate>
+            </S.Row>
+          ))}
         </>
       )}
     </S.Wrapper>
