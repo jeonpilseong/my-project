@@ -7,14 +7,14 @@ export const Container = styled.div`
   margin: auto;
   width: 95%;
   display: flex;
+  justify-content: center;
   padding-top: 10rem;
 `
 
 export const Wrapper = styled.div`
-  width: 85%;
+  width: 82%;
   margin: auto;
   margin-bottom: 10rem;
-  max-width: 120rem;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
 
   @media ${breakPoints.PC} {

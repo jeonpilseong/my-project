@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 13%;
-  height: 61rem;
+  height: 67rem;
   border: 1px solid var(--gray-3);
   position: sticky;
   top: 10rem;
@@ -56,8 +56,8 @@ export const PickCount = styled.span`
 export const ProductImg = styled.img`
   margin-top: 1.2rem;
   margin-bottom: 0.8rem;
-  width: 60%;
-  height: 7rem;
+  width: 80%;
+  height: 9rem;
 `
 
 export const Name = styled.div`
@@ -69,6 +69,7 @@ export const Remarks = styled.div`
   font-weight: 400;
   font-size: 1.2rem;
   margin-bottom: 0.4rem;
+  color: #4f4f4f;
 `
 
 export const Price = styled.div`
