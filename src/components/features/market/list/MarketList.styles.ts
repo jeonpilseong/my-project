@@ -11,7 +11,7 @@ export const Container = styled.div`
 `
 
 export const Wrapper = styled.div`
-  width: 80%;
+  width: 85%;
   margin: auto;
   margin-bottom: 10rem;
   max-width: 120rem;
@@ -108,6 +108,17 @@ export const UserName = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
+  margin-right: 2.2rem;
+`
+
+export const PickImg = styled.img`
+  width: 2rem;
+  height: 2rem;
+`
+
+export const PickCount = styled.span`
+  font-weight: 400;
+  font-size: 18px;
 `
 
 export const UserImg = styled.img``

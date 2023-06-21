@@ -70,6 +70,8 @@ export default function MarketListUI(props: IMarketListUIProps) {
                       <S.AvatarIcon icon={<UserOutlined />} />
                     )}
                     <S.UserName>{el.seller.name}</S.UserName>
+                    <S.PickImg src="/images/market/heart.png" />
+                    <S.PickCount>{el.pickedCount}</S.PickCount>
                   </S.ProfileWrapper>
                 </S.ContentsWrapper>
 

@@ -32,6 +32,13 @@ export default function BasketUI() {
 
           {baskets.map((el, index) => (
             <S.ProductWrapper key={index} onClick={onClickMoveToPage(`/market/detail/${el._id}`)}>
+              <S.PickContainer>
+                <S.PickWrapper>
+                  <S.PickImg src="/images/market/heart.png" />
+                  <S.PickCount>{el.pickedCount}</S.PickCount>
+                </S.PickWrapper>
+              </S.PickContainer>
+
               <S.ProductImg
                 src={
                   el.images?.[0]
