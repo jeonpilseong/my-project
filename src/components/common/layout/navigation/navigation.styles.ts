@@ -4,20 +4,21 @@ import { Layout, Menu } from 'antd'
 const { Header } = Layout
 
 export const NavHeader = styled(Header)`
-  background: var(--blue-1);
+  background: white;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-top: 1px solid var(--blue-1);
 `
 
 export const NavMenu = styled(Menu)`
   width: 80%;
+  font-weight: 600;
   font-size: 1.6rem;
-  background: var(--blue-1);
-  color: var(--blue-2);
+  background: white;
+
+  color: var(--blue-1);
   display: flex;
   justify-content: center;
-  .ant-menu-item-selected {
-    color: white !important;
-  }
+  border-top: 1px solid var(--blue-1);
 `

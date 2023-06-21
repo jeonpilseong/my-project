@@ -10,8 +10,8 @@ export default function Layout(props: ILayoutProps) {
   return (
     <>
       <LayoutHeader />
-      <Banner />
       <Navigation />
+      <Banner />
       {props.children}
     </>
   )
