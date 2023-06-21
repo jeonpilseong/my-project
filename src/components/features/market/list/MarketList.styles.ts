@@ -80,26 +80,40 @@ export const ImageWrapper = styled.img`
 export const ContentsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   width: 57%;
 `
 
-export const ItemName = styled.div`
+export const ProductDetail = styled.div``
+
+export const ProductName = styled.div`
   font-weight: 500;
   font-size: 24px;
   line-height: 36px;
 `
 
-export const ItemRemarks = styled.div`
+export const ProductRemarks = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
-  margin-bottom: 5.6rem;
 `
+
+export const ProfileContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`
+
 export const ProfileWrapper = styled.div`
   display: flex;
   gap: 0.5rem;
   align-items: center;
+`
+
+export const Address = styled.div`
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--gray-2);
 `
 
 export const AvatarIcon = styled(Avatar)``
@@ -119,15 +133,27 @@ export const PickImg = styled.img`
 export const PickCount = styled.span`
   font-weight: 400;
   font-size: 18px;
+  margin-right: 2.2rem;
 `
 
 export const UserImg = styled.img``
 
-export const PriceWrapper = styled.div`
+export const PriceContainer = styled.div`
   width: 20%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+`
+
+export const PriceWrapper = styled.div`
+  display: flex;
+  gap: 1.1rem;
+  align-items: center;
+`
+
+export const PriceImg = styled.img`
+  width: 1.8rem;
+  height: 1.8rem;
 `
 
 export const Price = styled.div`

@@ -61,23 +61,31 @@ export default function MarketListUI(props: IMarketListUIProps) {
                   <S.ImageWrapper src={`https://storage.googleapis.com/${el.images[0]}`} />
                 )}
                 <S.ContentsWrapper>
-                  <S.ItemName>{el.name}</S.ItemName>
-                  <S.ItemRemarks>{el.remarks}</S.ItemRemarks>
-                  <S.ProfileWrapper>
-                    {el.seller.picture ? (
-                      <S.AvatarIcon src={`https://storage.googleapis.com/${el.seller.picture}`} />
-                    ) : (
-                      <S.AvatarIcon icon={<UserOutlined />} />
-                    )}
-                    <S.UserName>{el.seller.name}</S.UserName>
-                    <S.PickImg src="/images/market/heart.png" />
-                    <S.PickCount>{el.pickedCount}</S.PickCount>
-                  </S.ProfileWrapper>
+                  <S.ProductDetail>
+                    <S.ProductName>{el.name}</S.ProductName>
+                    <S.ProductRemarks>{el.remarks}</S.ProductRemarks>
+                  </S.ProductDetail>
+                  <S.ProfileContainer>
+                    <S.Address>{el?.useditemAddress?.address ?? ''}</S.Address>
+                    <S.ProfileWrapper>
+                      {el.seller.picture ? (
+                        <S.AvatarIcon src={`https://storage.googleapis.com/${el.seller.picture}`} />
+                      ) : (
+                        <S.AvatarIcon icon={<UserOutlined />} />
+                      )}
+                      <S.UserName>{el.seller.name}</S.UserName>
+                      <S.PickImg src="/images/market/heart.png" />
+                      <S.PickCount>{el.pickedCount}</S.PickCount>
+                    </S.ProfileWrapper>
+                  </S.ProfileContainer>
                 </S.ContentsWrapper>
 
-                <S.PriceWrapper>
-                  <S.Price>{`${MoneyFormat(el.price)}원`}</S.Price>
-                </S.PriceWrapper>
+                <S.PriceContainer>
+                  <S.PriceWrapper>
+                    <S.PriceImg src="/images/market/money.png" />
+                    <S.Price>{`${MoneyFormat(el.price)}원`}</S.Price>
+                  </S.PriceWrapper>
+                </S.PriceContainer>
               </S.ItemWrapper>
             ))
           ) : (
