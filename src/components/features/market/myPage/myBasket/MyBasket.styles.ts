@@ -17,8 +17,17 @@ export const MyHeaderTextWrapper = styled.div`
   font-size: 16px;
 `
 
-export const MyheaderText = styled.h3`
-  color: var(--gray-2);
+interface IMyheaderTextProps {
+  isClickMyProduct: boolean
+}
+
+export const MyProductText = styled.h3`
+  color: ${(props: IMyheaderTextProps) => (props.isClickMyProduct ? 'black' : 'var(--gray-2)')};
+  cursor: pointer;
+`
+
+export const MyPickText = styled.h3`
+  color: ${(props: IMyheaderTextProps) => (!props.isClickMyProduct ? 'black' : 'var(--gray-2)')};
   cursor: pointer;
 `
 
@@ -38,9 +47,17 @@ export const ColumnNumber = styled.div`
   width: 10%;
 `
 
+interface ICoumnProductProps {
+  isClickMyProduct: boolean
+}
+
 export const ColumnProduct = styled.div`
-  width: 60%;
+  width: ${(props: ICoumnProductProps) => (props.isClickMyProduct ? '60%' : '45%')};
   cursor: pointer;
+`
+
+export const CoulmeSeller = styled.div`
+  width: 15%;
 `
 
 export const ColumnPrice = styled.div`

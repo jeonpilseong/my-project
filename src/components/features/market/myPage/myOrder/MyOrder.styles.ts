@@ -17,7 +17,16 @@ export const MyHeaderTextWrapper = styled.div`
   font-size: 16px;
 `
 
-export const MyheaderText = styled.h3`
-  color: var(--gray-2);
+interface IMyheaderTextProps {
+  isClickMyPurchase: boolean
+}
+
+export const MyPurchaseText = styled.h3`
+  color: ${(props: IMyheaderTextProps) => (props.isClickMyPurchase ? 'black' : 'var(--gray-2)')};
+  cursor: pointer;
+`
+
+export const MySalesText = styled.h3`
+  color: ${(props: IMyheaderTextProps) => (!props.isClickMyPurchase ? 'black' : 'var(--gray-2)')};
   cursor: pointer;
 `

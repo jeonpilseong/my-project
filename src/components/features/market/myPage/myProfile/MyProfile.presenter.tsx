@@ -16,7 +16,9 @@ export default function MyProfileUI(props: any) {
           name="currentPassword"
           control={props.control}
           rules={{ required: true }}
-          render={({ field }) => <S.BasicInput type="password" placeholder="이메일을 입력해 주세요." {...field} />}
+          render={({ field }) => (
+            <S.BasicInput type="password" placeholder="현재 비밀번호를 입력해 주세요." {...field} />
+          )}
         />
       </S.BtnWrapper>
       <S.ErrorWrapper>
@@ -30,7 +32,7 @@ export default function MyProfileUI(props: any) {
           name="newPassword"
           control={props.control}
           rules={{ required: true }}
-          render={({ field }) => <S.BasicInput type="password" placeholder="이메일을 입력해 주세요." {...field} />}
+          render={({ field }) => <S.BasicInput type="password" placeholder="새 비밀번호를 입력해 주세요." {...field} />}
         />
       </S.BtnWrapper>
       <S.ErrorWrapper>
@@ -44,7 +46,9 @@ export default function MyProfileUI(props: any) {
           name="CheckPassword"
           control={props.control}
           rules={{ required: true }}
-          render={({ field }) => <S.BasicInput type="password" placeholder="이메일을 입력해 주세요." {...field} />}
+          render={({ field }) => (
+            <S.BasicInput type="password" placeholder="새 비밀번호를 다시 입력해 주세요." {...field} />
+          )}
         />
       </S.BtnWrapper>
       <S.ErrorWrapper>
