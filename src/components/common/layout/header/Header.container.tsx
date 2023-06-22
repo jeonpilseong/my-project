@@ -21,6 +21,7 @@ export default function LayoutHeader() {
   // **** graphql api 요청
   const { data: UserData } = useQuery<Pick<IQuery, 'fetchUserLoggedIn'>>(FETCH_USER_LOGGED_IN)
   const [logout] = useMutation<Pick<IMutation, 'logoutUser'>>(LOGOUT_USER)
+  console.log(UserData?.fetchUserLoggedIn.picture)
 
   // **** logout
   const onClickLogout = async () => {

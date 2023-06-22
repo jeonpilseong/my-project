@@ -1,4 +1,4 @@
-import { Button } from 'antd'
+import { Avatar, Button } from 'antd'
 import styled from '@emotion/styled'
 
 export const Container = styled.div`
@@ -14,14 +14,21 @@ export const Container = styled.div`
 `
 
 export const Logo = styled.img`
-  width: 60px;
-  height: 60px;
+  width: 6rem;
+  height: 6rem;
   cursor: pointer;
+`
+
+export const AvatarIcon = styled(Avatar)``
+
+export const ProfileName = styled.h3`
+  font-size: 1.6rem;
 `
 
 export const BtnWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 10px;
 `
 

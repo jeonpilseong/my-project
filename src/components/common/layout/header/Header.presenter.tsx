@@ -1,6 +1,8 @@
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import * as S from './Header.styles'
 import { ILayoutHeaderUIProps } from './Header.types'
+import { UserOutlined } from '@ant-design/icons'
+import { DropDownBtn } from './DropDown'
 
 export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
   // **** 커스텀 훅
@@ -12,10 +14,14 @@ export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
       <S.BtnWrapper>
         {props.UserData ? (
           <>
-            <S.Btn onClick={onClickMoveToPage(`/market/myPage/myBasket`)}>마이페이지</S.Btn>
-            <S.Btn onClick={props.onClickLogout} type="primary">
-              로그아웃
-            </S.Btn>
+            {props.UserData?.fetchUserLoggedIn?.picture ? (
+              <>
+                <S.AvatarIcon src={`https://storage.googleapis.com/${props.UserData.fetchUserLoggedIn.picture}`} />
+                <DropDownBtn onClickLogout={props.onClickLogout} UserData={props.UserData} />
+              </>
+            ) : (
+              <S.AvatarIcon icon={<UserOutlined />} />
+            )}
           </>
         ) : (
           <>
