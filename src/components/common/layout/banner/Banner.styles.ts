@@ -7,19 +7,19 @@ export const Wrapper = styled.div`
 `
 
 export const Img1 = styled.div`
-  height: 60rem;
+  height: 50rem;
   background-image: url('/images/carousel/banner1.jpg');
-  background-size: cover;
+  background-size: 92% 100%;
 `
 
 export const Img2 = styled.div`
-  height: 60rem;
+  height: 50rem;
   background-image: url('/images/carousel/banner2.jpg');
-  background-size: cover;
+  background-size: 92% 100%;
 `
 
 export const Img3 = styled.div`
-  height: 60rem;
+  height: 50rem;
   background-image: url('/images/carousel/banner3.jpg');
-  background-size: cover;
+  background-size: 92% 100%;
 `

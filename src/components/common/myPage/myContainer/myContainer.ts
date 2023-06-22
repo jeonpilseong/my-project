@@ -5,6 +5,7 @@ import { breakPoints } from '@/common/styles/globalStyles'
 export const MyPageContainer = styled.div`
   margin: auto;
   width: 95%;
+  height: 75rem;
   max-width: 120rem;
   margin-top: 10rem;
   margin-bottom: 10rem;
@@ -12,7 +13,7 @@ export const MyPageContainer = styled.div`
   display: flex;
 
   @media ${breakPoints.PC} {
-    padding: 8rem 10.2rem 10rem 10.2rem;
+    padding: 8rem 10.2rem 5rem 10.2rem;
   }
 
   @media ${breakPoints.TABLET} {

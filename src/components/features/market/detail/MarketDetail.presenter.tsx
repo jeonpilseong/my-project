@@ -60,12 +60,8 @@ export default function MarketDetailUI(props: any) {
       <S.ProductPrice>{`${MoneyFormat(props.UseditemData?.fetchUseditem?.price)}원`}</S.ProductPrice>
 
       <S.ImageWrapper>
-        {props.UseditemData?.fetchUseditem.images?.map((el: string, index: number) =>
-          !el ? (
-            <S.Image key={index} src="/images/market/productDefault.jpg" />
-          ) : (
-            <S.Image key={index} src={`https://storage.googleapis.com/${el}`} />
-          ),
+        {props.UseditemData?.fetchUseditem.images?.map(
+          (el: string, index: number) => el && <S.Image key={index} src={`https://storage.googleapis.com/${el}`} />,
         )}
       </S.ImageWrapper>
 

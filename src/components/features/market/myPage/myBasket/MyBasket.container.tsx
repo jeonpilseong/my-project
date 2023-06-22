@@ -25,7 +25,6 @@ export default function MyBasket() {
   >(FETCH_USEDITEMS_IPICKED, {
     variables: {
       search: '',
-      page: 1,
     },
   })
   const { data: MyPickCount } = useQuery<Pick<IQuery, 'fetchUseditemsCountIPicked'>>(FETCH_USEDITEMS_COUNT_IPICKED)
