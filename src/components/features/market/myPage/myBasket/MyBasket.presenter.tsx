@@ -2,6 +2,7 @@ import { useMoneyFormat } from '@/common/hooks/useMoneyFormat'
 import * as S from './MyBasket.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { useScroll } from '@/common/hooks/useScroll'
+import Pagination from '@/components/common/pagination/Pagination'
 
 export default function MyBasketUI(props: any) {
   const { scrollRef } = useScroll()
@@ -46,6 +47,17 @@ export default function MyBasketUI(props: any) {
                 <S.ColumnDate>{el.createdAt.slice(0, 10)}</S.ColumnDate>
               </S.Row>
             ))}
+
+          <S.PageWrapper>
+            <Pagination
+              refetch={props.UsedItemsRefetch}
+              ItemsCount={
+                props.UsedItemsData?.fetchUseditems.filter(
+                  (el: any) => el.seller._id === props.UserData?.fetchUserLoggedIn._id,
+                ).length
+              }
+            />
+          </S.PageWrapper>
         </>
       ) : (
         <>
@@ -70,6 +82,9 @@ export default function MyBasketUI(props: any) {
               <S.ColumnDate>{el.createdAt.slice(0, 10)}</S.ColumnDate>
             </S.Row>
           ))}
+          <S.PageWrapper>
+            <Pagination refetch={props.MyPickDataRefetch} ItemsCount={props.MyPickCount?.fetchUseditemsCountIPicked} />
+          </S.PageWrapper>
         </>
       )}
     </S.Wrapper>

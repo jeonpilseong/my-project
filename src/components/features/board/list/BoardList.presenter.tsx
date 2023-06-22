@@ -30,7 +30,7 @@ export default function BoardListUI(props: IBoardListUIProps) {
 
       <S.BoardFooter>
         <S.HiddenDiv />
-        <Pagination refetch={props.refetch} BoardsCount={props.BoardsCount} />
+        <Pagination refetch={props.refetch} ItemsCount={props.BoardsCount?.fetchBoardsCount} />
         <S.Btn onClick={onClickMoveToPage(`/boards/new`)}>
           <S.BtnImg src="/images/list/Write.png" />
           <S.BtnText>게시글 등록하기</S.BtnText>

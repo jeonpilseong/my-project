@@ -1,13 +1,13 @@
 import { MouseEvent, useState } from 'react'
 
 import * as S from './Pagination.styles'
-import { IPaginationProps } from './Pagination.types'
+// import { IPaginationProps } from './Pagination.types'
 
-export default function Pagination(props: IPaginationProps) {
+export default function Pagination(props: any) {
   // **** 상태
   const [startpage, setStartPage] = useState(1)
   const [isClickedPage, setIsClickedPage] = useState(1)
-  const lastPage = Math.ceil((props.BoardsCount?.fetchBoardsCount ?? 10) / 10)
+  const lastPage = Math.ceil((props.ItemsCount ?? 10) / 10)
 
   // **** 페이지 버튼 클릭
   const onClickPage = (event: MouseEvent<HTMLSpanElement>) => {

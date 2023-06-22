@@ -8,13 +8,13 @@ export const Wrapper = styled.div`
 
 export const Img1 = styled.div`
   height: 60rem;
-  background-image: url('/images/carousel/banner5.jpg');
+  background-image: url('/images/carousel/banner1.jpg');
   background-size: cover;
 `
 
 export const Img2 = styled.div`
   height: 60rem;
-  background-image: url('/images/carousel/banner1.jpg');
+  background-image: url('/images/carousel/banner2.jpg');
   background-size: cover;
 `
 

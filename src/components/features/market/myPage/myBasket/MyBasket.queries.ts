@@ -36,3 +36,9 @@ export const FETCH_USEDITEMS_IPICKED = gql`
     }
   }
 `
+
+export const FETCH_USEDITEMS_COUNT_IPICKED = gql`
+  query fetchUseditemsCountIPicked {
+    fetchUseditemsCountIPicked
+  }
+`

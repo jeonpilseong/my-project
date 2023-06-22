@@ -4,6 +4,7 @@ export const Wrapper = styled.div`
   width: 100%;
   border-left: 1px solid var(--gray-4);
   padding-left: 6rem;
+  position: relative;
 `
 
 export const MyHeaderWrapper = styled.div`
@@ -77,4 +78,10 @@ export const Row = styled.div`
   border-bottom: 1px solid var(--gray-3);
   display: flex;
   align-items: center;
+`
+
+export const PageWrapper = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: calc(100% - 6rem);
 `
