@@ -20,6 +20,9 @@ export const FETCH_USEDITEM = gql`
         name
         picture
       }
+      buyer {
+        _id
+      }
     }
   }
 `

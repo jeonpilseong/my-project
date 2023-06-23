@@ -7,21 +7,22 @@ import KakaoMap from '@/components/common/kakaoMap/kakaoMap'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { useMoneyFormat } from '@/common/hooks/useMoneyFormat'
 import { useScroll } from '@/common/hooks/useScroll'
+import { IMarketDetailProps } from './MarketDetail.types'
 
-export default function MarketDetailUI(props: any) {
+export default function MarketDetailUI(props: IMarketDetailProps) {
   // **** custom hooks
   const { MoneyFormat } = useMoneyFormat()
   const { onClickMoveToPage } = useMoveToPage()
   const { scrollRef } = useScroll()
 
   // **** 카카오 맵
-  KakaoMap(props.UseditemData?.fetchUseditem?.useditemAddress?.address)
+  KakaoMap(props.UseditemData?.fetchUseditem?.useditemAddress?.address ?? '')
 
   return (
     <S.Wrapper ref={scrollRef}>
       <S.Header>
         <S.ProfileWrapper>
-          {props.UseditemData?.fetchUseditem?.seller.picture ? (
+          {props.UseditemData?.fetchUseditem?.seller?.picture ? (
             <S.AvatarIcon
               size={50}
               src={`https://storage.googleapis.com/${props.UseditemData?.fetchUseditem?.seller.picture}`}
@@ -30,7 +31,7 @@ export default function MarketDetailUI(props: any) {
             <S.AvatarIcon size={50} icon={<UserOutlined />} />
           )}
           <S.WriterWrapper>
-            <S.Writer>{props.UseditemData?.fetchUseditem?.seller.name}</S.Writer>
+            <S.Writer>{props.UseditemData?.fetchUseditem?.seller?.name}</S.Writer>
             <S.Date>{props.UseditemData?.fetchUseditem.createdAt.slice(0, 10)}</S.Date>
           </S.WriterWrapper>
         </S.ProfileWrapper>
@@ -56,7 +57,7 @@ export default function MarketDetailUI(props: any) {
           <S.PickCount>{props.UseditemData?.fetchUseditem?.pickedCount}</S.PickCount>
         </S.PickWrapper>
       </S.ProductWrapper>
-      <S.ProductPrice>{`${MoneyFormat(props.UseditemData?.fetchUseditem?.price)}원`}</S.ProductPrice>
+      <S.ProductPrice>{`${MoneyFormat(props.UseditemData?.fetchUseditem?.price ?? 0)}원`}</S.ProductPrice>
 
       <S.ImageWrapper>
         {props.UseditemData?.fetchUseditem.images?.map(
@@ -68,7 +69,7 @@ export default function MarketDetailUI(props: any) {
         <>
           <S.Contents
             dangerouslySetInnerHTML={{
-              __html: Dompurify.sanitize(props.UseditemData?.fetchUseditem?.contents),
+              __html: Dompurify.sanitize(props.UseditemData?.fetchUseditem?.contents ?? ''),
             }}
           />
         </>
@@ -78,10 +79,13 @@ export default function MarketDetailUI(props: any) {
 
       <S.BtnWrapper>
         <S.Btn onClick={onClickMoveToPage(`/`)}>목록으로</S.Btn>
-
-        <S.Btn onClick={props.onClickPayment} type="primary">
-          구매하기
-        </S.Btn>
+        {props.UseditemData?.fetchUseditem.buyer ? (
+          <S.Btn disabled>판매완료</S.Btn>
+        ) : (
+          <S.Btn onClick={props.onClickPayment} type="primary">
+            구매하기
+          </S.Btn>
+        )}
       </S.BtnWrapper>
     </S.Wrapper>
   )

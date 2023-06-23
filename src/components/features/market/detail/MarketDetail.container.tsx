@@ -21,13 +21,15 @@ import { useAuth } from '@/common/hooks/useAuth'
 import { isModalOpenState, visitedPageState } from '@/common/stores'
 import PointChargeModal from '@/components/common/pointChargeModal/PointChargeModal'
 import { FETCH_USEDITEMS } from '../list/MarketList.queries'
+import { useState } from 'react'
 
 export default function MarketDetail() {
   const router = useRouter()
 
   // **** 상태값
+  const [isPaymentOpen, setIsPaymentOpen] = useState(false)
   const [, setVisitedPage] = useRecoilState(visitedPageState)
-  const [, setIsModalOpen] = useRecoilState(isModalOpenState)
+  const [, setIsPointModalOpen] = useRecoilState(isModalOpenState)
 
   // **** graphql api 요청
   const [toggleUseditemPick] = useMutation<Pick<IMutation, 'toggleUseditemPick'>, IMutationToggleUseditemPickArgs>(
@@ -62,6 +64,36 @@ export default function MarketDetail() {
     })
   }
 
+  // **** 결제 모달창 생성
+  const showPayment = () => {
+    setIsPaymentOpen(true)
+  }
+
+  // **** 결제 모달창 ok 누르면 결제하기
+  const handleOk = async () => {
+    try {
+      await createPointTransactionOfBuyingAndSelling({
+        variables: { useritemId: String(router.query.useditemId) },
+        refetchQueries: [
+          {
+            query: FETCH_USEDITEMS,
+            variables: { isSoldout: false },
+          },
+        ],
+      })
+      Modal.success({ content: '구매가 완료 되었습니다.' })
+      router.push(`/market/myPage/myOrder`)
+    } catch (error) {
+      if (error instanceof Error) Modal.error({ content: error.message })
+    }
+    setIsPaymentOpen(false)
+  }
+
+  // **** 결제 모달창 취소
+  const handleCancel = () => {
+    setIsPaymentOpen(false)
+  }
+
   // **** 상품 결제
   const onClickPayment = async () => {
     // ** 로그인 체크
@@ -78,30 +110,21 @@ export default function MarketDetail() {
     const price = UseditemData?.fetchUseditem?.price
     const point = UserData?.fetchUserLoggedIn.userPoint?.amount
     if (price && point && price > point) {
-      setIsModalOpen(true)
+      setIsPointModalOpen(true)
       return
     }
 
-    try {
-      await createPointTransactionOfBuyingAndSelling({
-        variables: { useritemId: String(router.query.useditemId) },
-        refetchQueries: [
-          {
-            query: FETCH_USEDITEMS,
-            variables: { isSoldout: false },
-          },
-        ],
-      })
-      Modal.success({ content: '구매가 완료 되었습니다.' })
-    } catch (error) {
-      if (error instanceof Error) Modal.error({ content: error.message })
-    }
+    // ** 상품 결제하기
+    showPayment()
   }
 
   return (
     <>
       <MarketDetailUI UseditemData={UseditemData} onClickPayment={onClickPayment} onClickPick={onClickPick} />
       <PointChargeModal />
+      <Modal title="상품 결제" open={isPaymentOpen} onOk={handleOk} onCancel={handleCancel}>
+        <div style={{ fontSize: '1.8rem' }}>결제 하시겠습니까?</div>
+      </Modal>
     </>
   )
 }
