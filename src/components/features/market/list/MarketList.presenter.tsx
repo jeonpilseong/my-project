@@ -44,12 +44,7 @@ export default function MarketListUI(props: IMarketListUIProps) {
               판매된 상품
             </S.SoldoutText>
           </S.TextWrapper>
-          <MarketSearch />
-          <S.BtnWrapper>
-            <S.Btn type="primary">
-              <S.BtnText>상품 검색하기</S.BtnText>
-            </S.Btn>
-          </S.BtnWrapper>
+          <MarketSearch refetch={props.refetch} />
         </S.MarketHeader>
 
         <InfiniteScroll pageStart={0} loadMore={onLoadMore} hasMore={true}>

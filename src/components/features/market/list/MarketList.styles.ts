@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
 import { breakPoints } from '@/common/styles/globalStyles'
-import { Avatar, Button } from 'antd'
+import { Avatar } from 'antd'
 
 export const Container = styled.div`
   margin: auto;
@@ -158,25 +158,4 @@ export const PriceImg = styled.img`
 export const Price = styled.div`
   font-weight: 700;
   font-size: 24px;
-`
-export const BtnWrapper = styled.div`
-  width: 10%;
-  display: flex;
-  justify-content: flex-end;
-`
-
-export const Btn = styled(Button)`
-  display: flex;
-  align-items: center;
-  height: 50px;
-  padding: 1.4rem 1.6rem;
-  border-radius: 10px;
-  cursor: pointer;
-`
-
-export const BtnText = styled.div`
-  font-weight: 500;
-  font-size: 1.6rem;
-  line-height: 2.4rem;
-  text-align: center;
 `

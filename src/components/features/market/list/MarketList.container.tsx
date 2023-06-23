@@ -13,16 +13,17 @@ export default function MarketList() {
   const [isSoldout, setIsSoldout] = useState(false)
 
   // **** graphql api 요청
-  const { data: UsedItemsData, fetchMore } = useQuery<Pick<IQuery, 'fetchUseditems'>, IQueryFetchUseditemsArgs>(
-    FETCH_USEDITEMS,
-    {
-      variables: {
-        isSoldout,
-        search: '',
-        page: 1,
-      },
+  const {
+    data: UsedItemsData,
+    fetchMore,
+    refetch,
+  } = useQuery<Pick<IQuery, 'fetchUseditems'>, IQueryFetchUseditemsArgs>(FETCH_USEDITEMS, {
+    variables: {
+      isSoldout,
+      search: '',
+      page: 1,
     },
-  )
+  })
 
   // **** 판매 여부
   const isClickSelling = () => {
@@ -68,6 +69,7 @@ export default function MarketList() {
       isClickSoldout={isClickSoldout}
       onClickBasket={onClickBasket}
       fetchMore={fetchMore}
+      refetch={refetch}
     />
   )
 }
