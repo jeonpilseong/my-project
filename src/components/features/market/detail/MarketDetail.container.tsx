@@ -2,6 +2,7 @@ import { useMutation, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { Modal } from 'antd'
 import { useRecoilState } from 'recoil'
+import { useState } from 'react'
 
 import MarketDetailUI from './MarketDetail.presenter'
 import {
@@ -21,7 +22,7 @@ import { useAuth } from '@/common/hooks/useAuth'
 import { isModalOpenState, visitedPageState } from '@/common/stores'
 import PointChargeModal from '@/components/common/pointChargeModal/PointChargeModal'
 import { FETCH_USEDITEMS } from '../list/MarketList.queries'
-import { useState } from 'react'
+import { FETCH_USEDITEMS_IPICKED } from '../myPage/myBasket/MyBasket.queries'
 
 export default function MarketDetail() {
   const router = useRouter()
@@ -59,6 +60,12 @@ export default function MarketDetail() {
         {
           query: FETCH_USEDITEM,
           variables: { useditemId: String(router.query.useditemId) },
+        },
+        {
+          query: FETCH_USEDITEMS_IPICKED,
+          variables: {
+            search: '',
+          },
         },
       ],
     })

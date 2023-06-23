@@ -29,11 +29,12 @@ export const BtnWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
+  gap: 1rem;
 `
 
 export const Btn = styled(Button)`
-  width: 10rem;
+  margin-left: 1rem;
+  width: 12rem;
   height: 4rem;
   font-size: 1.6rem;
 `

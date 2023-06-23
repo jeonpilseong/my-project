@@ -1,13 +1,12 @@
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import * as S from './Header.styles'
 import { ILayoutHeaderUIProps } from './Header.types'
-import { UserOutlined } from '@ant-design/icons'
+import { PlusOutlined, UserOutlined } from '@ant-design/icons'
 import { DropDownBtn } from './DropDown'
 
 export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
   // **** 커스텀 훅
   const { onClickMoveToPage } = useMoveToPage()
-  console.log(props.UserData)
 
   return (
     <S.Container>
@@ -16,16 +15,14 @@ export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
         {props.UserData ? (
           <>
             {props.UserData?.fetchUserLoggedIn?.picture ? (
-              <>
-                <S.AvatarIcon src={`https://storage.googleapis.com/${props.UserData.fetchUserLoggedIn.picture}`} />
-                <DropDownBtn onClickLogout={props.onClickLogout} UserData={props.UserData} />
-              </>
+              <S.AvatarIcon src={`https://storage.googleapis.com/${props.UserData.fetchUserLoggedIn.picture}`} />
             ) : (
-              <>
-                <S.AvatarIcon icon={<UserOutlined />} />
-                <DropDownBtn onClickLogout={props.onClickLogout} UserData={props.UserData} />
-              </>
+              <S.AvatarIcon icon={<UserOutlined />} />
             )}
+            <DropDownBtn onClickLogout={props.onClickLogout} UserData={props.UserData} />
+            <S.Btn onClick={onClickMoveToPage(`/market/new`)} type="primary" icon={<PlusOutlined />}>
+              상품 등록
+            </S.Btn>
           </>
         ) : (
           <>
