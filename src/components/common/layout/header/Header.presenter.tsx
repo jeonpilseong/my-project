@@ -7,6 +7,7 @@ import { DropDownBtn } from './DropDown'
 export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
   // **** 커스텀 훅
   const { onClickMoveToPage } = useMoveToPage()
+  console.log(props.UserData)
 
   return (
     <S.Container>
@@ -20,7 +21,10 @@ export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
                 <DropDownBtn onClickLogout={props.onClickLogout} UserData={props.UserData} />
               </>
             ) : (
-              <S.AvatarIcon icon={<UserOutlined />} />
+              <>
+                <S.AvatarIcon icon={<UserOutlined />} />
+                <DropDownBtn onClickLogout={props.onClickLogout} UserData={props.UserData} />
+              </>
             )}
           </>
         ) : (

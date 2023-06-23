@@ -12,7 +12,6 @@ export default function MarketListUI(props: IMarketListUIProps) {
   // **** 커스텀 훅
   const { onClickMoveToPage } = useMoveToPage()
   const { MoneyFormat } = useMoneyFormat()
-  console.log(props.UsedItemsData?.fetchUseditems)
 
   // **** 무한스크롤 실행
   const onLoadMore = () => {
