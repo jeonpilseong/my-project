@@ -18,14 +18,16 @@ import {
   IQueryFetchUseditemArgs,
 } from '@/common/types/generated/types'
 import { useAuth } from '@/common/hooks/useAuth'
-import { visitedPageState } from '@/common/stores'
+import { isModalOpenState, visitedPageState } from '@/common/stores'
 import PointChargeModal from '@/components/common/pointChargeModal/PointChargeModal'
+import { FETCH_USEDITEMS } from '../list/MarketList.queries'
 
 export default function MarketDetail() {
   const router = useRouter()
 
   // **** 상태값
   const [, setVisitedPage] = useRecoilState(visitedPageState)
+  const [, setIsModalOpen] = useRecoilState(isModalOpenState)
 
   // **** graphql api 요청
   const [toggleUseditemPick] = useMutation<Pick<IMutation, 'toggleUseditemPick'>, IMutationToggleUseditemPickArgs>(
@@ -76,13 +78,19 @@ export default function MarketDetail() {
     const price = UseditemData?.fetchUseditem?.price
     const point = UserData?.fetchUserLoggedIn.userPoint?.amount
     if (price && point && price > point) {
-      PointChargeModal()
+      setIsModalOpen(true)
       return
     }
 
     try {
       await createPointTransactionOfBuyingAndSelling({
         variables: { useritemId: String(router.query.useditemId) },
+        refetchQueries: [
+          {
+            query: FETCH_USEDITEMS,
+            variables: { isSoldout: false },
+          },
+        ],
       })
       Modal.success({ content: '구매가 완료 되었습니다.' })
     } catch (error) {
@@ -90,5 +98,10 @@ export default function MarketDetail() {
     }
   }
 
-  return <MarketDetailUI UseditemData={UseditemData} onClickPayment={onClickPayment} onClickPick={onClickPick} />
+  return (
+    <>
+      <MarketDetailUI UseditemData={UseditemData} onClickPayment={onClickPayment} onClickPick={onClickPick} />
+      <PointChargeModal />
+    </>
+  )
 }

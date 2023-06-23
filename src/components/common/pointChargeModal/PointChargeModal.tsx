@@ -11,52 +11,23 @@ import { CREATE_POINT_TRANSACTION_OF_LOADING, FETCH_USER_LOGGED_IN } from './Poi
 import { useRecoilState } from 'recoil'
 import { isModalOpenState } from '@/common/stores'
 
+const { MoneyFormat } = useMoneyFormat()
+
 const Text = styled.div`
   font-size: 1.8rem;
 `
+const pointMenuList = [100, 500, 1000, 5000, 10000, 50000, 100000]
 
 // ** 포인트 충전 DropDown 메뉴 목록
 const pointMenu: MenuProps['items'] = [
-  {
-    key: '0',
+  ...pointMenuList.map((el, index) => ({
+    key: String(index),
     label: (
       <>
-        <Text>100 P</Text>
+        <Text>{`${MoneyFormat(el)} P`}</Text>
       </>
     ),
-  },
-  {
-    key: '1',
-    label: (
-      <>
-        <Text>500 P</Text>
-      </>
-    ),
-  },
-  {
-    key: '2',
-    label: (
-      <>
-        <Text>1000 P</Text>
-      </>
-    ),
-  },
-  {
-    key: '3',
-    label: (
-      <>
-        <Text>5000 P</Text>
-      </>
-    ),
-  },
-  {
-    key: '4',
-    label: (
-      <>
-        <Text>10000 P</Text>
-      </>
-    ),
-  },
+  })),
 ]
 
 // **** window 안에 IMP가 있음을 선언
@@ -69,8 +40,6 @@ export default function PointChargeModal() {
   const [isModalOpen, setIsModalOpen] = useRecoilState(isModalOpenState)
   const [point, setPoint] = useState(0)
 
-  const { MoneyFormat } = useMoneyFormat()
-
   // ** graphql api 요청
   const [createPointTransactionOfLoading] = useMutation<
     Pick<IMutation, 'createPointTransactionOfLoading'>,
@@ -80,11 +49,9 @@ export default function PointChargeModal() {
 
   // **** 포인트 충전 DropDown 메뉴 클릭
   const handlePointMenuClick: MenuProps['onClick'] = e => {
-    if (e.key === '0') setPoint(100)
-    if (e.key === '1') setPoint(500)
-    if (e.key === '2') setPoint(1000)
-    if (e.key === '3') setPoint(5000)
-    if (e.key === '4') setPoint(10000)
+    pointMenuList.forEach((el, index) => {
+      if (e.key === String(index)) setPoint(el)
+    })
   }
 
   // **** 모달창 cancel
