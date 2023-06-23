@@ -19,6 +19,7 @@ import {
 } from '@/common/types/generated/types'
 import { useAuth } from '@/common/hooks/useAuth'
 import { visitedPageState } from '@/common/stores'
+import PointChargeModal from '@/components/common/pointChargeModal/PointChargeModal'
 
 export default function MarketDetail() {
   const router = useRouter()
@@ -72,16 +73,21 @@ export default function MarketDetail() {
     }
 
     // ** 포인트가 모자르면 포인트 충전
-    // const price = UseditemData?.fetchUseditem?.price
-    // const point = UserData?.fetchUserLoggedIn.userPoint?.amount
-    // if((price && point) && (price > point)) {
+    const price = UseditemData?.fetchUseditem?.price
+    const point = UserData?.fetchUserLoggedIn.userPoint?.amount
+    if (price && point && price > point) {
+      PointChargeModal()
+      return
+    }
 
-    // }
-
-    await createPointTransactionOfBuyingAndSelling({
-      variables: { useritemId: String(router.query.useditemId) },
-    })
-    Modal.success({ content: '구매가 완료 되었습니다.' })
+    try {
+      await createPointTransactionOfBuyingAndSelling({
+        variables: { useritemId: String(router.query.useditemId) },
+      })
+      Modal.success({ content: '구매가 완료 되었습니다.' })
+    } catch (error) {
+      if (error instanceof Error) Modal.error({ content: error.message })
+    }
   }
 
   return <MarketDetailUI UseditemData={UseditemData} onClickPayment={onClickPayment} onClickPick={onClickPick} />
