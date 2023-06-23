@@ -4,9 +4,15 @@ import { Modal } from 'antd'
 import { useRecoilState } from 'recoil'
 
 import MarketDetailUI from './MarketDetail.presenter'
-import { FETCH_USEDITEM, TOGGLE_USEDITEM_PICK } from './MarketDetail.queries'
+import {
+  CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING,
+  FETCH_USEDITEM,
+  FETCH_USER_LOGGED_IN,
+  TOGGLE_USEDITEM_PICK,
+} from './MarketDetail.queries'
 import {
   IMutation,
+  IMutationCreatePointTransactionOfBuyingAndSellingArgs,
   IMutationToggleUseditemPickArgs,
   IQuery,
   IQueryFetchUseditemArgs,
@@ -29,6 +35,11 @@ export default function MarketDetail() {
       useditemId: String(router.query.useditemId),
     },
   })
+  const [createPointTransactionOfBuyingAndSelling] = useMutation<
+    Pick<IMutation, 'createPointTransactionOfBuyingAndSelling'>,
+    IMutationCreatePointTransactionOfBuyingAndSellingArgs
+  >(CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING)
+  const { data: UserData } = useQuery<Pick<IQuery, 'fetchUserLoggedIn'>>(FETCH_USER_LOGGED_IN)
 
   // **** 로그인 체크
   const { accessToken } = useAuth()
@@ -49,15 +60,28 @@ export default function MarketDetail() {
   }
 
   // **** 상품 결제
-  const onClickPayment = () => {
+  const onClickPayment = async () => {
     // ** 로그인 체크
     if (!accessToken) {
       // ** 방문 페이지 기록
       setVisitedPage(`/market/detail/${router.query.useditemId}`)
 
       Modal.error({ content: '로그인 후 이용 가능합니다.' })
-      return router.push('/login/login')
+      router.push('/login/login')
+      return
     }
+
+    // ** 포인트가 모자르면 포인트 충전
+    // const price = UseditemData?.fetchUseditem?.price
+    // const point = UserData?.fetchUserLoggedIn.userPoint?.amount
+    // if((price && point) && (price > point)) {
+
+    // }
+
+    await createPointTransactionOfBuyingAndSelling({
+      variables: { useritemId: String(router.query.useditemId) },
+    })
+    Modal.success({ content: '구매가 완료 되었습니다.' })
   }
 
   return <MarketDetailUI UseditemData={UseditemData} onClickPayment={onClickPayment} onClickPick={onClickPick} />

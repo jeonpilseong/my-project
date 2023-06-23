@@ -52,3 +52,9 @@ export const isClickMyProfileState = atom({
   key: `isClickMyProfileState/${v1()}`,
   default: false,
 })
+
+// **** 포인트 충전 - 모달 생성 여부
+export const isModalOpenState = atom({
+  key: `isModalOpenState/${v1()}`,
+  default: false,
+})
