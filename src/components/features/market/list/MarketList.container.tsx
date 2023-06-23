@@ -18,6 +18,8 @@ export default function MarketList() {
     {
       variables: {
         isSoldout,
+        search: '',
+        page: 1,
       },
     },
   )
