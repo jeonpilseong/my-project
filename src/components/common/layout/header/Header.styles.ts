@@ -22,7 +22,7 @@ export const Logo = styled.img`
 export const AvatarIcon = styled(Avatar)``
 
 export const ProfileName = styled.h3`
-  font-size: 1.6rem;
+  font-size: 1.8rem;
 `
 
 export const BtnWrapper = styled.div`

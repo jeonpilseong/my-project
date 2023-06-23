@@ -1,7 +1,6 @@
 import { Tooltip } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import Dompurify from 'dompurify' // XSS 공격 방어
-import Script from 'next/script'
 
 import * as S from './MarketDetail.styles'
 import KakaoMap from '@/components/common/kakaoMap/kakaoMap'
@@ -79,7 +78,7 @@ export default function MarketDetailUI(props: any) {
 
       <S.BtnWrapper>
         <S.Btn onClick={onClickMoveToPage(`/`)}>목록으로</S.Btn>
-        <Script src="https://cdn.iamport.kr/v1/iamport.js"></Script>
+
         <S.Btn onClick={props.onClickPayment} type="primary">
           구매하기
         </S.Btn>

@@ -29,12 +29,3 @@ export const TOGGLE_USEDITEM_PICK = gql`
     toggleUseditemPick(useditemId: $useditemId)
   }
 `
-
-export const CREATE_POINT_TRANSACTION_OF_LOADING = gql`
-  mutation createPointTransactionOfLoading($impUid: ID!) {
-    createPointTransactionOfLoading(impUid: $impUid) {
-      _id
-      amount
-    }
-  }
-`
