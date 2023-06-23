@@ -43,12 +43,12 @@ interface ISoldoutText {
 export const TextWrapper = styled.div`
   display: flex;
   align-self: center;
+  gap: 2rem;
 `
 
 export const SellingText = styled.div`
   font-weight: 500;
   font-size: 18px;
-  margin-right: 2rem;
   color: ${(props: ISoldoutText) => (props.issoldout === 'false' ? 'black' : 'var(--gray-3)')};
   cursor: pointer;
 `
@@ -57,7 +57,6 @@ export const SoldoutText = styled.div`
   font-weight: 500;
   font-size: 18px;
   color: ${(props: ISoldoutText) => (props.issoldout === 'true' ? 'black' : 'var(--gray-3)')};
-  margin-right: 2rem;
   cursor: pointer;
 `
 
@@ -161,7 +160,7 @@ export const Price = styled.div`
   font-size: 24px;
 `
 export const BtnWrapper = styled.div`
-  width: 20%;
+  width: 10%;
   display: flex;
   justify-content: flex-end;
 `

@@ -2,7 +2,7 @@ import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import * as S from './BoardList.styles'
 import { IBoardListUIProps } from './BoardList.types'
 import Pagination from '@/components/common/pagination/Pagination'
-import Search from '@/components/common/search/Search.container'
+import Search from './search/Search.container'
 import { useScroll } from '@/common/hooks/useScroll'
 
 export default function BoardListUI(props: IBoardListUIProps) {

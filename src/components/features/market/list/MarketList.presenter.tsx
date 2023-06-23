@@ -1,16 +1,15 @@
 import InfiniteScroll from 'react-infinite-scroller'
 import { UserOutlined } from '@ant-design/icons'
 
-import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import * as S from './MarketList.styles'
 import { IMarketListUIProps } from './MarketList.types'
 import { useMoneyFormat } from '@/common/hooks/useMoneyFormat'
 import Basket from './basket/Basket.container'
 import { IQuery } from '@/common/types/generated/types'
+import MarketSearch from './search/MarketSearch.container'
 
 export default function MarketListUI(props: IMarketListUIProps) {
   // **** 커스텀 훅
-  const { onClickMoveToPage } = useMoveToPage()
   const { MoneyFormat } = useMoneyFormat()
 
   // **** 무한스크롤 실행
@@ -45,9 +44,10 @@ export default function MarketListUI(props: IMarketListUIProps) {
               판매된 상품
             </S.SoldoutText>
           </S.TextWrapper>
+          <MarketSearch />
           <S.BtnWrapper>
-            <S.Btn type="primary" onClick={onClickMoveToPage(`/market/new`)}>
-              <S.BtnText>상품 등록하기</S.BtnText>
+            <S.Btn type="primary">
+              <S.BtnText>상품 검색하기</S.BtnText>
             </S.Btn>
           </S.BtnWrapper>
         </S.MarketHeader>
