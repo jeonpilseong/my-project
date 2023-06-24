@@ -1,10 +1,11 @@
 import styled from '@emotion/styled'
+import { Button, Input } from 'antd'
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 11%;
+  width: 15%;
   margin-right: 6rem;
 `
 
@@ -45,14 +46,29 @@ export const UploadText = styled.div`
 export const Writer = styled.h2`
   font-weight: 700;
   font-size: 24px;
+`
+
+export const WriterEditWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
   margin-bottom: 6rem;
 `
-export const BtnWrapper = styled.div`
+
+export const WriterInput = styled(Input)``
+
+export const WriterBtn = styled(Button)`
+  height: auto;
+  font-size: 1.6rem;
+`
+
+export const MyBtnWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 1.8rem;
 `
 interface IMySide {
   isClickMySide: boolean[]

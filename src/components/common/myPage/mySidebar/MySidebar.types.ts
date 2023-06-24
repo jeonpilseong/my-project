@@ -9,4 +9,12 @@ export interface MySideUIProps {
   isClickMySide: boolean[]
   UserData?: Pick<IQuery, 'fetchUserLoggedIn'>
   onClickmyBtn: (event: MouseEvent<HTMLDivElement>) => void
+  onClickEdit: () => void
+  onClickChangeBtn: () => void
+  onChageName: (event: ChangeEvent<HTMLInputElement>) => void
+  isEdit: boolean
+}
+
+export interface IUpdateUserInputType {
+  name?: string
 }

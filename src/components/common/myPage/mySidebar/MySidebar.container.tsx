@@ -9,9 +9,14 @@ import { FETCH_USER_LOGGED_IN, UPDATE_USER_INPUT } from './MySidebar.queries'
 import { IMutation, IMutationUpdateUserArgs, IMutationUploadFileArgs, IQuery } from '@/common/types/generated/types'
 import { UPLOAD_FILE } from '@/components/features/board/write/BoardWrite.queries'
 import { FETCH_USEDITEMS } from '@/components/features/market/list/MarketList.queries'
+import { IUpdateUserInputType } from './MySidebar.types'
 
 export default function MySide() {
   const router = useRouter()
+
+  // **** 프로필 이름 수정 상태값
+  const [name, setName] = useState('')
+  const [isEdit, setIsEdit] = useState(false)
 
   // **** 이미지 상태값
   const [imageUrl, setImageUrl] = useState('')
@@ -28,6 +33,26 @@ export default function MySide() {
   const [uploadFile] = useMutation<Pick<IMutation, 'uploadFile'>, IMutationUploadFileArgs>(UPLOAD_FILE)
   const [updateUser] = useMutation<Pick<IMutation, 'updateUser'>, IMutationUpdateUserArgs>(UPDATE_USER_INPUT)
   const { data: UserData } = useQuery<Pick<IQuery, 'fetchUserLoggedIn'>>(FETCH_USER_LOGGED_IN)
+
+  // **** 프로필 이름 수정 클릭
+  const onClickEdit = () => setIsEdit(true)
+
+  // **** 프로필 이름 수정
+  const onChageName = (event: ChangeEvent<HTMLInputElement>) => setName(event.target.value)
+
+  // **** 수정된 프로필 이름 저장
+  const onClickChangeBtn = async () => {
+    const updateUserInput: IUpdateUserInputType = {}
+    if (name) {
+      updateUserInput.name = name
+      await updateUser({
+        variables: {
+          updateUserInput,
+        },
+      })
+    }
+    setIsEdit(false)
+  }
 
   // **** 이미지 임시 업로드
   const onChangeFile = (event: ChangeEvent<HTMLInputElement>) => {
@@ -109,6 +134,10 @@ export default function MySide() {
       isClickMySide={isClickMySide}
       UserData={UserData}
       onClickmyBtn={onClickmyBtn}
+      onClickEdit={onClickEdit}
+      onClickChangeBtn={onClickChangeBtn}
+      onChageName={onChageName}
+      isEdit={isEdit}
     />
   )
 }

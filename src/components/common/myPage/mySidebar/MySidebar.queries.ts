@@ -5,6 +5,7 @@ export const UPDATE_USER_INPUT = gql`
     updateUser(updateUserInput: $updateUserInput) {
       _id
       picture
+      name
     }
   }
 `

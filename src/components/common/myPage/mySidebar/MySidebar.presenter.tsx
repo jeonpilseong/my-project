@@ -31,9 +31,27 @@ export default function MySideUI(props: MySideUIProps) {
       </S.UploadImageBtn>
       <input style={{ display: 'none' }} type="file" onChange={props.onChangeFile} ref={props.fileRef} />
 
-      <S.Writer>{props.UserData?.fetchUserLoggedIn.name}</S.Writer>
+      {props.isEdit ? (
+        <S.WriterEditWrapper>
+          <S.WriterInput
+            defaultValue={props.UserData?.fetchUserLoggedIn.name}
+            size="large"
+            onChange={props.onChageName}
+          />
+          <S.WriterBtn onClick={props.onClickChangeBtn} type="primary">
+            저장
+          </S.WriterBtn>
+        </S.WriterEditWrapper>
+      ) : (
+        <S.WriterEditWrapper>
+          <S.Writer>{props.UserData?.fetchUserLoggedIn.name}</S.Writer>
+          <S.WriterBtn onClick={props.onClickEdit} type="primary">
+            이름 변경
+          </S.WriterBtn>
+        </S.WriterEditWrapper>
+      )}
 
-      <S.BtnWrapper>
+      <S.MyBtnWrapper>
         <S.MyBasket id="myBasket" onClick={props.onClickmyBtn} isClickMySide={props.isClickMySide}>
           내 장터
         </S.MyBasket>
@@ -43,7 +61,7 @@ export default function MySideUI(props: MySideUIProps) {
         <S.MyProfile id="myProfile" onClick={props.onClickmyBtn} isClickMySide={props.isClickMySide}>
           내 프로필
         </S.MyProfile>
-      </S.BtnWrapper>
+      </S.MyBtnWrapper>
     </S.Wrapper>
   )
 }
