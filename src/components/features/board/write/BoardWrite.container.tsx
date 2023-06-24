@@ -129,6 +129,14 @@ export default function BoardWrite() {
     try {
       const result = await updateBoard({
         variables,
+        refetchQueries: [
+          {
+            query: FETCH_BOARD,
+            variables: {
+              boardId: String(router.query.boardId),
+            },
+          },
+        ],
       })
       setIsEdit(false)
 

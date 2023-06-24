@@ -44,12 +44,18 @@ export const CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING = gql`
 `
 
 export const FETCH_USER_LOGGED_IN = gql`
-  query {
+  query fetchUserLoggedIn {
     fetchUserLoggedIn {
       _id
       userPoint {
         amount
       }
     }
+  }
+`
+
+export const DELETE_USEDITEM = gql`
+  mutation deleteUseditem($useditemId: ID!) {
+    deleteUseditem(useditemId: $useditemId)
   }
 `
