@@ -65,6 +65,7 @@ export default function MarketWrite() {
       useditemId: String(router.query.useditemId),
     },
   })
+
   // **** 게시글 수정
   const onClickUpdate = handleSubmit(async data => {
     // ** 클라우드에 이미지 업로드
@@ -84,6 +85,7 @@ export default function MarketWrite() {
     if (data.contents) variables.updateUseditemInput.contents = data.contents
     if (data.price) variables.updateUseditemInput.price = Number(data.price)
     if (orignFiles) variables.updateUseditemInput.images = imageUrls
+    if (!orignFiles[0]) variables.updateUseditemInput.images = UseditemData?.fetchUseditem.images ?? []
     if (address || zipcode || data.addressDetail) {
       variables.updateUseditemInput.useditemAddress = {}
       if (address) variables.updateUseditemInput.useditemAddress.address = address

@@ -118,6 +118,7 @@ export default function BoardWrite() {
     if (data.contents) variables.updateBoardInput.contents = data.contents
     if (data.youtubeUrl) variables.updateBoardInput.youtubeUrl = data.youtubeUrl
     if (orignFiles) variables.updateBoardInput.images = imageUrls
+    if (!orignFiles[0]) variables.updateBoardInput.images = BoardData?.fetchBoard.images ?? []
     if (address || zipcode || data.addressDetail) {
       variables.updateBoardInput.boardAddress = {}
       if (address) variables.updateBoardInput.boardAddress.address = address
