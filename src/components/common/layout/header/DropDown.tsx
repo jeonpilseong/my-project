@@ -7,8 +7,9 @@ import * as S from './DropDown.styles'
 import PointChargeModal from '../../pointChargeModal/PointChargeModal'
 import { useRecoilState } from 'recoil'
 import { isModalOpenState } from '@/common/stores'
+import { IDropDownBtnProps } from './DropDown.types'
 
-export function DropDownBtn(props: any) {
+export function DropDownBtn(props: IDropDownBtnProps) {
   const router = useRouter()
 
   // **** 상태값
@@ -30,7 +31,7 @@ export function DropDownBtn(props: any) {
             <S.Name>{`${props.UserData?.fetchUserLoggedIn.name} 님`}</S.Name>
             <S.PointWrapper>
               <S.PointImg src="/images/logo/point.png" />
-              <S.Point>{`${props.UserData?.fetchUserLoggedIn.userPoint.amount ?? 0} P`}</S.Point>
+              <S.Point>{`${props.UserData?.fetchUserLoggedIn.userPoint?.amount} P`}</S.Point>
             </S.PointWrapper>
           </S.ProfileWrapper>
         </S.Wrapper>
@@ -70,13 +71,13 @@ export function DropDownBtn(props: any) {
         }}>
         <a onClick={e => e.preventDefault()}>
           <Space style={{ fontSize: '1.8rem' }}>
-            <h3>{`${props.UserData.fetchUserLoggedIn.name} 님`}</h3>
+            <h3>{`${props.UserData?.fetchUserLoggedIn.name} 님`}</h3>
             <DownOutlined />
           </Space>
         </a>
       </Dropdown>
 
-      <PointChargeModal />
+      <PointChargeModal UserData={props.UserData} />
     </>
   )
 }

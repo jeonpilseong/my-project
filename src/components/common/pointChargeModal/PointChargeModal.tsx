@@ -5,11 +5,12 @@ import Script from 'next/script'
 import { useMoneyFormat } from '@/common/hooks/useMoneyFormat'
 import { useState } from 'react'
 import styled from '@emotion/styled'
-import { useMutation, useQuery } from '@apollo/client'
-import { IMutation, IMutationCreatePointTransactionOfLoadingArgs, IQuery } from '@/common/types/generated/types'
+import { useMutation } from '@apollo/client'
+import { IMutation, IMutationCreatePointTransactionOfLoadingArgs } from '@/common/types/generated/types'
 import { CREATE_POINT_TRANSACTION_OF_LOADING, FETCH_USER_LOGGED_IN } from './PointChargeModal.queries'
 import { useRecoilState } from 'recoil'
 import { isModalOpenState } from '@/common/stores'
+import { IPointChargeModalProps } from './PointChargeModal.types'
 
 const { MoneyFormat } = useMoneyFormat()
 
@@ -35,7 +36,7 @@ declare const window: typeof globalThis & {
   IMP: any
 }
 
-export default function PointChargeModal() {
+export default function PointChargeModal(props: IPointChargeModalProps) {
   // **** 상태값
   const [isModalOpen, setIsModalOpen] = useRecoilState(isModalOpenState)
   const [point, setPoint] = useState(0)
@@ -45,7 +46,7 @@ export default function PointChargeModal() {
     Pick<IMutation, 'createPointTransactionOfLoading'>,
     IMutationCreatePointTransactionOfLoadingArgs
   >(CREATE_POINT_TRANSACTION_OF_LOADING)
-  const { data: UserData } = useQuery<Pick<IQuery, 'fetchUserLoggedIn'>>(FETCH_USER_LOGGED_IN)
+  // const { data: UserData } = useQuery<Pick<IQuery, 'fetchUserLoggedIn'>>(FETCH_USER_LOGGED_IN)
 
   // **** 포인트 충전 DropDown 메뉴 클릭
   const handlePointMenuClick: MenuProps['onClick'] = e => {
@@ -73,8 +74,8 @@ export default function PointChargeModal() {
         pay_method: 'card',
         name: '충전',
         amount: point,
-        buyer_email: UserData?.fetchUserLoggedIn.email,
-        buyer_name: UserData?.fetchUserLoggedIn.name,
+        buyer_email: props.UserData?.fetchUserLoggedIn.email,
+        buyer_name: props.UserData?.fetchUserLoggedIn.name,
         m_redirect_url: 'http://localhost:3000', // 모바일 결제 후 해당 페이지로 리다이렉트
       },
       async (rsp: any) => {
