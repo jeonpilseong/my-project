@@ -8,13 +8,13 @@ export default function MyOrderUI(props: any) {
     <S.Wrapper ref={scrollRef}>
       <S.MyHeaderWrapper>
         <S.MyHeaderTextWrapper>
-          <S.MyPurchaseText
-            id="myPurchase"
-            isClickMyPurchase={props.isClickMyPurchase}
-            onClick={props.onClickMyPurchase}>
+          <S.myPointText id="myPoint" isClickHistory={props.isClickHistory} onClick={props.onClickMyPurchase}>
+            충전내역
+          </S.myPointText>
+          <S.MyPurchaseText id="myPurchase" isClickHistory={props.isClickHistory} onClick={props.onClickMyPurchase}>
             구매내역
           </S.MyPurchaseText>
-          <S.MySalesText id="mySales" isClickMyPurchase={props.isClickMyPurchase} onClick={props.onClickMyPurchase}>
+          <S.MySalesText id="mySales" isClickHistory={props.isClickHistory} onClick={props.onClickMyPurchase}>
             판매내역
           </S.MySalesText>
         </S.MyHeaderTextWrapper>

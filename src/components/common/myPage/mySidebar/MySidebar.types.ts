@@ -6,9 +6,7 @@ export interface MySideUIProps {
   onClickImage: () => void
   fileRef: any
   imageUrl?: string
-  isClickMyBasket: boolean
-  isClickMyOrder: boolean
-  isClickMyProfile: boolean
+  isClickMySide: boolean[]
   UserData?: Pick<IQuery, 'fetchUserLoggedIn'>
   onClickmyBtn: (event: MouseEvent<HTMLDivElement>) => void
 }

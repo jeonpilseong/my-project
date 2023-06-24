@@ -18,15 +18,20 @@ export const MyHeaderTextWrapper = styled.div`
 `
 
 interface IMyheaderTextProps {
-  isClickMyPurchase: boolean
+  isClickHistory: boolean[]
 }
 
+export const myPointText = styled.h3`
+  color: ${(props: IMyheaderTextProps) => (props.isClickHistory[0] ? 'black' : 'var(--gray-2)')};
+  cursor: pointer;
+`
+
 export const MyPurchaseText = styled.h3`
-  color: ${(props: IMyheaderTextProps) => (props.isClickMyPurchase ? 'black' : 'var(--gray-2)')};
+  color: ${(props: IMyheaderTextProps) => (props.isClickHistory[1] ? 'black' : 'var(--gray-2)')};
   cursor: pointer;
 `
 
 export const MySalesText = styled.h3`
-  color: ${(props: IMyheaderTextProps) => (!props.isClickMyPurchase ? 'black' : 'var(--gray-2)')};
+  color: ${(props: IMyheaderTextProps) => (props.isClickHistory[2] ? 'black' : 'var(--gray-2)')};
   cursor: pointer;
 `

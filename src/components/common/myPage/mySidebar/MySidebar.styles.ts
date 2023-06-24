@@ -54,32 +54,24 @@ export const BtnWrapper = styled.div`
   font-weight: 400;
   font-size: 18px;
 `
-interface IMyBasketProps {
-  isClickMyBasket: boolean
-}
-
-interface IMyOrderProps {
-  isClickMyOrder: boolean
-}
-
-interface IMyProfileProps {
-  isClickMyProfile: boolean
+interface IMySide {
+  isClickMySide: boolean[]
 }
 
 export const MyBasket = styled.div`
-  color: ${(props: IMyBasketProps) => (props.isClickMyBasket ? 'black' : 'var(--gray-2)')};
+  color: ${(props: IMySide) => (props.isClickMySide[0] ? 'black' : 'var(--gray-2)')};
   cursor: pointer;
   margin-bottom: 2.3rem;
 `
 
 export const MyOrder = styled.div`
-  color: ${(props: IMyOrderProps) => (props.isClickMyOrder ? 'black' : 'var(--gray-2)')};
+  color: ${(props: IMySide) => (props.isClickMySide[1] ? 'black' : 'var(--gray-2)')};
   cursor: pointer;
   margin-bottom: 2.3rem;
 `
 
 export const MyProfile = styled.div`
-  color: ${(props: IMyProfileProps) => (props.isClickMyProfile ? 'black' : 'var(--gray-2)')};
+  color: ${(props: IMySide) => (props.isClickMySide[2] ? 'black' : 'var(--gray-2)')};
   cursor: pointer;
   margin-bottom: 2.3rem;
 `

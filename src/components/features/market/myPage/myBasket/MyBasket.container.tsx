@@ -1,5 +1,7 @@
 import { useQuery } from '@apollo/client'
-import { MouseEvent, useState } from 'react'
+import { MouseEvent, useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil'
+
 import MyBasketUI from './MyBasket.presenter'
 import { IQuery, IQueryFetchUseditemsArgs, IQueryFetchUseditemsIPickedArgs } from '@/common/types/generated/types'
 import {
@@ -8,10 +10,17 @@ import {
   FETCH_USEDITEMS_IPICKED,
   FETCH_USER_LOGGED_IN,
 } from './MyBasket.queries'
+import { isClickMySideState } from '@/common/stores'
 
 export default function MyBasket() {
   // **** 상태값
   const [isClickMyProduct, setIsClickMyProduct] = useState(true)
+  const [, setIsClickMySide] = useRecoilState(isClickMySideState)
+
+  // **** 페이지 마운트 시 사이드 메뉴 상태값 초기화
+  useEffect(() => {
+    setIsClickMySide([true, false, false])
+  }, [])
 
   // **** graphql api 요청
   const { data: UsedItemsData, refetch: UsedItemsRefetch } = useQuery<

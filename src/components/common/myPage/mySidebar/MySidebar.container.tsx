@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { useMutation, useQuery } from '@apollo/client'
 
 import MySideUI from './MySidebar.presenter'
-import { isClickMyBasketState, isClickMyOrderState, isClickMyProfileState } from '@/common/stores'
+import { isClickMySideState } from '@/common/stores'
 import { FETCH_USER_LOGGED_IN, UPDATE_USER_INPUT } from './MySidebar.queries'
 import { IMutation, IMutationUpdateUserArgs, IMutationUploadFileArgs, IQuery } from '@/common/types/generated/types'
 import { UPLOAD_FILE } from '@/components/features/board/write/BoardWrite.queries'
@@ -18,10 +18,8 @@ export default function MySide() {
   const [file, setFile] = useState<File>()
   const [fileUrl, setFileUrl] = useState('')
 
-  // **** myPage 상태값
-  const [isClickMyBasket, setIsClickMyBasket] = useRecoilState(isClickMyBasketState)
-  const [isClickMyOrder, setIsClickMyOrder] = useRecoilState(isClickMyOrderState)
-  const [isClickMyProfile, setIsClickMyProfile] = useRecoilState(isClickMyProfileState)
+  // **** 마이페이지 - 사이드 메뉴 상태값
+  const [isClickMySide, setIsClickMySide] = useRecoilState(isClickMySideState)
 
   // **** 태그 저장
   const fileRef = useRef<HTMLInputElement>(null)
@@ -90,21 +88,15 @@ export default function MySide() {
   const onClickmyBtn = (event: MouseEvent<HTMLDivElement>) => {
     if (event.currentTarget.id === 'myBasket') {
       router.push('/market/myPage/myBasket', undefined, { scroll: false })
-      setIsClickMyBasket(true)
-      setIsClickMyOrder(false)
-      setIsClickMyProfile(false)
+      setIsClickMySide([true, false, false])
     }
     if (event.currentTarget.id === 'myOrder') {
       router.push('/market/myPage/myOrder', undefined, { scroll: false })
-      setIsClickMyBasket(false)
-      setIsClickMyOrder(true)
-      setIsClickMyProfile(false)
+      setIsClickMySide([false, true, false])
     }
     if (event.currentTarget.id === 'myProfile') {
       router.push('/market/myPage/myProfile', undefined, { scroll: false })
-      setIsClickMyBasket(false)
-      setIsClickMyOrder(false)
-      setIsClickMyProfile(true)
+      setIsClickMySide([false, false, true])
     }
   }
 
@@ -114,9 +106,7 @@ export default function MySide() {
       onClickImage={onClickImage}
       fileRef={fileRef}
       imageUrl={imageUrl}
-      isClickMyBasket={isClickMyBasket}
-      isClickMyOrder={isClickMyOrder}
-      isClickMyProfile={isClickMyProfile}
+      isClickMySide={isClickMySide}
       UserData={UserData}
       onClickmyBtn={onClickmyBtn}
     />

@@ -34,13 +34,13 @@ export default function MySideUI(props: MySideUIProps) {
       <S.Writer>{props.UserData?.fetchUserLoggedIn.name}</S.Writer>
 
       <S.BtnWrapper>
-        <S.MyBasket id="myBasket" onClick={props.onClickmyBtn} isClickMyBasket={props.isClickMyBasket}>
+        <S.MyBasket id="myBasket" onClick={props.onClickmyBtn} isClickMySide={props.isClickMySide}>
           내 장터
         </S.MyBasket>
-        <S.MyOrder id="myOrder" onClick={props.onClickmyBtn} isClickMyOrder={props.isClickMyOrder}>
+        <S.MyOrder id="myOrder" onClick={props.onClickmyBtn} isClickMySide={props.isClickMySide}>
           내 구매내역
         </S.MyOrder>
-        <S.MyProfile id="myProfile" onClick={props.onClickmyBtn} isClickMyProfile={props.isClickMyProfile}>
+        <S.MyProfile id="myProfile" onClick={props.onClickmyBtn} isClickMySide={props.isClickMySide}>
           내 프로필
         </S.MyProfile>
       </S.BtnWrapper>
