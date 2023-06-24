@@ -8,9 +8,15 @@ export const visitedPageState = atom({
   default: '',
 })
 
-// **** 수정, 등록 페이지 상태값
+// **** 자유게시판 - 수정, 등록 페이지 상태값
 export const isEditState = atom({
   key: `isEditState/${v1()}`,
+  default: true,
+})
+
+// **** 중고마켓 - 수정, 등록 페이지 상태값
+export const isMarketState = atom({
+  key: `isMarketState/${v1()}`,
   default: true,
 })
 

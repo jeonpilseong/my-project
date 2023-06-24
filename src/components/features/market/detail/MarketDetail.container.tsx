@@ -127,7 +127,12 @@ export default function MarketDetail() {
 
   return (
     <>
-      <MarketDetailUI UseditemData={UseditemData} onClickPayment={onClickPayment} onClickPick={onClickPick} />
+      <MarketDetailUI
+        UseditemData={UseditemData}
+        UserData={UserData}
+        onClickPayment={onClickPayment}
+        onClickPick={onClickPick}
+      />
       <PointChargeModal />
       <Modal title="상품 결제" open={isPaymentOpen} onOk={handleOk} onCancel={handleCancel}>
         <div style={{ fontSize: '1.8rem' }}>결제 하시겠습니까?</div>
