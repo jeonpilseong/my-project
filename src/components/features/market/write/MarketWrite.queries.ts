@@ -8,3 +8,11 @@ export const CREATE_USEDITEM = gql`
     }
   }
 `
+
+export const UPDATE_USED_ITEM = gql`
+  mutation updateUseditem($updateUseditemInput: UpdateUseditemInput!, $useditemId: ID!) {
+    updateUseditem(updateUseditemInput: $updateUseditemInput, useditemId: $useditemId) {
+      _id
+    }
+  }
+`

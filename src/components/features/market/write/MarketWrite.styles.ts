@@ -96,6 +96,7 @@ export const ImgUploadBtn = styled(Upload)``
 export const BtnWrapper = styled.div`
   display: flex;
   justify-content: center;
+  gap: 2.4rem;
   padding-top: 8rem;
 `
 

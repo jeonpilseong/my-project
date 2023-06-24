@@ -5,4 +5,6 @@ export interface IMarketDetailProps {
   UserData?: Pick<IQuery, 'fetchUserLoggedIn'>
   onClickPayment: () => void
   onClickPick: () => void
+  onClickDelete: () => void
+  onClickEdit: () => void
 }

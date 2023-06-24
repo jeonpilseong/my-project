@@ -19,7 +19,7 @@ import {
   IQueryFetchUseditemArgs,
 } from '@/common/types/generated/types'
 import { useAuth } from '@/common/hooks/useAuth'
-import { isModalOpenState, visitedPageState } from '@/common/stores'
+import { isEditMarketState, isModalOpenState, visitedPageState } from '@/common/stores'
 import PointChargeModal from '@/components/common/pointChargeModal/PointChargeModal'
 import { FETCH_USEDITEMS } from '../list/MarketList.queries'
 import { FETCH_USEDITEMS_IPICKED } from '../myPage/myBasket/MyBasket.queries'
@@ -31,6 +31,7 @@ export default function MarketDetail() {
   const [isPaymentOpen, setIsPaymentOpen] = useState(false)
   const [, setVisitedPage] = useRecoilState(visitedPageState)
   const [, setIsPointModalOpen] = useRecoilState(isModalOpenState)
+  const [, setIsEditMarket] = useRecoilState(isEditMarketState)
 
   // **** graphql api 요청
   const [toggleUseditemPick] = useMutation<Pick<IMutation, 'toggleUseditemPick'>, IMutationToggleUseditemPickArgs>(
@@ -46,6 +47,15 @@ export default function MarketDetail() {
     IMutationCreatePointTransactionOfBuyingAndSellingArgs
   >(CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING)
   const { data: UserData } = useQuery<Pick<IQuery, 'fetchUserLoggedIn'>>(FETCH_USER_LOGGED_IN)
+
+  // **** 수정하기 클릭
+  const onClickEdit = () => {
+    setIsEditMarket(true)
+    router.push(`/market/edit/${router.query.useditemId}`)
+  }
+
+  // **** 삭제하기 클릭
+  const onClickDelete = () => {}
 
   // **** 로그인 체크
   const { accessToken } = useAuth()
@@ -132,6 +142,8 @@ export default function MarketDetail() {
         UserData={UserData}
         onClickPayment={onClickPayment}
         onClickPick={onClickPick}
+        onClickEdit={onClickEdit}
+        onClickDelete={onClickDelete}
       />
       <PointChargeModal />
       <Modal title="상품 결제" open={isPaymentOpen} onOk={handleOk} onCancel={handleCancel}>

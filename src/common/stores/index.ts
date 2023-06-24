@@ -15,9 +15,9 @@ export const isEditState = atom({
 })
 
 // **** 중고마켓 - 수정, 등록 페이지 상태값
-export const isMarketState = atom({
-  key: `isMarketState/${v1()}`,
-  default: true,
+export const isEditMarketState = atom({
+  key: `isEditMarketState/${v1()}`,
+  default: false,
 })
 
 // **** 로그인 accessToken 상태값

@@ -5,8 +5,12 @@ import { Modal } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import KakaoMap from '@/components/common/kakaoMap/kakaoMap'
 import { useScroll } from '@/common/hooks/useScroll'
+import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+import { IMarketWriteUIProps } from './MarketWrite.types'
 
-export default function MarketWriteUI(props: any) {
+export default function MarketWriteUI(props: IMarketWriteUIProps) {
+  // **** 커스텀 훅
+  const { onClickMoveToPage } = useMoveToPage()
   const { scrollRef } = useScroll()
 
   // **** 버튼
@@ -23,13 +27,20 @@ export default function MarketWriteUI(props: any) {
   return (
     <S.Container>
       <S.Wrapper ref={scrollRef}>
-        <S.Title>상품 등록하기</S.Title>
+        <S.Title>상품 {props.isEditMarket ? '수정' : '등록'}하기</S.Title>
         <S.Label>상품명</S.Label>
         <Controller
           name="name"
           control={props.control}
           rules={{ required: true }}
-          render={({ field }) => <S.BasicInput placeholder="상품명을 입력해 주세요." {...field} />}
+          render={({ field }) => (
+            <S.BasicInput
+              placeholder="상품명을 입력해 주세요."
+              defaultValue={props.UseditemData?.fetchUseditem.name ?? ''}
+              key={props.UseditemData?.fetchUseditem.name}
+              {...field}
+            />
+          )}
         />
         <S.Error>{props.formState.errors.name?.message}</S.Error>
 
@@ -38,7 +49,14 @@ export default function MarketWriteUI(props: any) {
           name="remarks"
           control={props.control}
           rules={{ required: true }}
-          render={({ field }) => <S.BasicInput placeholder="한줄요약을 입력해 주세요." {...field} />}
+          render={({ field }) => (
+            <S.BasicInput
+              placeholder="한줄요약을 입력해 주세요."
+              defaultValue={props.UseditemData?.fetchUseditem.remarks ?? ''}
+              key={props.UseditemData?.fetchUseditem.remarks}
+              {...field}
+            />
+          )}
         />
         <S.Error>{props.formState.errors.remarks?.message}</S.Error>
 
@@ -47,7 +65,13 @@ export default function MarketWriteUI(props: any) {
           name="contents"
           control={props.control}
           rules={{ required: true }}
-          render={({ field }) => <S.TextEditor {...field} />}
+          render={({ field }) => (
+            <S.TextEditor
+              defaultValue={props.UseditemData?.fetchUseditem.contents}
+              key={props.UseditemData?.fetchUseditem.contents}
+              {...field}
+            />
+          )}
         />
         <S.Error>{props.formState.errors.contents?.message}</S.Error>
 
@@ -56,7 +80,14 @@ export default function MarketWriteUI(props: any) {
           name="price"
           control={props.control}
           rules={{ required: true }}
-          render={({ field }) => <S.BasicInput placeholder="가격을 입력해 주세요." {...field} />}
+          render={({ field }) => (
+            <S.BasicInput
+              defaultValue={props.UseditemData?.fetchUseditem.price ?? 0}
+              key={props.UseditemData?.fetchUseditem.price}
+              placeholder="가격을 입력해 주세요."
+              {...field}
+            />
+          )}
         />
         <S.Error>{props.formState.errors.price?.message}</S.Error>
 
@@ -78,13 +109,17 @@ export default function MarketWriteUI(props: any) {
         <S.ZipcodeWrapper>
           <S.ZipcodeInput
             readOnly
-            value={props.isClickAddress ? props.zipcode : props.BoardData?.fetchBoard?.boardAddress?.zipcode ?? ''}
+            value={
+              props.isClickAddress ? props.zipcode : props.UseditemData?.fetchUseditem.useditemAddress?.zipcode ?? ''
+            }
           />
           <S.ZicodeBtn onClick={props.onclickAddress}>우편번호 검색</S.ZicodeBtn>
         </S.ZipcodeWrapper>
         <S.AddressInput
           readOnly
-          value={props.isClickAddress ? props.address : props.BoardData?.fetchBoard?.boardAddress?.address ?? ''}
+          value={
+            props.isClickAddress ? props.address : props.UseditemData?.fetchUseditem.useditemAddress?.address ?? ''
+          }
         />
         <Controller
           name="addressDetail"
@@ -92,8 +127,8 @@ export default function MarketWriteUI(props: any) {
           rules={{ required: true }}
           render={({ field }) => (
             <S.AddressInput
-              defaultValue={props.BoardData?.fetchBoard?.boardAddress?.addressDetail ?? ''}
-              key={props.BoardData?.fetchBoard?.boardAddress?.addressDetail}
+              defaultValue={props.UseditemData?.fetchUseditem.useditemAddress?.addressDetail ?? ''}
+              key={props.UseditemData?.fetchUseditem.useditemAddress?.addressDetail}
               {...field}
             />
           )}
@@ -104,7 +139,10 @@ export default function MarketWriteUI(props: any) {
         <div id="map" style={{ height: 400 }}></div>
 
         <S.BtnWrapper>
-          <S.SubmitBtn onClick={props.onClickSubmit}>등록하기</S.SubmitBtn>
+          {props.isEditMarket ? <S.SubmitBtn onClick={onClickMoveToPage('/')}>목록으로</S.SubmitBtn> : ''}
+          <S.SubmitBtn onClick={props.isEditMarket ? props.onClickUpdate : props.onClickSubmit}>
+            {props.isEditMarket ? '수정' : '등록'}하기
+          </S.SubmitBtn>
         </S.BtnWrapper>
       </S.Wrapper>
     </S.Container>

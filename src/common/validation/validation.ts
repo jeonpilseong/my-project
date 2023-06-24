@@ -56,6 +56,8 @@ export const MarketWriteSchema = yup.object({
   price: yup.string().required('가격을 입력해주세요.').matches(priceRegex, '숫자만 입력해 주세요.'),
 })
 
+export const MarketWriteSchema_edit = yup.object({})
+
 // **** yup 비밀번호 수정 유효성검사
 export const EditPasswordSchema = yup.object({
   currentPassword: yup

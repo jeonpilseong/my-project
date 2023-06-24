@@ -14,7 +14,6 @@ export default function MarketDetailUI(props: IMarketDetailProps) {
   const { MoneyFormat } = useMoneyFormat()
   const { onClickMoveToPage } = useMoveToPage()
   const { scrollRef } = useScroll()
-  console.log(props.UseditemData?.fetchUseditem.seller?._id)
 
   // **** 카카오 맵
   KakaoMap(props.UseditemData?.fetchUseditem?.useditemAddress?.address ?? '')
@@ -80,13 +79,13 @@ export default function MarketDetailUI(props: IMarketDetailProps) {
 
       {props.UserData?.fetchUserLoggedIn._id === props.UseditemData?.fetchUseditem.seller?._id ? (
         <S.BtnWrapper>
-          <S.Btn>목록으로</S.Btn>
+          <S.Btn onClick={onClickMoveToPage(`/`)}>목록으로</S.Btn>
           {props.UseditemData?.fetchUseditem.buyer ? (
             <S.Btn disabled>판매완료</S.Btn>
           ) : (
             <>
-              <S.Btn>수정하기</S.Btn>
-              <S.Btn>삭제하기</S.Btn>
+              <S.Btn onClick={props.onClickEdit}>수정하기</S.Btn>
+              <S.Btn onClick={props.onClickDelete}>삭제하기</S.Btn>
             </>
           )}
         </S.BtnWrapper>
