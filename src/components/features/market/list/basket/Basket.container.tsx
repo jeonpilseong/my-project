@@ -1,5 +1,7 @@
+import { memo } from 'react'
 import BasketUI from './Basket.presenter'
 
-export default function Basket() {
+function Basket() {
   return <BasketUI />
 }
+export default memo(Basket)

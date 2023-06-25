@@ -83,23 +83,25 @@ export default function MarketDetail() {
 
   // **** 장바구니 넣기
   const onClickPick = async () => {
-    await toggleUseditemPick({
-      variables: {
-        useditemId: String(router.query.useditemId),
-      },
-      refetchQueries: [
-        {
-          query: FETCH_USEDITEM,
-          variables: { useditemId: String(router.query.useditemId) },
+    if (accessToken) {
+      await toggleUseditemPick({
+        variables: {
+          useditemId: String(router.query.useditemId),
         },
-        {
-          query: FETCH_USEDITEMS_IPICKED,
-          variables: {
-            search: '',
+        refetchQueries: [
+          {
+            query: FETCH_USEDITEM,
+            variables: { useditemId: String(router.query.useditemId) },
           },
-        },
-      ],
-    })
+          {
+            query: FETCH_USEDITEMS_IPICKED,
+            variables: {
+              search: '',
+            },
+          },
+        ],
+      })
+    }
   }
 
   // **** 결제 모달창 생성

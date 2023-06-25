@@ -52,7 +52,7 @@ export default function Login() {
         router.push(visitedPage)
         Modal.success({ content: '로그인이 완료 되었습니다.' })
       } else {
-        router.push('/boards/list')
+        router.push('/')
         Modal.success({ content: '로그인이 완료 되었습니다.' })
       }
     }

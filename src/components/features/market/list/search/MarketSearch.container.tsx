@@ -1,8 +1,8 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, memo, useState } from 'react'
 import MarketSearchUI from './MarketSearch.presenter'
 import { IMarketSearchProps } from './MarketSearch.types'
 
-export default function MarketSearch(props: IMarketSearchProps) {
+function MarketSearch(props: IMarketSearchProps) {
   // **** 상태값
   const [search, setSearch] = useState('')
 
@@ -17,3 +17,4 @@ export default function MarketSearch(props: IMarketSearchProps) {
 
   return <MarketSearchUI onChangeSearch={onChangeSearch} onClickSearch={onClickSearch} />
 }
+export default memo(MarketSearch)
