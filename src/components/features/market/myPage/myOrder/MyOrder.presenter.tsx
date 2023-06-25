@@ -36,14 +36,14 @@ export default function MyOrderUI(props: IMyOrderUIProps) {
             <S.ColumnBalance>충전 후 잔액</S.ColumnBalance>
           </S.OrderHeader>
 
-          {props.PointData?.fetchPointTransactionsOfLoading.map(el => (
+          {(props.PointData?.fetchPointTransactionsOfLoading ?? new Array(10).fill(1)).map(el => (
             <S.Row key={el._id}>
-              <S.ColumnDate>{el.createdAt.slice(0, 10)}</S.ColumnDate>
+              <S.ColumnDate>{String(el.createdAt).slice(0, 10)}</S.ColumnDate>
               <S.ColumnID>{el.impUid}</S.ColumnID>
               <S.ColumnAmount style={{ color: 'var(--blue-1)', fontWeight: '700' }}>
-                {`+${MoneyFormat(el.amount)}`}
+                {`+${MoneyFormat(Number(el.amount))}`}
               </S.ColumnAmount>
-              <S.ColumnBalance>{`￦${MoneyFormat(el.balance)}`}</S.ColumnBalance>
+              <S.ColumnBalance>{`￦${MoneyFormat(Number(el.balance))}`}</S.ColumnBalance>
             </S.Row>
           ))}
 
@@ -65,16 +65,16 @@ export default function MyOrderUI(props: IMyOrderUIProps) {
             <S.ColumnBalance>거래 후 잔액</S.ColumnBalance>
           </S.OrderHeader>
 
-          {props.BuyingData?.fetchPointTransactionsOfBuying.map(el => (
+          {(props.BuyingData?.fetchPointTransactionsOfBuying ?? new Array(10).fill(1)).map(el => (
             <S.Row key={el._id}>
-              <S.ColumnDate>{el.createdAt.slice(0, 10)}</S.ColumnDate>
+              <S.ColumnDate>{String(el.createdAt).slice(0, 10)}</S.ColumnDate>
               <S.ColumnProduct onClick={onClickMoveToPage(`/market/detail/${el.useditem?._id}`)}>
                 {el.useditem?.name}
               </S.ColumnProduct>
               <S.ColumnAmount style={{ color: 'var(--blue-1)', fontWeight: '700' }}>
-                {MoneyFormat(el.amount)}
+                {MoneyFormat(Number(el.amount))}
               </S.ColumnAmount>
-              <S.ColumnBalance>{`￦${MoneyFormat(el.balance)}`}</S.ColumnBalance>
+              <S.ColumnBalance>{`￦${MoneyFormat(Number(el.balance))}`}</S.ColumnBalance>
             </S.Row>
           ))}
 
@@ -96,16 +96,16 @@ export default function MyOrderUI(props: IMyOrderUIProps) {
             <S.ColumnBalance>거래 후 잔액</S.ColumnBalance>
           </S.OrderHeader>
 
-          {props.SellingData?.fetchPointTransactionsOfSelling.map(el => (
+          {(props.SellingData?.fetchPointTransactionsOfSelling ?? new Array(10).fill(1)).map(el => (
             <S.Row key={el._id}>
-              <S.ColumnDate>{el.createdAt.slice(0, 10)}</S.ColumnDate>
+              <S.ColumnDate>{String(el.createdAt).slice(0, 10)}</S.ColumnDate>
               <S.ColumnProduct onClick={onClickMoveToPage(`/market/detail/${el.useditem?._id}`)}>
                 {el.useditem?.name}
               </S.ColumnProduct>
               <S.ColumnAmount style={{ color: 'var(--blue-1)', fontWeight: '700' }}>
-                {`+${MoneyFormat(el.amount)}`}
+                {`+${MoneyFormat(Number(el.amount))}`}
               </S.ColumnAmount>
-              <S.ColumnBalance>{`￦${MoneyFormat(el.balance)}`}</S.ColumnBalance>
+              <S.ColumnBalance>{`￦${MoneyFormat(Number(el.balance))}`}</S.ColumnBalance>
             </S.Row>
           ))}
 

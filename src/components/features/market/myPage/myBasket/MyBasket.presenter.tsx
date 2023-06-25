@@ -33,20 +33,22 @@ export default function MyBasketUI(props: any) {
             <S.ColumnDate>날짜</S.ColumnDate>
           </S.BasketHeader>
 
-          {props.UsedItemsData?.fetchUseditems
-            .filter((el: any) => el.seller._id === props.UserData?.fetchUserLoggedIn._id)
-            .map((el: any, index: number) => (
-              <S.Row key={el._id}>
-                <S.ColumnNumber>{index + 1}</S.ColumnNumber>
-                <S.ColumnProduct
-                  isClickMyProduct={props.isClickMyProduct}
-                  onClick={onClickMoveToPage(`/market/detail/${el._id}`)}>
-                  {el.name}
-                </S.ColumnProduct>
-                <S.ColumnPrice>{`${MoneyFormat(el.price)}원`}</S.ColumnPrice>
-                <S.ColumnDate>{el.createdAt.slice(0, 10)}</S.ColumnDate>
-              </S.Row>
-            ))}
+          {(
+            props.UsedItemsData?.fetchUseditems.filter(
+              (el: any) => el.seller._id === props.UserData?.fetchUserLoggedIn._id,
+            ) ?? new Array(10).fill(1)
+          ).map((el: any, index: number) => (
+            <S.Row key={el._id}>
+              <S.ColumnNumber>{index + 1}</S.ColumnNumber>
+              <S.ColumnProduct
+                isClickMyProduct={props.isClickMyProduct}
+                onClick={onClickMoveToPage(`/market/detail/${el._id}`)}>
+                {el.name}
+              </S.ColumnProduct>
+              <S.ColumnPrice>{`${MoneyFormat(Number(el.price))}원`}</S.ColumnPrice>
+              <S.ColumnDate>{String(el.createdAt).slice(0, 10)}</S.ColumnDate>
+            </S.Row>
+          ))}
 
           <S.PageWrapper>
             <Pagination
@@ -69,7 +71,7 @@ export default function MyBasketUI(props: any) {
             <S.ColumnDate>날짜</S.ColumnDate>
           </S.BasketHeader>
 
-          {props.MyPickData?.fetchUseditemsIPicked.map((el: any, index: number) => (
+          {(props.MyPickData?.fetchUseditemsIPicked ?? new Array(10).fill(1)).map((el: any, index: number) => (
             <S.Row key={el._id}>
               <S.ColumnNumber>{index + 1}</S.ColumnNumber>
               <S.ColumnProduct
@@ -77,9 +79,9 @@ export default function MyBasketUI(props: any) {
                 onClick={onClickMoveToPage(`/market/detail/${el._id}`)}>
                 {el.name}
               </S.ColumnProduct>
-              <S.ColumnPrice>{`${MoneyFormat(el.price)}원`}</S.ColumnPrice>
+              <S.ColumnPrice>{`${MoneyFormat(Number(el.price))}원`}</S.ColumnPrice>
               <S.CoulmeSeller>{el.seller.name}</S.CoulmeSeller>
-              <S.ColumnDate>{el.createdAt.slice(0, 10)}</S.ColumnDate>
+              <S.ColumnDate>{String(el.createdAt).slice(0, 10)}</S.ColumnDate>
             </S.Row>
           ))}
           <S.PageWrapper>

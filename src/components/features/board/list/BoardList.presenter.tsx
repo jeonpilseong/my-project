@@ -19,12 +19,12 @@ export default function BoardListUI(props: IBoardListUIProps) {
         <S.ColumnDate>날짜</S.ColumnDate>
       </S.BoardHeader>
 
-      {props.BoardsData?.fetchBoards.map(el => (
+      {(props.BoardsData?.fetchBoards ?? new Array(10).fill(1)).map(el => (
         <S.Row key={el._id}>
-          <S.ColumnNumber>{el._id.slice(-4).toUpperCase()}</S.ColumnNumber>
+          <S.ColumnNumber>{String(el._id).slice(-4).toUpperCase()}</S.ColumnNumber>
           <S.ColumnTitle onClick={onClickMoveToPage(`/boards/detail/${el._id}`)}>{el.title}</S.ColumnTitle>
           <S.ColumnWriter>{el.writer}</S.ColumnWriter>
-          <S.ColumnDate>{el.createdAt.slice(0, 10)}</S.ColumnDate>
+          <S.ColumnDate>{String(el.createdAt).slice(0, 10)}</S.ColumnDate>
         </S.Row>
       ))}
 

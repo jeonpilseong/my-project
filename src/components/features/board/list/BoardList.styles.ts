@@ -57,6 +57,7 @@ export const Row = styled.div`
   text-align: center;
   font-weight: 400;
   font-size: 1.6rem;
+  /* height: 6rem; */
   color: #4f4f4f;
   padding: 1.4rem 1.4rem;
   border-bottom: 1px solid var(--gray-3);
