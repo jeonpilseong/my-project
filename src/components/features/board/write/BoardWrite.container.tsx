@@ -12,7 +12,7 @@ import BoardWriteUI from './BoardWrite.presenter'
 import { schema, schema_edit } from '@/common/validation/validation'
 import { CREATE_BOARD, FETCH_BOARD, UPDATE_BOARD, UPLOAD_FILE } from './BoardWrite.queries'
 import { isEditState } from '@/common/stores/index'
-import { IVariables } from './BoardWrite.types'
+import { ISubmitData, IVariables } from './BoardWrite.types'
 import {
   IMutation,
   IMutationCreateBoardArgs,
@@ -21,6 +21,7 @@ import {
   IQuery,
   IQueryFetchBoardArgs,
 } from '@/common/types/generated/types'
+import { FETCH_BOARDS } from '../list/BoardList.queries'
 
 // **** 이미지 임시 url 생성 - 미리보기 용도
 const getBase64 = (file: RcFile): Promise<string> =>
@@ -65,7 +66,7 @@ export default function BoardWrite() {
   })
 
   // **** 게시글 등록
-  const onClickSubmit = handleSubmit(async data => {
+  const onClickSubmit = handleSubmit(async (data: ISubmitData) => {
     // ** 클라우드에 이미지 업로드
     const tempOriginFiles = [...fileList.map(el => el.originFileObj)]
     orignFiles = [...tempOriginFiles]
@@ -78,19 +79,24 @@ export default function BoardWrite() {
       const result = await createBoard({
         variables: {
           createBoardInput: {
-            writer: String(data.writer),
-            password: String(data.password),
-            title: String(data.title),
-            contents: String(data.contents),
-            youtubeUrl: String(data.youtubeUrl),
+            writer: data.writer,
+            password: data.password,
+            title: data.title ?? '',
+            contents: data.contents ?? '',
+            youtubeUrl: data.youtubeUrl,
             images: imageUrls,
             boardAddress: {
               zipcode,
               address,
-              addressDetail: String(data.addressDetail),
+              addressDetail: data.addressDetail,
             },
           },
         },
+        refetchQueries: [
+          {
+            query: FETCH_BOARDS,
+          },
+        ],
       })
       Modal.success({ content: '등록 되었습니다.' })
       router.push(`/boards/detail/${result.data?.createBoard._id}`)

@@ -64,6 +64,11 @@ export default function MarketDetail() {
         variables: {
           useditemId: String(router.query.useditemId),
         },
+        refetchQueries: [
+          {
+            query: FETCH_USEDITEMS,
+          },
+        ],
       })
       Modal.success({ content: '삭제 되었습니다.' })
       router.push('/')

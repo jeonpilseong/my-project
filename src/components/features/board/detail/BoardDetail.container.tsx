@@ -13,6 +13,7 @@ import {
   IQueryFetchBoardArgs,
 } from '@/common/types/generated/types'
 import { FETCH_BOARD } from '../write/BoardWrite.queries'
+import { FETCH_BOARDS } from '../list/BoardList.queries'
 
 export default function BoardDetail() {
   const router = useRouter()
@@ -35,6 +36,11 @@ export default function BoardDetail() {
         variables: {
           boardId: router.query.boardId,
         },
+        refetchQueries: [
+          {
+            query: FETCH_BOARDS,
+          },
+        ],
       })
       Modal.success({ content: '게시글이 삭제 되었습니다.' })
       router.push('/boards/list')

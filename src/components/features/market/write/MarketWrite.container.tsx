@@ -23,6 +23,7 @@ import { useRecoilState } from 'recoil'
 import { isEditMarketState } from '@/common/stores'
 import { IVariables } from './MarketWrite.types'
 import { FETCH_USEDITEM } from '../detail/MarketDetail.queries'
+import { FETCH_USEDITEMS } from '../list/MarketList.queries'
 
 // **** 이미지 임시 url 생성 - 미리보기 용도
 const getBase64 = (file: RcFile): Promise<string> =>
@@ -142,6 +143,11 @@ export default function MarketWrite() {
             },
           },
         },
+        refetchQueries: [
+          {
+            query: FETCH_USEDITEMS,
+          },
+        ],
       })
       router.push(`/market/detail/${result.data?.createUseditem._id}`)
       Modal.success({ content: '상품이 등록 되었습니다.' })
