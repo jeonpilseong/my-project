@@ -21,7 +21,7 @@ import {
 import { UPLOAD_FILE } from '../../board/write/BoardWrite.queries'
 import { useRecoilState } from 'recoil'
 import { isEditMarketState } from '@/common/stores'
-import { IVariables } from './MarketWrite.types'
+import { ISubmitItemData, IVariables } from './MarketWrite.types'
 import { FETCH_USEDITEM } from '../detail/MarketDetail.queries'
 import { FETCH_USEDITEMS } from '../list/MarketList.queries'
 
@@ -68,7 +68,7 @@ export default function MarketWrite() {
   })
 
   // **** 게시글 수정
-  const onClickUpdate = handleSubmit(async data => {
+  const onClickUpdate = handleSubmit(async (data: ISubmitItemData) => {
     // ** 클라우드에 이미지 업로드
     const tempOriginFiles = [...fileList.map(el => el.originFileObj)]
     orignFiles = [...tempOriginFiles]
@@ -117,7 +117,7 @@ export default function MarketWrite() {
   })
 
   // **** 게시글 등록
-  const onClickSubmit = handleSubmit(async data => {
+  const onClickSubmit = handleSubmit(async (data: ISubmitItemData) => {
     // ** 클라우드에 이미지 업로드
     const tempOriginFiles = [...fileList.map(el => el.originFileObj)]
     orignFiles = [...tempOriginFiles]

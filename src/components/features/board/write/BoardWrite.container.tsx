@@ -106,7 +106,7 @@ export default function BoardWrite() {
   })
 
   // **** 게시글 수정
-  const onClickUpdate = handleSubmit(async data => {
+  const onClickUpdate = handleSubmit(async (data: ISubmitData) => {
     // ** 클라우드에 이미지 업로드
     const tempOriginFiles = [...fileList.map(el => el.originFileObj)]
     orignFiles = [...tempOriginFiles]
@@ -117,7 +117,7 @@ export default function BoardWrite() {
     // ** 업데이트 된 변수들
     const variables: IVariables = {
       updateBoardInput: {},
-      password: data.password,
+      password: data.password ?? '',
       boardId: String(router.query.boardId),
     }
     if (data.title) variables.updateBoardInput.title = data.title

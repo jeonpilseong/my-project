@@ -39,3 +39,11 @@ export interface IVariables {
   }
   useditemId: string
 }
+
+export interface ISubmitItemData {
+  name?: string
+  remarks?: string
+  contents?: string
+  price?: number
+  addressDetail?: string
+}
