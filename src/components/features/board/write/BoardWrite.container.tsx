@@ -78,16 +78,16 @@ export default function BoardWrite() {
       const result = await createBoard({
         variables: {
           createBoardInput: {
-            writer: data.writer,
-            password: data.password,
-            title: data.title,
-            contents: data.contents,
-            youtubeUrl: data.youtubeUrl,
+            writer: String(data.writer),
+            password: String(data.password),
+            title: String(data.title),
+            contents: String(data.contents),
+            youtubeUrl: String(data.youtubeUrl),
             images: imageUrls,
             boardAddress: {
               zipcode,
               address,
-              addressDetail: data.addressDetail,
+              addressDetail: String(data.addressDetail),
             },
           },
         },

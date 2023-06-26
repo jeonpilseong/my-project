@@ -129,16 +129,16 @@ export default function MarketWrite() {
       const result = await createUseditem({
         variables: {
           createUseditemInput: {
-            name: data.name,
-            remarks: data.remarks,
-            contents: data.contents,
+            name: String(data.name),
+            remarks: String(data.remarks),
+            contents: String(data.contents),
             price: Number(data.price),
             tags: [''],
             images: imageUrls,
             useditemAddress: {
               zipcode,
               address,
-              addressDetail: data.addressDetail,
+              addressDetail: String(data.addressDetail),
             },
           },
         },
