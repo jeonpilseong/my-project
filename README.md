@@ -1,6 +1,4 @@
 <div align="center">
-
-  <img src="/my-app/public/images/logo/logo.png" alt="logo" width="200" height="auto" />
   <h1>자유 게시판 & 중고마켓 서비스</h1>
   
   <p>해당 프로잭트는 CRUD 자유 게시판 &</p>
@@ -46,40 +44,40 @@
 <details>
   <summary>Frontend 기술 스택</summary>
   <ul>
-    <li><a href="https://reactjs.org/">React.js v17.0.2</a></li>
-    <li><a href="https://nextjs.org/">Next.js v12.1.0</a></li>
-    <li><a href="https://www.typescriptlang.org/">Typescript</a></li>
-		<li><a href="https://emotion.sh/docs/introduction">Emotion v11.11.0</a></li>
-    <li><a href="https://ant.design//">Ant Desin v5.6.0</a></li>
-		<li><a href="https://graphql.org/">QraphQL v16.6.0</a></li>
-		<li><a href="https://recoiljs.org/ko/">Recoil v0.7.7</a></li>
-		<li><a href="https://vercel.com/">Vercel</a></li>
+    <a href="https://reactjs.org/" target="_blank" rel="noopener noreferrer">React.js v17.0.2</a>
+    </br><a href="https://nextjs.org/" target="_blank" rel="noopener noreferrer">Next.js v12.1.0</a>
+    </br><a href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer">Typescript</a>
+		</br><a href="https://emotion.sh/docs/introduction" target="_blank" rel="noopener noreferrer">Emotion v11.11.0</a>
+    </br><a href="https://ant.design//" target="_blank" rel="noopener noreferrer">Ant Desin v5.6.0</a>
+		</br><a href="https://graphql.org/" target="_blank" rel="noopener noreferrer">QraphQL v16.6.0</a>
+		</br><a href="https://recoiljs.org/ko/" target="_blank" rel="noopener noreferrer">Recoil v0.7.7</a>
+		</br><a href="https://vercel.com/" target="_blank" rel="noopener noreferrer">Vercel</a>
   </ul>
 </details>
 
 <details>
   <summary>사용한 라이브러리</summary>
   <ul>
-    <li><a href="https://www.npmjs.com/package/yup/">yup : 유효성 검사</a></li>
-    <li><a href="https://www.react-hook-form.com//">react-hook-form : 비제어 컴포넌트 제어</a></li>
-    <li><a href="https://www.apollographql.com/docs/react/">apollo-client : GraphQL 세팅</a></li>
-    <li><a href="https://www.npmjs.com/package/@graphql-codegen/core">GraphQL-Codegen : API Response 데이터 Type 지정</a></li>
-    <li><a href="https://www.npmjs.com/package/react-daum-postcode/">react-daum-postcode : 다음 주소 검색</a></li>
-		<li><a href="https://apis.map.kakao.com/web/guide/">kakao-maps-api : 카카오맵</a></li>
-    <li><a href="https://www.npmjs.com/package/react-player">react-player : 비디오 플레이어</a></li>    
-    <li><a href="https://eslint.org/">eslint : 협업 시 코드 규칙 정하기</a></li>
-    <li><a href="https://prettier.io/">prettier : 코드 formatter</a></li>
-		<li><a href="https://www.npmjs.com/package/react-infinite-scroller">react-infinite-scroller : 무한스크롤</a></li>
-		<li><a href="https://www.npmjs.com/package/apollo-upload-client">apollo-upload-client : 이미지 업로드 url 불러오기</a></li>
-		<li><a href="https://www.npmjs.com/package/react-quill">react-quill : 웹 에디터</a></li>
-		<li><a href="hhttps://portone.io/korea/ko?utm_source=google&utm_medium=google_sa&utm_campaign=pf_conversion_2302_kr&utm_content=homepage&gclid=CjwKCAjwkeqkBhAnEiwA5U-uM6PzluiahbT5QrgJ46dN4kH56LAoGflCDc80IkiOQeVuBwzTI5Z4LRoCXGMQAvD_BwE">PortOne : 결제 연동 대행사</a></li>
+    <a href="https://www.npmjs.com/package/yup/" target="_blank" rel="noopener noreferrer">yup : 유효성 검사</a>
+    </br><a href="https://www.react-hook-form.com//" target="_blank" rel="noopener noreferrer">react-hook-form : 비제어 컴포넌트 제어</a>
+    </br><a href="https://www.apollographql.com/docs/react/" target="_blank" rel="noopener noreferrer">apollo-client : GraphQL 세팅</a>
+    </br><a href="https://www.npmjs.com/package/@graphql-codegen/core" target="_blank" rel="noopener noreferrer">GraphQL-Codegen : API Response 데이터 Type 지정</a>
+    </br><a href="https://www.npmjs.com/package/react-daum-postcode/" target="_blank" rel="noopener noreferrer">react-daum-postcode : 다음 주소 검색</a>
+		</br><a href="https://apis.map.kakao.com/web/guide/" target="_blank" rel="noopener noreferrer">kakao-maps-api : 카카오맵</a>
+    </br><a href="https://www.npmjs.com/package/react-player" target="_blank" rel="noopener noreferrer">react-player : 비디오 플레이어</a>    
+    </br><a href="https://eslint.org/" target="_blank" rel="noopener noreferrer">eslint : 협업 시 코드 규칙 정하기</a>
+    </br><a href="https://prettier.io/" target="_blank" rel="noopener noreferrer">prettier : 코드 formatter</a>
+		</br><a href="https://www.npmjs.com/package/react-infinite-scroller" target="_blank" rel="noopener noreferrer">react-infinite-scroller : 무한스크롤</a>
+		</br><a href="https://www.npmjs.com/package/apollo-upload-client" target="_blank" rel="noopener noreferrer">apollo-upload-client : 이미지 업로드 url 불러오기</a>
+		</br><a href="https://www.npmjs.com/package/react-quill" target="_blank" rel="noopener noreferrer">react-quill : 웹 에디터</a>
+		</br><a href="https://developers.portone.io/docs/ko/readme" target="_blank" rel="noopener noreferrer">PortOne : 결제 연동 대행사</a>
   </ul>
 </details>
 
 <details>
 	<summary>백엔드 API</summary>
 	<ul>
-		<li><a href="https://backendonline.codebootcamp.co.kr/graphql">PlayGround : GraphQL API</a></li>
+		<a href="https://backendonline.codebootcamp.co.kr/graphql" target="_blank" rel="noopener noreferrer">PlayGround : GraphQL API</a>
 	</ul>
 </details>
 </br>
