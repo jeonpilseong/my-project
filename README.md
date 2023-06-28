@@ -132,6 +132,18 @@
 
 ## :eyes: 상품 등록
 
+![상품등록](https://github.com/jeonpilseong/my-project/blob/main/public/readme/상품등록페이지.webp)
+
+<details>
+  <summary>상품 등록 페이지</summary>
+  <ol>
+    <li>로그인 상단에 상품 등록 버튼을 누르면 해당 페이지로 이동합니다.</li>
+    <li>상품내용을 작성할 때 웹 에디터를 이용해 글씨 크기와 폰트를 바꿀 수 있습니다.</li>
+    <li>사진 첨부 시 여러 사진을 첨부할 수 있습니다.</li>
+    <li>다음 주소창에 주소를 검색한 뒤 카카오 맵으로 해당 주소의 위치를 보여줄 수 있습니다.</li>
+  </ol>
+</details>
+
 <!-- Roadmap -->
 
 ## :compass: Roadmap
