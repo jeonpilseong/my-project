@@ -1,8 +1,8 @@
 <div align="center">
   <h1>자유 게시판 & 중고마켓 서비스</h1>
   
-  <p>해당 프로잭트는 CRUD 자유 게시판 &</p>
-	<p>중고 상품을 구매하고 판매할 수 있는 중고마켓 웹 서비스 입니다.</P>
+  <p>해당 프로젝트는 GraphQL API를 활용해서 만든  CRUD 자유 게시판 & 중고마켓 웹 서비스 입니다.</p>
+	
   
 <br />
 
@@ -16,17 +16,9 @@
     - [:space_invader: Tech Stack](#space_invader-tech-stack)
     - [:art: Color Reference](#art-color-reference)
   - [:toolbox: 프로젝트 실행](#toolbox-프로젝트-실행)
-  - [:eyes: 메인 페이지](#eyes-메인-페이지)
   - [:eyes: 상품 등록 페이지](#eyes-상품-등록-페이지)
   - [:eyes: 포인트 충전하기](#eyes-포인트-충전하기)
   - [:eyes: 상품 구매하기](#eyes-상품-구매하기)
-  - [:compass: Roadmap](#compass-roadmap)
-  - [:wave: Contributing](#wave-contributing)
-    - [:scroll: Code of Conduct](#scroll-code-of-conduct)
-  - [:grey_question: FAQ](#grey_question-faq)
-  - [:warning: License](#warning-license)
-  - [:handshake: Contact](#handshake-contact)
-  - [:gem: Acknowledgements](#gem-acknowledgements)
 
 <!-- About the Project -->
 
@@ -37,6 +29,25 @@
 ### :camera: Main Page
 
 ![메인화면](https://github.com/jeonpilseong/my-project/blob/main/public/readme/메인페이지.webp)
+
+<details> 
+  <summary><strong>중고 상품 목록 페이지</strong></summary>
+  <ol>
+    <li>무한스크롤을 이용해 상품 목록들을 보여줍니다.</li>
+    <li>유저가 많이 찜한 상품 순서로 베스트 상품이 보여집니다.</li>
+    <li>검색창에 상품 제목을 검색할 수 있습니다.</li>
+    <li>상품 조회 시 오른쪽 사이드에 최근에 본 상품이 담겨집니다.</li>
+  </ol>
+</details>
+
+<details>
+  <summary><strong>자유게시판</strong></summary>
+  <ol>
+    <li>페이지네이션을 이용해 자유 게시판 목록들을 보여줍니다.</li>
+    <li>검색창에 게시글 제목과 날짜를 검색할 수 있습니다.</li>
+  </ol>
+</details>
+</br>
 
 <!-- TechStack -->
 
@@ -118,28 +129,8 @@
 </br>:link:<a href="https://useditems-market.vercel.app/">useditems-market.vercel.app/</a>
 </br>
 </br>
-<!-- Usage -->
 
-## :eyes: 메인 페이지
-
-<details> 
-  <summary><strong>중고 상품 목록 페이지</strong></summary>
-  <ol>
-    <li>무한스크롤을 이용해 상품 목록들을 보여줍니다.</li>
-    <li>유저가 많이 찜한 상품 순서로 베스트 상품이 보여집니다.</li>
-    <li>검색창에 상품 제목을 검색할 수 있습니다.</li>
-    <li>상품 조회 시 오른쪽 사이드에 최근에 본 상품이 담겨집니다.</li>
-  </ol>
-</details>
-
-<details>
-  <summary><strong>자유게시판</strong></summary>
-  <ol>
-    <li>페이지네이션을 이용해 자유 게시판 목록들을 보여줍니다.</li>
-    <li>검색창에 게시글 제목과 날짜를 검색할 수 있습니다.</li>
-  </ol>
-</details>
-</br>
+<!-- Features -->
 
 ## :eyes: 상품 등록 페이지
 
@@ -181,65 +172,3 @@
   </ol>
 </details>
 </br>
-
-<!-- Roadmap -->
-
-## :compass: Roadmap
-
-- [x] Todo 1
-- [ ] Todo 2
-
-<!-- Contributing -->
-
-## :wave: Contributing
-
-<a href="https://github.com/Louis3797/awesome-readme-template/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" />
-</a>
-
-Contributions are always welcome!
-
-See `contributing.md` for ways to get started.
-
-<!-- Code of Conduct -->
-
-### :scroll: Code of Conduct
-
-Please read the [Code of Conduct](https://github.com/Louis3797/awesome-readme-template/blob/master/CODE_OF_CONDUCT.md)
-
-<!-- FAQ -->
-
-## :grey_question: FAQ
-
-- Question 1
-
-  - Answer 1
-
-- Question 2
-
-  - Answer 2
-
-<!-- License -->
-
-## :warning: License
-
-Distributed under the no License. See LICENSE.txt for more information.
-
-<!-- Contact -->
-
-## :handshake: Contact
-
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
-
-Project Link: [https://github.com/Louis3797/awesome-readme-template](https://github.com/Louis3797/awesome-readme-template)
-
-<!-- Acknowledgments -->
-
-## :gem: Acknowledgements
-
-Use this section to mention useful resources and libraries that you have used in your projects.
-
-- [Shields.io](https://shields.io/)
-- [Awesome README](https://github.com/matiassingers/awesome-readme)
-- [Emoji Cheat Sheet](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md#travel--places)
-- [Readme Template](https://github.com/othneildrew/Best-README-Template)
