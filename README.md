@@ -89,6 +89,8 @@
 | --blue-2    | ![#67a6ff](https://via.placeholder.com/10/67a6ff?text=+) #67a6ff |
 | --blue-3    | ![#e6f4ff](https://via.placeholder.com/10/e6f4ff?text=+) #e6f4ff |
 
+</br>
+
 <!-- Getting Started -->
 
 ## :toolbox: 프로젝트 실행
@@ -105,7 +107,7 @@
 <p></p>cf) 사용중인 백엔드 서버는 GraphQL API가 localhost:3000 주소에서만 요청 가능하도록 설정되어 있습니다.
 </br>따라서 하단의 배포 링크는 GraphQL API 요청이 막혀 데이터를 불러올 수 없기에 제대로 동작하지 않습니다.
 </br>:link:<a href="https://useditems-market.vercel.app/">useditems-market.vercel.app/</a>
-
+</br>
 <!-- Usage -->
 
 ## :eyes: 메인화면
@@ -113,29 +115,30 @@
 ![메인화면](https://github.com/jeonpilseong/my-project/blob/main/public/readme/메인페이지.webp)
 
 <details> 
-  <summary>중고 상품 목록 페이지</summary>
+  <summary><strong>중고 상품 목록 페이지</strong></summary>
   <ol>
     <li>무한스크롤을 이용해 상품 목록들을 보여줍니다.</li>
     <li>유저가 많이 찜한 상품 순서로 베스트 상품이 보여집니다.</li>
     <li>검색창에 상품 제목을 검색할 수 있습니다.</li>
-    <li>상품 조회시 오른쪽 사이드에 최근에 본 상품이 담겨집니다.</li>
+    <li>상품 조회 시 오른쪽 사이드에 최근에 본 상품이 담겨집니다.</li>
   </ol>
 </details>
 
 <details>
-  <summary>자유게시판</summary>
+  <summary><strong>자유게시판</strong></summary>
   <ol>
     <li>페이지네이션을 이용해 자유 게시판 목록들을 보여줍니다.</li>
     <li>검색창에 게시글 제목과 날짜를 검색할 수 있습니다.</li>
   </ol>
 </details>
+</br>
 
 ## :eyes: 상품 등록
 
 ![상품등록](https://github.com/jeonpilseong/my-project/blob/main/public/readme/상품등록페이지.webp)
 
 <details>
-  <summary>상품 등록 페이지</summary>
+  <summary><strong>상품 등록 페이지</strong></summary>
   <ol>
     <li>로그인 상단에 상품 등록 버튼을 누르면 해당 페이지로 이동합니다.</li>
     <li>상품내용을 작성할 때 웹 에디터를 이용해 글씨 크기와 폰트를 바꿀 수 있습니다.</li>
@@ -143,6 +146,7 @@
     <li>다음 주소창에 주소를 검색한 뒤 카카오 맵으로 해당 주소의 위치를 보여줄 수 있습니다.</li>
   </ol>
 </details>
+</br>
 
 <!-- Roadmap -->
 
