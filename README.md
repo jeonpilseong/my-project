@@ -17,6 +17,7 @@
     - [:art: Color Reference](#art-color-reference)
   - [:toolbox: 프로젝트 실행](#toolbox-프로젝트-실행)
   - [:eyes: 메인화면](#eyes-메인화면)
+  - [:eyes: 포인트 충전](#eyes-포인트-충전)
   - [:compass: Roadmap](#compass-roadmap)
   - [:wave: Contributing](#wave-contributing)
     - [:scroll: Code of Conduct](#scroll-code-of-conduct)
@@ -33,9 +34,7 @@
 
 ### :camera: Main Page
 
-<div align="center"> 
-  <img src="https://placehold.co/600x400?text=Your+Screenshot+here" alt="screenshot" />
-</div>
+![메인화면](https://github.com/jeonpilseong/my-project/blob/main/public/readme/메인페이지.webp)
 
 <!-- TechStack -->
 
@@ -120,16 +119,26 @@
 
 ![메인화면](https://github.com/jeonpilseong/my-project/blob/main/public/readme/메인페이지.webp)
 
-<p>자유게시판 목록 페이지 : 페이지네이션 구현</p>
-<p>중고상품 목록 페이지 : 무한스크롤 구현</p>
+<details> 
+  <summary>중고 상품 목록 페이지 - 무한스크롤</summary>
+  <ui>
+    <li>유저가 많이 찜한 상품 순서로 베스트 상품이 보여집니다.</li>
+    <li>검색창에 상품 제목을 검색할 수 있습니다.</li>
+    <li>상품 조회시 오른쪽 사이드에 최근에 본 상품이 담겨집니다.</li>
+  </ui>
+</details>
+</br>
 
-```javascript
-import Component from 'my-project'
+<details>
+  <summary>자유게시판 - 페이지네이션</summary>
+  <ui>
+    <li>검색창에 게시글 제목과 날짜를 검색할 수 있습니다.</li>
+    <li>하단의 숫자 버튼 클릭 시 해당 페이지의 게시글들을 불러옵니다.</li>
+  </ui>
+</details>
+</br>
 
-function App() {
-  return <Component />
-}
-```
+## :eyes: 포인트 충전
 
 <!-- Roadmap -->
 
