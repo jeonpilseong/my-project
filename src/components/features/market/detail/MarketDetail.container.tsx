@@ -25,6 +25,7 @@ import { isModalOpenState, visitedPageState } from '@/common/stores'
 import PointChargeModal from '@/components/common/pointChargeModal/PointChargeModal'
 import { FETCH_USEDITEMS } from '../list/MarketList.queries'
 import { FETCH_USEDITEMS_IPICKED } from '../myPage/myBasket/MyBasket.queries'
+import { FETCH_POINT_TRANSACTIONS_OF_BUYING } from '../myPage/myOrder/MyOrder.queries'
 
 export default function MarketDetail() {
   const router = useRouter()
@@ -127,10 +128,30 @@ export default function MarketDetail() {
         refetchQueries: [
           {
             query: FETCH_USEDITEMS,
-            variables: { isSoldout: false },
+            variables: {
+              isSoldout: false,
+              search: '',
+              page: 1,
+            },
+          },
+          {
+            query: FETCH_USEDITEMS,
+            variables: {
+              isSoldout: true,
+              search: '',
+              page: 1,
+            },
+          },
+          {
+            query: FETCH_POINT_TRANSACTIONS_OF_BUYING,
+          },
+          {
+            query: FETCH_USEDITEM,
+            variables: { useditemId: String(router.query.useditemId) },
           },
         ],
       })
+
       Modal.success({ content: '구매가 완료 되었습니다.' })
       router.push(`/market/myPage/myOrder`)
     } catch (error) {

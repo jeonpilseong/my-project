@@ -12,11 +12,14 @@
 
 - [:notebook_with_decorative_cover: Table of Contents](#notebook_with_decorative_cover-table-of-contents)
   - [:star2: About the Project](#star2-about-the-project)
+    - [:camera: Main Page](#camera-main-page)
     - [:space_invader: Tech Stack](#space_invader-tech-stack)
     - [:art: Color Reference](#art-color-reference)
   - [:toolbox: 프로젝트 실행](#toolbox-프로젝트-실행)
-  - [:eyes: 메인화면](#eyes-메인화면)
-  - [:eyes: 상품 등록](#eyes-상품-등록)
+  - [:eyes: 메인 페이지](#eyes-메인-페이지)
+  - [:eyes: 상품 등록 페이지](#eyes-상품-등록-페이지)
+  - [:eyes: 포인트 충전하기](#eyes-포인트-충전하기)
+  - [:eyes: 상품 구매하기](#eyes-상품-구매하기)
   - [:compass: Roadmap](#compass-roadmap)
   - [:wave: Contributing](#wave-contributing)
     - [:scroll: Code of Conduct](#scroll-code-of-conduct)
@@ -28,6 +31,12 @@
 <!-- About the Project -->
 
 ## :star2: About the Project
+
+<!-- Screenshots -->
+
+### :camera: Main Page
+
+![메인화면](https://github.com/jeonpilseong/my-project/blob/main/public/readme/메인페이지.webp)
 
 <!-- TechStack -->
 
@@ -108,11 +117,10 @@
 </br>따라서 하단의 배포 링크는 GraphQL API 요청이 막혀 데이터를 불러올 수 없기에 제대로 동작하지 않습니다.
 </br>:link:<a href="https://useditems-market.vercel.app/">useditems-market.vercel.app/</a>
 </br>
+</br>
 <!-- Usage -->
 
-## :eyes: 메인화면
-
-![메인화면](https://github.com/jeonpilseong/my-project/blob/main/public/readme/메인페이지.webp)
+## :eyes: 메인 페이지
 
 <details> 
   <summary><strong>중고 상품 목록 페이지</strong></summary>
@@ -133,17 +141,43 @@
 </details>
 </br>
 
-## :eyes: 상품 등록
+## :eyes: 상품 등록 페이지
 
 ![상품등록](https://github.com/jeonpilseong/my-project/blob/main/public/readme/상품등록페이지.webp)
 
 <details>
   <summary><strong>상품 등록 페이지</strong></summary>
   <ol>
-    <li>로그인 상단에 상품 등록 버튼을 누르면 해당 페이지로 이동합니다.</li>
+    <li>로그인한 뒤 상단에 상품 등록 버튼을 누르면 상품 등록 페이지로 이동합니다.</li>
     <li>상품내용을 작성할 때 웹 에디터를 이용해 글씨 크기와 폰트를 바꿀 수 있습니다.</li>
     <li>사진 첨부 시 여러 사진을 첨부할 수 있습니다.</li>
     <li>다음 주소창에 주소를 검색한 뒤 카카오 맵으로 해당 주소의 위치를 보여줄 수 있습니다.</li>
+  </ol>
+</details>
+</br>
+
+## :eyes: 포인트 충전하기
+
+![포인트충전](https://github.com/jeonpilseong/my-project/blob/main/public/readme/포인트충전.gif)
+
+<details>
+  <summary><strong>포인트 충전하기</strong></summary>
+  <ol>
+    <li>드롭다운으로 충전할 포인트를 선택합니다.</li>
+    <li>카카오페이로 충전을 마치면 상단 프로필에서 충전 포인트를 확인할 수 있습니다.</li>
+  </ol>
+</details>
+</br>
+
+## :eyes: 상품 구매하기
+
+![상품구매](https://github.com/jeonpilseong/my-project/blob/main/public/readme/상품구매.webp)
+
+<details>
+  <summary><strong>상품 구매하기</strong></summary>
+  <ol>
+    <li>충전된 포인트로 상품을 구매할 수 있습니다.</li>
+    <li>상품 구매 시 마이페이지에서 구매 목록을 볼 수 있습니다.</li>
   </ol>
 </details>
 </br>

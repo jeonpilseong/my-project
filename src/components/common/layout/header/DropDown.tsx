@@ -8,9 +8,12 @@ import PointChargeModal from '../../pointChargeModal/PointChargeModal'
 import { useRecoilState } from 'recoil'
 import { isModalOpenState } from '@/common/stores'
 import { IDropDownBtnProps } from './DropDown.types'
+import { useMoneyFormat } from '@/common/hooks/useMoneyFormat'
 
 export function DropDownBtn(props: IDropDownBtnProps) {
   const router = useRouter()
+
+  const { MoneyFormat } = useMoneyFormat()
 
   // **** 상태값
   const [, setIsModalOpen] = useRecoilState(isModalOpenState)
@@ -31,7 +34,7 @@ export function DropDownBtn(props: IDropDownBtnProps) {
             <S.Name>{`${props.UserData?.fetchUserLoggedIn.name} 님`}</S.Name>
             <S.PointWrapper>
               <S.PointImg src="/images/logo/point.png" />
-              <S.Point>{`${props.UserData?.fetchUserLoggedIn.userPoint?.amount} P`}</S.Point>
+              <S.Point>{`${MoneyFormat(props.UserData?.fetchUserLoggedIn.userPoint?.amount ?? 0)} P`}</S.Point>
             </S.PointWrapper>
           </S.ProfileWrapper>
         </S.Wrapper>

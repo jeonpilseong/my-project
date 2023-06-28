@@ -7,7 +7,7 @@ import { useState } from 'react'
 import styled from '@emotion/styled'
 import { useMutation } from '@apollo/client'
 import { IMutation, IMutationCreatePointTransactionOfLoadingArgs } from '@/common/types/generated/types'
-import { CREATE_POINT_TRANSACTION_OF_LOADING, FETCH_USER_LOGGED_IN } from './PointChargeModal.queries'
+import { CREATE_POINT_TRANSACTION_OF_LOADING } from './PointChargeModal.queries'
 import { useRecoilState } from 'recoil'
 import { isModalOpenState } from '@/common/stores'
 import { IPointChargeModalProps } from './PointChargeModal.types'
@@ -46,7 +46,6 @@ export default function PointChargeModal(props: IPointChargeModalProps) {
     Pick<IMutation, 'createPointTransactionOfLoading'>,
     IMutationCreatePointTransactionOfLoadingArgs
   >(CREATE_POINT_TRANSACTION_OF_LOADING)
-  // const { data: UserData } = useQuery<Pick<IQuery, 'fetchUserLoggedIn'>>(FETCH_USER_LOGGED_IN)
 
   // **** 포인트 충전 DropDown 메뉴 클릭
   const handlePointMenuClick: MenuProps['onClick'] = e => {
@@ -85,11 +84,14 @@ export default function PointChargeModal(props: IPointChargeModalProps) {
             variables: {
               impUid: rsp.imp_uid,
             },
-            refetchQueries: [
-              {
-                query: FETCH_USER_LOGGED_IN,
-              },
-            ],
+            // ** 아폴로 캐시에 충전된 포인트로 반영하여 수정
+            update(cache) {
+              cache.modify({
+                fields: {
+                  fetchUserLoggedIn: () => {},
+                },
+              })
+            },
           })
           Modal.success({ content: '포인트가 충전 되었습니다.' })
         } else {
