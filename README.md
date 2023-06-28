@@ -12,12 +12,11 @@
 
 - [:notebook_with_decorative_cover: Table of Contents](#notebook_with_decorative_cover-table-of-contents)
   - [:star2: About the Project](#star2-about-the-project)
-    - [:camera: Main Page](#camera-main-page)
     - [:space_invader: Tech Stack](#space_invader-tech-stack)
     - [:art: Color Reference](#art-color-reference)
   - [:toolbox: 프로젝트 실행](#toolbox-프로젝트-실행)
   - [:eyes: 메인화면](#eyes-메인화면)
-  - [:eyes: 포인트 충전](#eyes-포인트-충전)
+  - [:eyes: 상품 등록](#eyes-상품-등록)
   - [:compass: Roadmap](#compass-roadmap)
   - [:wave: Contributing](#wave-contributing)
     - [:scroll: Code of Conduct](#scroll-code-of-conduct)
@@ -29,12 +28,6 @@
 <!-- About the Project -->
 
 ## :star2: About the Project
-
-<!-- Screenshots -->
-
-### :camera: Main Page
-
-![메인화면](https://github.com/jeonpilseong/my-project/blob/main/public/readme/메인페이지.webp)
 
 <!-- TechStack -->
 
@@ -120,25 +113,24 @@
 ![메인화면](https://github.com/jeonpilseong/my-project/blob/main/public/readme/메인페이지.webp)
 
 <details> 
-  <summary>중고 상품 목록 페이지 - 무한스크롤</summary>
-  <ui>
+  <summary>중고 상품 목록 페이지</summary>
+  <ol>
+    <li>무한스크롤을 이용해 상품 목록들을 보여줍니다.</li>
     <li>유저가 많이 찜한 상품 순서로 베스트 상품이 보여집니다.</li>
     <li>검색창에 상품 제목을 검색할 수 있습니다.</li>
     <li>상품 조회시 오른쪽 사이드에 최근에 본 상품이 담겨집니다.</li>
-  </ui>
+  </ol>
 </details>
-</br>
 
 <details>
-  <summary>자유게시판 - 페이지네이션</summary>
-  <ui>
+  <summary>자유게시판</summary>
+  <ol>
+    <li>페이지네이션을 이용해 자유 게시판 목록들을 보여줍니다.</li>
     <li>검색창에 게시글 제목과 날짜를 검색할 수 있습니다.</li>
-    <li>하단의 숫자 버튼 클릭 시 해당 페이지의 게시글들을 불러옵니다.</li>
-  </ui>
+  </ol>
 </details>
-</br>
 
-## :eyes: 포인트 충전
+## :eyes: 상품 등록
 
 <!-- Roadmap -->
 

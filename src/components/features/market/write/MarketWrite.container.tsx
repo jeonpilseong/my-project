@@ -146,6 +146,11 @@ export default function MarketWrite() {
         refetchQueries: [
           {
             query: FETCH_USEDITEMS,
+            variables: {
+              isSoldout: false,
+              search: '',
+              page: 1,
+            },
           },
         ],
       })
