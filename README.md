@@ -124,8 +124,8 @@
  yarn dev
 ```
 
-<p></p>cf) 사용중인 백엔드 서버는 GraphQL API가 localhost:3000 주소에서만 요청 가능하도록 설정되어 있습니다.
-</br>따라서 하단의 배포 링크는 GraphQL API 요청이 막혀 데이터를 불러올 수 없기에 제대로 동작하지 않습니다.
+<p></p>현재 백엔드 서버는 GraphQL API가 localhost:3000 주소에서만 요청 가능하도록 설정되어 있습니다.
+</br>따라서 하단의 배포 링크는 GraphQL API 요청이 막혀 데이터를 불러오지 못하기에 로컬에서만 프로젝트를 볼 수 있습니다.
 </br>:link:<a href="https://useditems-market.vercel.app/">useditems-market.vercel.app/</a>
 </br>
 </br>
